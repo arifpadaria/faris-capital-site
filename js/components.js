@@ -44,7 +44,7 @@ const Footer = `
     <div class="grid grid-2" style="gap: 2rem;">
         <div>
             <div class="footer-line footer-line-1">Faris Capital</div>
-            <div class="footer-line" style="font-size: 0.9rem; opacity: 0.8;">Arif Padaria</div>
+            <div class="footer-line" style="font-size: 0.9rem; opacity: 0.8;"></div>
             <div class="footer-line" style="font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6; max-width: 300px;">
                 Growth-Stage Venture Advisory<br>Corporate & Venture Development<br>Capital Alignment
             </div>
