@@ -1,0 +1,376 @@
+#!/usr/bin/env node
+
+/**
+ * Enhanced Publishing Tool for Faris Capital Perspectives
+ * Supports: LinkedIn posts + Obsidian Markdown files
+ * Usage: node scripts/publish.js
+ */
+
+const fs = require('fs');
+const path = require('path');
+const readline = require('readline');
+const { execSync } = require('child_process');
+
+// ANSI colors for terminal UI
+const colors = {
+  reset: '\x1b[0m',
+  bright: '\x1b[1m',
+  dim: '\x1b[2m',
+  cyan: '\x1b[36m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  red: '\x1b[31m',
+  blue: '\x1b[34m',
+  bgBlue: '\x1b[44m',
+  bgGreen: '\x1b[42m'
+};
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: true
+});
+
+let state = 'SOURCE_SELECT';
+let source = ''; // 'linkedin' or 'obsidian'
+let title = '';
+let linkedinUrl = '';
+let obsidianFile = '';
+let teaserLines = [];
+let contentLines = [];
+let publishDate = '';
+
+const OBSIDIAN_PATH = '/Users/arifpadaria/Library/Mobile Documents/iCloud~md~obsidian/Documents/AP_Brain/08 - Writing';
+
+function clear() {
+  console.clear();
+}
+
+function header() {
+  console.log(`${colors.bgBlue}${colors.bright} FARIS CAPITAL - PERSPECTIVE PUBLISHER ${colors.reset}\n`);
+}
+
+function section(title) {
+  console.log(`${colors.cyan}${colors.bright}▶ ${title}${colors.reset}`);
+}
+
+function prompt(msg) {
+  return new Promise(resolve => {
+    rl.question(`${colors.yellow}▸ ${msg}${colors.reset}\n`, (ans) => {
+      resolve(ans.trim());
+    });
+  });
+}
+
+function success(msg) {
+  console.log(`${colors.green}✓ ${msg}${colors.reset}`);
+}
+
+function error(msg) {
+  console.log(`${colors.red}✗ ${msg}${colors.reset}`);
+}
+
+function info(msg) {
+  console.log(`${colors.dim}ℹ ${msg}${colors.reset}`);
+}
+
+async function selectSource() {
+  clear();
+  header();
+  section('Step 1: Where is your content?');
+
+  console.log(`\n  ${colors.bright}1${colors.reset} LinkedIn Post (manual entry)`);
+  console.log(`  ${colors.bright}2${colors.reset} Obsidian Markdown file (auto-import)\n`);
+
+  const choice = await prompt('Select (1 or 2)');
+
+  if (choice === '1') {
+    source = 'linkedin';
+    await linkedinFlow();
+  } else if (choice === '2') {
+    source = 'obsidian';
+    await obsidianFlow();
+  } else {
+    error('Invalid choice. Please select 1 or 2.');
+    await selectSource();
+  }
+}
+
+async function linkedinFlow() {
+  clear();
+  header();
+  section('Publishing from LinkedIn Post');
+
+  title = await prompt('Article Title');
+  if (!title) {
+    error('Title cannot be empty.');
+    return linkedinFlow();
+  }
+
+  linkedinUrl = await prompt('LinkedIn Post URL');
+  if (!linkedinUrl || !linkedinUrl.includes('linkedin')) {
+    error('Please provide a valid LinkedIn URL.');
+    return linkedinFlow();
+  }
+
+  console.log('\n' + colors.dim + 'Paste the teaser (1-3 sentences). Type END on a new line when done:' + colors.reset);
+  teaserLines = await multilineInput();
+
+  if (!teaserLines.join('\n').trim()) {
+    error('Teaser cannot be empty.');
+    return linkedinFlow();
+  }
+
+  console.log('\n' + colors.dim + 'Paste the full article content. Type END on a new line when done:' + colors.reset);
+  contentLines = await multilineInput();
+
+  if (!contentLines.join('\n').trim()) {
+    error('Content cannot be empty.');
+    return linkedinFlow();
+  }
+
+  publishDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  await reviewAndConfirm();
+}
+
+async function obsidianFlow() {
+  clear();
+  header();
+  section('Publishing from Obsidian');
+
+  // List available markdown files
+  let files = [];
+  try {
+    files = fs.readdirSync(OBSIDIAN_PATH)
+      .filter(f => f.endsWith('.md'))
+      .sort()
+      .reverse();
+  } catch (e) {
+    error(`Cannot access Obsidian vault at ${OBSIDIAN_PATH}`);
+    info('Make sure your Obsidian vault is synced via iCloud.');
+    await selectSource();
+    return;
+  }
+
+  if (files.length === 0) {
+    error('No markdown files found in your Obsidian Writing folder.');
+    await selectSource();
+    return;
+  }
+
+  console.log(`\n${colors.dim}Found ${files.length} markdown files:${colors.reset}\n`);
+  files.slice(0, 10).forEach((f, i) => {
+    console.log(`  ${colors.bright}${i + 1}${colors.reset} ${f}`);
+  });
+  if (files.length > 10) {
+    console.log(`  ${colors.dim}... and ${files.length - 10} more${colors.reset}`);
+  }
+
+  const choice = await prompt('Select file number (or paste exact filename)');
+  const idx = parseInt(choice) - 1;
+
+  obsidianFile = (idx >= 0 && idx < files.length) ? files[idx] : choice;
+
+  const filePath = path.join(OBSIDIAN_PATH, obsidianFile);
+  if (!fs.existsSync(filePath)) {
+    error(`File not found: ${obsidianFile}`);
+    await obsidianFlow();
+    return;
+  }
+
+  // Parse markdown file
+  const content = fs.readFileSync(filePath, 'utf8');
+  parseMarkdownFile(content, obsidianFile);
+
+  await reviewAndConfirm();
+}
+
+function parseMarkdownFile(content, filename) {
+  // Extract title from frontmatter or filename
+  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+
+  if (frontmatterMatch) {
+    const fm = frontmatterMatch[1];
+    const titleMatch = fm.match(/title:\s*['"](.*?)['"]/);
+    title = titleMatch ? titleMatch[1] : filename.replace('.md', '');
+  } else {
+    title = filename.replace('.md', '');
+  }
+
+  // Remove frontmatter
+  let body = content.replace(/^---\n[\s\S]*?\n---\n/, '').trim();
+
+  // Extract first paragraph as teaser
+  const paragraphs = body.split('\n\n').filter(p => p.trim() && !p.startsWith('#'));
+  teaserLines = [paragraphs[0] || ''];
+
+  // Rest is content
+  contentLines = paragraphs.slice(1);
+
+  publishDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+async function multilineInput() {
+  const lines = [];
+  return new Promise(resolve => {
+    rl.on('line', (line) => {
+      if (line.trim() === 'END') {
+        rl.removeAllListeners('line');
+        resolve(lines);
+      } else {
+        lines.push(line);
+      }
+    });
+  });
+}
+
+async function reviewAndConfirm() {
+  clear();
+  header();
+  section('Review Your Perspective');
+
+  console.log(`\n${colors.bright}Title:${colors.reset}`);
+  console.log(`  ${title}\n`);
+
+  console.log(`${colors.bright}Date:${colors.reset}`);
+  console.log(`  ${publishDate}\n`);
+
+  console.log(`${colors.bright}Teaser:${colors.reset}`);
+  console.log(`  ${teaserLines.join('\n').substring(0, 150)}...\n`);
+
+  if (linkedinUrl) {
+    console.log(`${colors.bright}LinkedIn URL:${colors.reset}`);
+    console.log(`  ${linkedinUrl}\n`);
+  }
+
+  if (source === 'obsidian') {
+    console.log(`${colors.bright}Source:${colors.reset}`);
+    console.log(`  ${obsidianFile}\n`);
+  }
+
+  const confirm = await prompt('Publish this perspective? (y/n)');
+
+  if (confirm.toLowerCase() === 'y' || confirm.toLowerCase() === 'yes') {
+    savePerspective();
+    await deployPrompt();
+  } else {
+    const restart = await prompt('Start over? (y/n)');
+    if (restart.toLowerCase() === 'y') {
+      await selectSource();
+    } else {
+      rl.close();
+    }
+  }
+}
+
+function toSlug(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+}
+
+function formatContent(text) {
+  return text
+    .split(/\n\s*\n/)
+    .map(para => para.trim())
+    .filter(para => para.length > 0)
+    .map(para => `<p>${para.replace(/\n/g, '<br>')}</p>`)
+    .join('\n      ');
+}
+
+function savePerspective() {
+  const id = toSlug(title);
+  const teaserText = teaserLines.join('\n').trim();
+  const rawContent = contentLines.join('\n').trim();
+  const formattedContent = formatContent(rawContent);
+
+  const newEntry = `  {
+    id: ${JSON.stringify(id)},
+    title: ${JSON.stringify(title)},
+    date: ${JSON.stringify(publishDate)},
+    teaser: ${JSON.stringify(teaserText)},
+    content: \`
+      ${formattedContent}
+    \`,
+    linkedinUrl: ${JSON.stringify(linkedinUrl || null)}
+  },\n`;
+
+  const dataFilePath = path.join(__dirname, '../js/perspectives-data.js');
+
+  if (!fs.existsSync(dataFilePath)) {
+    error(`Database file not found at ${dataFilePath}`);
+    process.exit(1);
+  }
+
+  let fileContent = fs.readFileSync(dataFilePath, 'utf8');
+  const marker = 'const PERSPECTIVES = [';
+  const insertIndex = fileContent.indexOf(marker);
+
+  if (insertIndex === -1) {
+    error('Could not find PERSPECTIVES array in database file.');
+    process.exit(1);
+  }
+
+  const position = insertIndex + marker.length + 1;
+  const updatedContent = fileContent.slice(0, position) + newEntry + fileContent.slice(position);
+
+  fs.writeFileSync(dataFilePath, updatedContent, 'utf8');
+  success(`Added "${title}" (ID: ${id})`);
+}
+
+async function deployPrompt() {
+  clear();
+  header();
+  section('Deployment');
+
+  console.log(`${colors.dim}Your perspective has been added locally.${colors.reset}\n`);
+  console.log(`${colors.bright}Next steps:${colors.reset}`);
+  console.log(`  1. Cache version auto-bumped to refresh browser caches`);
+  console.log(`  2. Push to GitHub & Firebase Hosting\n`);
+
+  const deploy = await prompt('Deploy now? (y/n)');
+
+  if (deploy.toLowerCase() === 'y' || deploy.toLowerCase() === 'yes') {
+    await performDeploy();
+  } else {
+    info('Deployment skipped. Run "firebase deploy" manually when ready.');
+  }
+
+  rl.close();
+}
+
+async function performDeploy() {
+  const repoDir = path.join(__dirname, '..');
+
+  try {
+    console.log(`\n${colors.dim}Deploying...${colors.reset}\n`);
+
+    // Bump cache version
+    const currentVersion = 1;
+    const newVersion = currentVersion + 1;
+    execSync(`sed -i '' 's/?v=${currentVersion}/?v=${newVersion}/g' *.html`, { cwd: repoDir });
+
+    // Git operations
+    execSync('git add .', { cwd: repoDir });
+    execSync(`git commit -m "Add perspective: ${title.replace(/"/g, '\\"')}"`, { cwd: repoDir });
+    execSync('git push origin main', { cwd: repoDir });
+
+    // Firebase deploy
+    execSync('firebase deploy --only hosting', { cwd: repoDir });
+
+    success('Deployment complete! Your perspective is now live.');
+    info(`Cache version bumped to ${newVersion}. Hard refresh your browser to see updates.`);
+  } catch (error) {
+    error(`Deployment failed: ${error.message}`);
+  }
+}
+
+// Start the interactive flow
+selectSource().catch(err => {
+  error(`Fatal error: ${err.message}`);
+  process.exit(1);
+});
