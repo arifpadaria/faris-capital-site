@@ -7,13 +7,6 @@
       "**/node_modules/**",
       ".github/**",
       ".git/**"
-    ],
-    "unused_redirects": [
-      {
-        "source": "/**",
-        "destination": "https://www.linkedin.com/in/padaria/",
-        "type": 302
-      }
     ]
   }
 }
