@@ -50,18 +50,6 @@ const PERSPECTIVES = [
     linkedinUrl: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7440549867422199808/"
   },
   {
-    id: "why-growth-stage-ventures-stall",
-    title: "Why Growth-Stage Ventures Stall Without Corporate Development Discipline",
-    date: "February 14, 2026",
-    teaser: "A breakdown of why scaling beyond founder-led execution requires structural corporate development and enterprise alignment.",
-    content: `
-      <p>Many growth-stage technology ventures reach a point where scaling stalls. The initial momentum driven by product-market fit and founder-led sales begins to taper, and the organization struggle to move to the next level.</p>
-      <p>In most cases, the missing link is not the technology or the market opportunity, but the lack of structured corporate development. Corporate development is not just about M&A; it is about commercial alliances, strategic partnerships, and structural alignment with enterprise customers and sovereign platforms.</p>
-      <p>By establishing corporate development discipline early, ventures can build repeatable enterprise partnerships, structure cross-border joint ventures, and prepare the company for institutional growth capital or strategic exits.</p>
-    `,
-    linkedinUrl: "https://www.linkedin.com/in/padaria/"
-  },
-  {
     id: "capital-alignment-capital-intensive-innovation",
     title: "Capital Alignment in Capital-Intensive Innovation",
     date: "February 14, 2026",
