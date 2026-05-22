@@ -153,12 +153,50 @@
             </p>
         </section>
 
+        <!-- Latest Investment Theses -->
+        <section class="section section-bg">
+            <div class="container">
+                <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; gap: 2rem; flex-wrap: wrap;">
+                    <div>
+                        <h2>Latest Investment Theses</h2>
+                        <p style="margin-top: 1rem; max-width: 600px;">Strategic frameworks on venture scale, capital alignment, and where value forms in technology at global scale.</p>
+                    </div>
+                    <a href="investment-theses.html" class="btn btn-secondary" style="white-space: nowrap;">View All →</a>
+                </div>
+                <div id="featured-theses" class="grid grid-2" style="gap: 2rem;">
+                    <!-- Latest 2 theses loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer Placeholder -->
     <footer></footer>
 
     <script src="js/components.js?v=4"></script>
+    <script src="js/investment-theses-data.js?v=4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('featured-theses');
+            if (grid && typeof INVESTMENT_THESES !== 'undefined' && INVESTMENT_THESES.length > 0) {
+                // Show the 2 most recent theses
+                const featured = INVESTMENT_THESES.slice(0, 2);
+                grid.innerHTML = featured.map(p => `
+                    <div class="content-block radius-card" style="border: 1px solid var(--border-color); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.75rem;">${p.date}</div>
+                            <h3 style="font-size: 1.25rem; line-height: 1.4; margin-bottom: 1rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600;">${p.title}</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${p.teaser}</p>
+                        </div>
+                        <a href="article.html?id=${p.id}" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
+                            Read Thesis <span style="transition: transform 0.2s;">→</span>
+                        </a>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
     <script src="js/main.js?v=4"></script>
 </body>
 
