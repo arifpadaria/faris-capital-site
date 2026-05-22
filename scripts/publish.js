@@ -109,11 +109,8 @@ async function linkedinFlow() {
     return linkedinFlow();
   }
 
-  linkedinUrl = await prompt('LinkedIn Post URL');
-  if (!linkedinUrl || !linkedinUrl.includes('linkedin')) {
-    error('Please provide a valid LinkedIn URL.');
-    return linkedinFlow();
-  }
+  linkedinUrl = await prompt('LinkedIn Post URL (optional — press Enter to skip)');
+  // LinkedIn URL is optional for manual entry
 
   console.log('\n' + colors.dim + 'Paste the teaser (1-3 sentences). Type END on a new line when done:' + colors.reset);
   teaserLines = await multilineInput();
@@ -139,7 +136,7 @@ async function linkedinFlow() {
 async function obsidianFlow() {
   clear();
   header();
-  section('Publishing from Obsidian (LinkedIn/Published)');
+  section('Copy from Obsidian File');
 
   // List available markdown files
   let files = [];
@@ -171,51 +168,31 @@ async function obsidianFlow() {
     console.log(`  ${colors.dim}... and ${files.length - 10} more${colors.reset}`);
   }
 
-  const choice = await prompt('Select file number (or paste exact filename)');
+  const choice = await prompt('Select file number to open');
   const idx = parseInt(choice) - 1;
 
-  obsidianFile = (idx >= 0 && idx < files.length) ? files[idx] : choice;
-
-  const filePath = path.join(OBSIDIAN_PATH, obsidianFile);
-  if (!fs.existsSync(filePath)) {
-    error(`File not found: ${obsidianFile}`);
+  if (idx < 0 || idx >= files.length) {
+    error('Invalid selection.');
     await obsidianFlow();
     return;
   }
 
-  // Parse markdown file
-  const content = fs.readFileSync(filePath, 'utf8');
-  parseMarkdownFile(content, obsidianFile);
+  const selectedFile = files[idx];
+  const filePath = path.join(OBSIDIAN_PATH, selectedFile);
 
-  await reviewAndConfirm();
-}
-
-function parseMarkdownFile(content, filename) {
-  // Extract title from frontmatter or filename
-  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-
-  if (frontmatterMatch) {
-    const fm = frontmatterMatch[1];
-    // Match title with either double or single quotes, handling apostrophes inside
-    let titleMatch = fm.match(/title:\s*"([^"]*)"/);
-    if (!titleMatch) titleMatch = fm.match(/title:\s*'([^']*)'/);
-    title = titleMatch ? titleMatch[1] : filename.replace('.md', '');
-  } else {
-    title = filename.replace('.md', '');
+  try {
+    // Open the file in the default editor
+    execSync(`open "${filePath}"`);
+    info(`Opened: ${selectedFile}`);
+    info('Copy the title, teaser, and content from your editor.');
+  } catch (e) {
+    error(`Could not open file: ${e.message}`);
   }
 
-  // Remove frontmatter
-  let body = content.replace(/^---\n[\s\S]*?\n---\n/, '').trim();
-
-  // Extract first paragraph as teaser (filter out headings and horizontal rules)
-  const paragraphs = body.split('\n\n').filter(p => p.trim() && !p.startsWith('#') && !p.match(/^-{3,}$/));
-  teaserLines = [paragraphs[0] || ''];
-
-  // Rest is content
-  contentLines = paragraphs.slice(1);
-
-  publishDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  console.log('\n' + colors.bright + 'Switching to LinkedIn entry mode...' + colors.reset);
+  await linkedinFlow();
 }
+
 
 async function multilineInput() {
   const lines = [];
