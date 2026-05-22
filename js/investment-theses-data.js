@@ -4,6 +4,59 @@
  */
 const INVESTMENT_THESES = [
   {
+    id: "physical-ai-has-a-data-problem-that-software-ai-never-had",
+    title: "Physical AI Has a Data Problem That Software AI Never Had",
+    date: "May 22, 2026",
+    teaser: "Last post I described the architectural gap: robots need two incompatible things simultaneously — a Slow Brain for reasoning, and a Fast Brain for real-time control. That's the infrastructure problem.\n\nBut there's a second constraint running in parallel, and it's just as structural. It's the data problem.\n\nAnd it's not the kind of problem you solve by waiting for the next generation of GPUs.",
+    content: `
+      <p>May 22, 2026<br>LLMs Inherited the Internet. Robots Inherited Nothing.</p>
+      <p>Here's the asymmetry that matters.</p>
+      <p>When researchers built the first large language models, they didn't have to collect a corpus. The corpus already existed. Common Crawl, Wikipedia, books, academic papers. Four centuries of human writing, already digitized and indexed. GPT-3 trained on roughly 300 billion tokens of this inherited data. It cost billions to compute, but zero to acquire the raw material.</p>
+      <p>The dataset problem was solved before the model era began.</p>
+      <p>Physical AI has no equivalent.</p>
+      <p>Robots have to act in the physical world. The physical world has not been indexed. Every policy, every task, every embodiment requires fresh data collection in the physical world. If you want a robot to pick a coffee cup, you need coffee-cup-picking demonstrations. If you want the same robot to pick a pencil in the same kitchen, you might need new demonstrations. Pencils are different. Sometimes the cup is in the way.</p>
+      <p>The largest open-source robot dataset today is Open X-Embodiment, collected by 34 labs over years. It contains just over 1 million trajectories across 22 robot types. Industry researchers estimate that embodied intelligence at true generalist scale will need hundreds of millions of training examples. We are currently two orders of magnitude below that threshold. And there's no path to filling that gap without collecting real-world data at scale.</p>
+      <p>The Economics of Collecting That Data</p>
+      <p>Teleoperation is how the industry collects high-quality robot training data today. Hiring skilled operators to remotely demonstrate tasks.</p>
+      <p>In Q1 2024, the cost per hour was $340. By Q4 2025, it had dropped to $136 per hour. A skilled operator can generate 30 to 60 usable demonstrations per hour. Operators need 4 to 8 hours of training before they're productive.</p>
+      <p>Do the math. If you want 500,000 hours of manipulation data — which is what a single company (Generalist AI) collected for their foundation model — that's a serious industrial effort and a serious budget line.</p>
+      <p>The industry aggregate spend on robot training data collection is estimated to hit $3 billion over the next two years. That's real money. It's also why this is starting to look like infrastructure, not one-time engineering work.</p>
+      <p>The Gig Economy Signal</p>
+      <p>Here's where it gets interesting.</p>
+      <p>MIT Technology Review named "gig workers training humanoid robots at home" as one of its 2026 Breakthrough Technologies. Across the robot companies, workers are earning $25 per hour recording household chores (loading dishwashers, folding laundry, organizing shelves) in their own homes for training datasets. DoorDash has a public program around this.</p>
+      <p>Why is this a breakthrough technology? Because it's a signal of how acute the data scarcity is. Companies cannot get enough training data at institutional collection rates. They're turning to gig work, which is cheaper but also messier and slower to process.</p>
+      <p>The emergence of the gig economy around robot data is like watching the early days of mechanical labeling before the industrial revolution. It means the infrastructure problem is real and companies are optimizing around it rather than solving it.</p>
+      <p>Why Simulation Isn't the Answer</p>
+      <p>The obvious move is to skip the physical world and generate infinite training data in simulation.</p>
+      <p>The problem is that simulated physics is an approximation of the real world. Policies trained in simulation often fail catastrophically when deployed on real hardware. This is called the sim-to-real gap, and it's not going away.</p>
+      <p>The documented failure modes are specific. Specular and transparent objects (glass, chrome, mirrors) behave differently in simulation than in the real world because light behaves unpredictably. Contact dynamics (how surfaces interact when one object slides against another, how deformable materials absorb force) cannot be simulated accurately at the resolution that real robots need. Sensor noise patterns don't match simulated noise. Joint friction and actuator wear create performance variation that no amount of domain randomization fixes.</p>
+      <p>The current best practice is: pretrain in simulation with domain randomization, then collect targeted real-world demonstrations, then fine-tune on the real data. This reduces the amount of real-world data you need by 3 to 5x. But it doesn't eliminate the need for real data. Real-world collection remains required for every new environment, every new object, every deployment.</p>
+      <p>This isn't a solution to the data problem. It's a mitigation.</p>
+      <p>NVIDIA's Cosmos: The Industry's Best Attempt</p>
+      <p>NVIDIA released Cosmos as its attempt to address this at scale. It's a generative world foundation model. Feed it a scenario or a prompt, and it generates photorealistic synthetic video that robots can train on.</p>
+      <p>The numbers are impressive. Cosmos Predict 2.5 trained on 200 million curated video clips. NVIDIA released it at 2B and 14B parameter scales. Early adopters include Agility Robotics, Figure AI, Skild AI, and 1X.</p>
+      <p>But here's the honest limitation: Cosmos is primarily used as augmentation on top of real demonstrations, not as a replacement. You train on real data, then use Cosmos Predict to extend your real dataset with plausible variations. You don't eliminate the need for real collection. The physics fidelity gap remains. Contact dynamics still don't simulate well. Deformable materials still cause sim-to-real failures.</p>
+      <p>Cosmos is infrastructure that makes the data problem slightly less acute. It does not solve it.</p>
+      <p>The Bottleneck Is Generalization</p>
+      <p>Epoch AI's 2026 assessment of robot capabilities found one critical constraint: robots fail when they encounter objects, environments, or tasks outside their training distribution.</p>
+      <p>The quote: "The main bottleneck is likely to be an inability to handle new objects, new environments, and new tasks without extensive retraining. Transfer remains limited and rarely measured."</p>
+      <p>This is a direct symptom of data scarcity. When your training set is small and domain-specific, your model cannot generalize broadly. A robot trained to pick boxes in Warehouse A fails with slightly different boxes in Warehouse B. A humanoid that walks on level ground falls on stairs. A manipulator that places cups struggles with plates.</p>
+      <p>This is not a model capacity problem. It's a data coverage problem. The model has never seen that combination before.</p>
+      <p>Where the Value Accumulates</p>
+      <p>The market is beginning to recognize this. Multiple sources in 2026 are framing robot training data as the picks-and-shovels opportunity of the Physical AI wave. Bessemer's robotics predictions center data infrastructure as a primary investment theme. Scale AI, which built itself into a $7 billion company by becoming the data infrastructure layer for the LLM era, is now focused on robot data pipelines.</p>
+      <p>The companies solving the data problem — companies building efficient teleoperation infrastructure, synthetic data pipelines with credible sim-to-real transfer, standardized data formats that allow cross-embodiment learning — are building the layers that every Physical AI deployment will depend on.</p>
+      <p>This is where the durable value accumulates. Not at the model layer. At the data layer.</p>
+      <p>The Pattern Repeats</p>
+      <p>I've written before about this pattern: when AI moves from analyzing to acting, the value doesn't stay at the model. It moves to the layers that connect models to reliable outcomes.</p>
+      <p>In digital AI, that was the data layer — Scale AI's $7B value. In software AI governance, it's the integration layer — the Agent Harness. In physical AI, it's the data infrastructure.</p>
+      <p>Models get commoditized. Infrastructure scales.</p>
+      <p>The Fast Brain and the Slow Brain are hard engineering problems. But the data problem is a structural constraint. It runs deeper. Every robot, every new task, every new environment will require fresh data collection, federated learning infrastructure, synthetic data validation pipelines, and cross-embodiment learning standards.</p>
+      <p>The companies that build this infrastructure won't just help robots learn faster. They'll become indispensable to the entire Physical AI ecosystem.</p>
+      <p>If you're working on robot training data infrastructure or seeing this constraint in production deployments, I'd be curious to hear from you. Get in touch: arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/physical-ai-has-data-problem-software-never-had-arif-padaria-rspce/"
+  },
+  {
     id: "the-fast-brain-the-slow-brain-and-the-missing-layer",
     title: "The Fast Brain, the Slow Brain, and the Missing Layer",
     date: "May 22, 2026",
