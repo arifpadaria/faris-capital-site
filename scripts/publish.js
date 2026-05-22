@@ -3,6 +3,7 @@
 /**
  * Enhanced Publishing Tool for Faris Capital Perspectives
  * Supports: LinkedIn posts + Obsidian Markdown files
+ * Batch mode: Add multiple perspectives before deploying
  * Usage: node scripts/publish.js
  */
 
@@ -39,6 +40,7 @@ let obsidianFile = '';
 let teaserLines = [];
 let contentLines = [];
 let publishDate = '';
+let addedPerspectives = []; // Track what we've added in this session
 
 const OBSIDIAN_PATH = '/Users/arifpadaria/Library/Mobile Documents/iCloud~md~obsidian/Documents/AP_Brain/08 - Writing';
 
@@ -252,8 +254,10 @@ async function reviewAndConfirm() {
   const confirm = await prompt('Publish this perspective? (y/n)');
 
   if (confirm.toLowerCase() === 'y' || confirm.toLowerCase() === 'yes') {
-    savePerspective();
-    await deployPrompt();
+    const id = savePerspective();
+    addedPerspectives.push({ id, title });
+    success(`Added "${title}"`);
+    await continueOrDeploy();
   } else {
     const restart = await prompt('Start over? (y/n)');
     if (restart.toLowerCase() === 'y') {
@@ -261,6 +265,42 @@ async function reviewAndConfirm() {
     } else {
       rl.close();
     }
+  }
+}
+
+async function continueOrDeploy() {
+  clear();
+  header();
+  section('What\'s Next?');
+
+  console.log(`\n${colors.bright}Perspectives added in this session:${colors.reset}`);
+  addedPerspectives.forEach((p, i) => {
+    console.log(`  ${i + 1}. ${p.title}`);
+  });
+
+  console.log(`\n${colors.bright}Options:${colors.reset}`);
+  console.log(`  ${colors.bright}1${colors.reset} Add another perspective (batch mode)`);
+  console.log(`  ${colors.bright}2${colors.reset} Deploy all changes now (push + Firebase)`);
+  console.log(`  ${colors.bright}3${colors.reset} Save locally only (deploy manually later)\n`);
+
+  const choice = await prompt('Choose (1, 2, or 3)');
+
+  if (choice === '1') {
+    title = '';
+    linkedinUrl = '';
+    obsidianFile = '';
+    teaserLines = [];
+    contentLines = [];
+    await selectSource();
+  } else if (choice === '2') {
+    await performDeploy();
+    rl.close();
+  } else if (choice === '3') {
+    await skipDeploy();
+    rl.close();
+  } else {
+    error('Invalid choice. Please select 1, 2, or 3.');
+    await continueOrDeploy();
   }
 }
 
@@ -319,35 +359,14 @@ function savePerspective() {
   const updatedContent = fileContent.slice(0, position) + newEntry + fileContent.slice(position);
 
   fs.writeFileSync(dataFilePath, updatedContent, 'utf8');
-  success(`Added "${title}" (ID: ${id})`);
-}
-
-async function deployPrompt() {
-  clear();
-  header();
-  section('Deployment');
-
-  console.log(`${colors.dim}Your perspective has been added locally.${colors.reset}\n`);
-  console.log(`${colors.bright}Next steps:${colors.reset}`);
-  console.log(`  1. Cache version auto-bumped to refresh browser caches`);
-  console.log(`  2. Push to GitHub & Firebase Hosting\n`);
-
-  const deploy = await prompt('Deploy now? (y/n)');
-
-  if (deploy.toLowerCase() === 'y' || deploy.toLowerCase() === 'yes') {
-    await performDeploy();
-  } else {
-    info('Deployment skipped. Run "firebase deploy" manually when ready.');
-  }
-
-  rl.close();
+  return id;
 }
 
 async function performDeploy() {
   const repoDir = path.join(__dirname, '..');
 
   try {
-    console.log(`\n${colors.dim}Deploying...${colors.reset}\n`);
+    console.log(`\n${colors.dim}Deploying ${addedPerspectives.length} perspective(s)...${colors.reset}\n`);
 
     // Bump cache version
     let currentVersion = 1;
@@ -369,30 +388,60 @@ async function performDeploy() {
     console.log('Staging changes...');
     execSync('git add .', { cwd: repoDir, stdio: 'pipe' });
 
+    const commitMessage = addedPerspectives.length === 1
+      ? `Add perspective: ${addedPerspectives[0].title.replace(/"/g, '\\"')}`
+      : `Add ${addedPerspectives.length} perspectives`;
+
     console.log('Committing...');
-    execSync(`git commit -m "Add perspective: ${title.replace(/"/g, '\\"')}"`, { cwd: repoDir, stdio: 'pipe' });
+    execSync(`git commit -m "${commitMessage}"`, { cwd: repoDir, stdio: 'pipe' });
 
     console.log('Pushing to GitHub...');
-    // Use --no-verify to skip hooks, and ensure git uses credential helper
     execSync('git push origin main', { cwd: repoDir, stdio: 'inherit', env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
 
     // Firebase deploy
     console.log('Deploying to Firebase...');
     execSync('firebase deploy --only hosting', { cwd: repoDir, stdio: 'inherit' });
 
-    success('Deployment complete! Your perspective is now live.');
+    success('Deployment complete! Your perspectives are now live.');
     info(`Cache version bumped to ?v=${newVersion}. Hard refresh your browser to see updates.`);
   } catch (error) {
     error(`Deployment failed: ${error.message}`);
-    info('Your perspective was saved locally. You can push manually later with:');
+    info('Your perspectives were saved locally. You can push manually later with:');
     info('  cd ' + repoDir);
     info('  git push origin main');
     info('  firebase deploy');
   }
 }
 
-// Start the interactive flow
-selectSource().catch(err => {
-  error(`Fatal error: ${err.message}`);
-  process.exit(1);
-});
+async function skipDeploy() {
+  clear();
+  header();
+  section('Changes Saved Locally');
+
+  console.log(`\n${colors.green}✓ ${addedPerspectives.length} perspective(s) added to perspectives-data.js${colors.reset}\n`);
+
+  console.log(`${colors.bright}When you\'re ready to deploy, run:${colors.reset}`);
+  console.log(`\n  ${colors.dim}node scripts/publish.js --deploy${colors.reset}\n`);
+  console.log(`${colors.dim}Or manually:${colors.reset}`);
+  console.log(`  git push origin main`);
+  console.log(`  firebase deploy\n`);
+}
+
+// Handle CLI arguments
+const args = process.argv.slice(2);
+
+if (args.includes('--deploy')) {
+  // Deploy-only mode
+  performDeploy().then(() => {
+    rl.close();
+  }).catch(err => {
+    error(`Fatal error: ${err.message}`);
+    process.exit(1);
+  });
+} else {
+  // Start the interactive flow
+  selectSource().catch(err => {
+    error(`Fatal error: ${err.message}`);
+    process.exit(1);
+  });
+}

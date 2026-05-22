@@ -2,6 +2,8 @@
 
 A simple, interactive way to publish your writing—from LinkedIn posts or Obsidian notes—directly to your site.
 
+**Batch mode supported:** Add multiple perspectives locally, then deploy once.
+
 ## Quick Start
 
 ```bash
@@ -9,7 +11,7 @@ cd /Users/arifpadaria/Documents/faris-capital-site
 node scripts/publish.js
 ```
 
-That's it. The tool will guide you through everything.
+The tool will guide you through everything—add one or more perspectives, then choose when to deploy.
 
 ---
 
@@ -64,20 +66,41 @@ This and everything below becomes the full content.
 
 ---
 
+## Batch Mode Workflow
+
+Add multiple perspectives in one session:
+
+1. Run `node scripts/publish.js`
+2. Add perspective #1 (LinkedIn or Obsidian)
+3. Choose "Add another perspective" when prompted
+4. Add perspective #2, #3, etc.
+5. When done, choose "Deploy all changes now"
+
+All perspectives are added locally, then pushed and deployed together in a single commit.
+
 ## What Happens After Publishing
 
-✓ Your perspective is added to `js/perspectives-data.js`  
-✓ A new card appears on your Perspectives page  
-✓ A full reading page is auto-created at `article.html?id=<slug>`  
-✓ Browser cache is automatically invalidated (version bumped)  
-✓ Changes are committed to Git and pushed to GitHub  
-✓ Site is deployed live to Firebase Hosting  
+✓ Your perspective(s) added to `js/perspectives-data.js`  
+✓ New card(s) appear on your Perspectives page  
+✓ Full reading page(s) auto-created at `article.html?id=<slug>`  
+✓ Browser cache automatically invalidated (version bumped)  
+✓ All changes committed to Git and pushed to GitHub in one go  
+✓ Site deployed live to Firebase Hosting  
 
 ---
 
-## Manual Deployment (if you skip auto-deploy)
+## Deploy Locally-Saved Perspectives
+
+If you saved perspectives locally without deploying:
 
 ```bash
+node scripts/publish.js --deploy
+```
+
+Or manually:
+
+```bash
+git push origin main
 firebase deploy
 ```
 
