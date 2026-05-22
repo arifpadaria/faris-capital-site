@@ -8,7 +8,16 @@
       "Read(//Users/arifpadaria/**)",
       "Bash(chmod +x /Users/arifpadaria/Documents/faris-capital-site/scripts/publish.js)",
       "Bash(node /Users/arifpadaria/Documents/faris-capital-site/scripts/publish.js --help)",
-      "Bash(node scripts/publish.js)"
+      "Bash(node scripts/publish.js)",
+      "Bash(git config *)",
+      "Bash(git commit -m 'Improve git push handling and add SSH setup guide *)",
+      "Bash(git push *)",
+      "Bash(ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N \"\")",
+      "Bash(git remote *)",
+      "Bash(ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>&1 && echo \"✓ GitHub host key added\")"
+    ],
+    "additionalDirectories": [
+      "/Users/arifpadaria/.ssh"
     ]
   }
 }
