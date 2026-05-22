@@ -4,6 +4,45 @@
  */
 const PERSPECTIVES = [
   {
+    id: "from-systems-of-record-to-systems-of-action-where-the-new-moat-is-forming",
+    title: "From Systems of Record to Systems of Action — Where the New MOAT Is Forming",
+    date: "May 22, 2026",
+    teaser: "A broader shift is starting to take shape in AI:\nWe are moving from systems that store and inform… to systems that actually act...",
+    content: `
+      <p>March 24, 2026<br>Following up on my recent posts on Autonomous AI and the “agent harness”…a broader shift is becoming clearer:</p>
+      <p>We are moving from systems of record → to systems of action.</p>
+      <p>For the past 20+ years, enterprise software has largely been built to store data, analyze it, and support human decision-making. But not to Execute. That’s now changing.</p>
+      <p>What’s different this time is not just better models it’s the emergence of systems that can actually act. We’re starting to see early signals in the real world:</p>
+      <p>Claude’s evolving “Co-working” environments. <br>Tools like OpenClaw operating directly across files and workflows<br>Agent frameworks that plan, execute, and iterate; not just respond</p>
+      <p>(have you tried Claude Cowork, Claude Remote Control, OpenClaw ?)</p>
+      <p>These aren’t Copilots. They are early versions of Systems of Execution.</p>
+      <p>(no disrespect to (my former employer) Microsoft; I'm sure they will catch up soon)</p>
+      <p>But this is where things get harder and more interesting. Real-world execution is messy.</p>
+      <p>Workflows are:</p>
+      <p>fragmented across systems<br>filled with exceptions<br>constrained by compliance and governance<br>dependent on human judgment at critical points</p>
+      <p>This is why most early “agent” implementations struggle beyond demos.</p>
+      <p>And this is also where the opportunity—and the moat—begins to form.</p>
+      <p>As systems move from: Record → to Action they require:</p>
+      <p>deep integration into enterprise workflows<br>persistent context and memory<br>clear permissioning and governance<br>and, importantly, human-in-the-loop controls</p>
+      <p>That “man in the middle” is not a limitation—it’s a feature. It is what enables TRUST.</p>
+      <p>Over time, as these systems:</p>
+      <p>learn from execution<br>adapt to edge cases<br>integrate across multiple systems<br>and operate within governance boundaries</p>
+      <p>they become deeply embedded in how work actually gets done.</p>
+      <p>At that point, they are no longer tools. They are infrastructure for execution.</p>
+      <p>And that’s where defensibility starts to emerge.</p>
+      <p>Not from the model. Not from the interface.</p>
+      <p>But from: Execution + Workflow + Data + Trust</p>
+      <p>For Founders: this is about owning workflows, not features.</p>
+      <p>For Investors: this is about identifying where execution compounds into lock-in.</p>
+      <p>For Corporates: this is about redesigning processes—not just augmenting them.</p>
+      <p>So perhaps the real question is:</p>
+      <p>When Systems of Record become Systems of Action, with humans governing the loop, do they become the New Core of the Enterprise MOAT?</p>
+      <p>Curious how others are thinking about this.</p>
+      <p>If you'd like to further this discussion, reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/from-systems-record-action-where-new-moat-forming-arif-padaria-fsrue/?trackingId=MpCp3kZ84aAghk86qeVBbg%3D%3D"
+  },
+  {
     id: "the-moat-in-ai-isnt-where-you-think-it-is-its-in-the-harness",
     title: "“The Moat in AI Isn’t Where You Think It Is — It’s in the Harness”",
     date: "May 22, 2026",
