@@ -20,7 +20,9 @@
       "Bash(sed -i '' 's/perspectives-data/investment-theses-data/g' scripts/add-perspective.js)",
       "Bash(sed -i '' 's/?v=3/?v=4/g' *.html && echo \"✓ Cache versions bumped to v=4\")",
       "Bash(git commit -m 'Add latest Investment Theses section to homepage *)",
-      "Bash(git commit -m 'Enhance About page with improved philosophy layout *)"
+      "Bash(git commit -m 'Enhance About page with improved philosophy layout *)",
+      "Bash(git commit *)",
+      "Bash(sed -i '' 's/?v=4/?v=5/g' *.html && echo \"✓ Cache versions bumped to v=5\")"
     ],
     "additionalDirectories": [
       "/Users/arifpadaria/.ssh",
