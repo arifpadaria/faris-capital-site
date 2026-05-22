@@ -205,8 +205,8 @@ function parseMarkdownFile(content, filename) {
   // Remove frontmatter
   let body = content.replace(/^---\n[\s\S]*?\n---\n/, '').trim();
 
-  // Extract first paragraph as teaser
-  const paragraphs = body.split('\n\n').filter(p => p.trim() && !p.startsWith('#'));
+  // Extract first paragraph as teaser (filter out headings and horizontal rules)
+  const paragraphs = body.split('\n\n').filter(p => p.trim() && !p.startsWith('#') && !p.match(/^-{3,}$/));
   teaserLines = [paragraphs[0] || ''];
 
   // Rest is content
@@ -232,7 +232,7 @@ async function multilineInput() {
 async function reviewAndConfirm() {
   clear();
   header();
-  section('Review Your Perspective');
+  section('Preview: What Will Be Posted');
 
   console.log(`\n${colors.bright}Title:${colors.reset}`);
   console.log(`  ${title}\n`);
@@ -240,8 +240,19 @@ async function reviewAndConfirm() {
   console.log(`${colors.bright}Date:${colors.reset}`);
   console.log(`  ${publishDate}\n`);
 
-  console.log(`${colors.bright}Teaser:${colors.reset}`);
-  console.log(`  ${teaserLines.join('\n').substring(0, 150)}...\n`);
+  console.log(`${colors.bright}Teaser (appears on grid card):${colors.reset}`);
+  const teaserText = teaserLines.join('\n').trim();
+  console.log(`  ${teaserText}\n`);
+
+  console.log(`${colors.bright}Full Content (on article page):${colors.reset}`);
+  const rawContent = contentLines.join('\n').trim();
+  const formattedContent = formatContent(rawContent);
+  const htmlPreview = formattedContent
+    .split('\n')
+    .map(line => '  ' + line)
+    .join('\n');
+  console.log(htmlPreview);
+  console.log('');
 
   if (linkedinUrl) {
     console.log(`${colors.bright}LinkedIn URL:${colors.reset}`);
@@ -249,11 +260,14 @@ async function reviewAndConfirm() {
   }
 
   if (source === 'obsidian') {
-    console.log(`${colors.bright}Source:${colors.reset}`);
+    console.log(`${colors.bright}Source File:${colors.reset}`);
     console.log(`  ${obsidianFile}\n`);
   }
 
-  const confirm = await prompt('Publish this perspective? (y/n)');
+  console.log(`${colors.bright}Article ID (auto-generated from title):${colors.reset}`);
+  console.log(`  ${toSlug(title)}\n`);
+
+  const confirm = await prompt('Does this look correct? Publish? (y/n)');
 
   if (confirm.toLowerCase() === 'y' || confirm.toLowerCase() === 'yes') {
     const id = savePerspective();
