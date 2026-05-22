@@ -74,5 +74,5 @@ const PERSPECTIVES = [
       <p>I’d welcome perspectives from others thinking about this transition, particularly how you’re seeing autonomy reshape investment strategy and enterprise innovation.</p>
     `,
     linkedinUrl: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7440549867422199808/"
-  }
+  } 
 ];
