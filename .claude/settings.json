@@ -22,7 +22,10 @@
       "Bash(git commit -m 'Add latest Investment Theses section to homepage *)",
       "Bash(git commit -m 'Enhance About page with improved philosophy layout *)",
       "Bash(git commit *)",
-      "Bash(sed -i '' 's/?v=4/?v=5/g' *.html && echo \"✓ Cache versions bumped to v=5\")"
+      "Bash(sed -i '' 's/?v=4/?v=5/g' *.html && echo \"✓ Cache versions bumped to v=5\")",
+      "Bash(grep -E \"\\\\.md$\")",
+      "Bash(timeout 5 bash -c \"echo -e '2\\\\n9' | node scripts/publish.js\")",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "/Users/arifpadaria/.ssh",
