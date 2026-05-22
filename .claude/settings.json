@@ -14,10 +14,16 @@
       "Bash(git push *)",
       "Bash(ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N \"\")",
       "Bash(git remote *)",
-      "Bash(ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>&1 && echo \"✓ GitHub host key added\")"
+      "Bash(ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>&1 && echo \"✓ GitHub host key added\")",
+      "Bash(xargs -I {} basename {})",
+      "Bash(sed -i '' 's/perspectives-data/investment-theses-data/g' scripts/publish.js)",
+      "Bash(sed -i '' 's/perspectives-data/investment-theses-data/g' scripts/add-perspective.js)",
+      "Bash(sed -i '' 's/?v=3/?v=4/g' *.html && echo \"✓ Cache versions bumped to v=4\")"
     ],
     "additionalDirectories": [
-      "/Users/arifpadaria/.ssh"
+      "/Users/arifpadaria/.ssh",
+      "/Users/arifpadaria",
+      "/Users/arifpadaria/Documents/faris-capital-site"
     ]
   }
 }

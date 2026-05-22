@@ -18,7 +18,7 @@ const Header = `
         <a href="corporate-development.html" class="nav-link">Corporate Development</a>
         <a href="capital-alignment.html" class="nav-link">Capital Alignment</a>
         <a href="global-markets.html" class="nav-link">Global Markets</a>
-        <a href="perspectives.html" class="nav-link">Perspectives</a>
+        <a href="investment-theses.html" class="nav-link">Investment Theses</a>
         <a href="contact.html" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;">Contact</a>
     </nav>
 
@@ -35,7 +35,7 @@ const Header = `
     <a href="corporate-development.html" class="nav-link">Corporate & Venture Development</a>
     <a href="capital-alignment.html" class="nav-link">Capital Alignment & Syndication</a>
     <a href="global-markets.html" class="nav-link">Global Markets</a>
-    <a href="perspectives.html" class="nav-link">Perspectives</a>
+    <a href="investment-theses.html" class="nav-link">Investment Theses</a>
     <a href="contact.html" class="btn btn-primary" style="width: 100%;">Contact</a>
 </div>
 `;
