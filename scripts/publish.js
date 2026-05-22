@@ -32,17 +32,12 @@ const rl = readline.createInterface({
   terminal: true
 });
 
-let state = 'SOURCE_SELECT';
-let source = ''; // 'linkedin' or 'obsidian'
 let title = '';
 let linkedinUrl = '';
-let obsidianFile = '';
 let teaserLines = [];
 let contentLines = [];
 let publishDate = '';
 let addedPerspectives = []; // Track what we've added in this session
-
-const OBSIDIAN_PATH = '/Users/arifpadaria/Library/Mobile Documents/iCloud~md~obsidian/Documents/AP_Brain/08 - Writing/LinkedIn/Published';
 
 function clear() {
   console.clear();
@@ -77,25 +72,8 @@ function info(msg) {
 }
 
 async function selectSource() {
-  clear();
-  header();
-  section('Step 1: Where is your content?');
-
-  console.log(`\n  ${colors.bright}1${colors.reset} LinkedIn Post (manual entry)`);
-  console.log(`  ${colors.bright}2${colors.reset} Obsidian Markdown file (auto-import)\n`);
-
-  const choice = await prompt('Select (1 or 2)');
-
-  if (choice === '1') {
-    source = 'linkedin';
-    await linkedinFlow();
-  } else if (choice === '2') {
-    source = 'obsidian';
-    await obsidianFlow();
-  } else {
-    error('Invalid choice. Please select 1 or 2.');
-    await selectSource();
-  }
+  source = 'linkedin';
+  await linkedinFlow();
 }
 
 async function linkedinFlow() {
@@ -131,66 +109,6 @@ async function linkedinFlow() {
   publishDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   await reviewAndConfirm();
-}
-
-async function obsidianFlow() {
-  clear();
-  header();
-  section('Copy from Obsidian File');
-
-  // List available markdown files
-  let files = [];
-  try {
-    files = fs.readdirSync(OBSIDIAN_PATH)
-      .filter(f => f.endsWith('.md'))
-      .sort()
-      .reverse();
-  } catch (e) {
-    error(`Cannot access Obsidian vault at ${OBSIDIAN_PATH}`);
-    info('Make sure:');
-    info('  1. Your Obsidian vault is synced via iCloud');
-    info('  2. Files are in: 08 - Writing/LinkedIn/Published/');
-    await selectSource();
-    return;
-  }
-
-  if (files.length === 0) {
-    error('No markdown files found in 08 - Writing/LinkedIn/Published/');
-    await selectSource();
-    return;
-  }
-
-  console.log(`\n${colors.dim}Found ${files.length} markdown files in Published:${colors.reset}\n`);
-  files.slice(0, 10).forEach((f, i) => {
-    console.log(`  ${colors.bright}${i + 1}${colors.reset} ${f}`);
-  });
-  if (files.length > 10) {
-    console.log(`  ${colors.dim}... and ${files.length - 10} more${colors.reset}`);
-  }
-
-  const choice = await prompt('Select file number to open');
-  const idx = parseInt(choice) - 1;
-
-  if (idx < 0 || idx >= files.length) {
-    error('Invalid selection.');
-    await obsidianFlow();
-    return;
-  }
-
-  const selectedFile = files[idx];
-  const filePath = path.join(OBSIDIAN_PATH, selectedFile);
-
-  try {
-    // Open the file in the default editor
-    execSync(`open "${filePath}"`);
-    info(`Opened: ${selectedFile}`);
-    info('Copy the title, teaser, and content from your editor.');
-  } catch (e) {
-    error(`Could not open file: ${e.message}`);
-  }
-
-  console.log('\n' + colors.bright + 'Switching to LinkedIn entry mode...' + colors.reset);
-  await linkedinFlow();
 }
 
 
@@ -283,7 +201,6 @@ async function continueOrDeploy() {
   if (choice === '1') {
     title = '';
     linkedinUrl = '';
-    obsidianFile = '';
     teaserLines = [];
     contentLines = [];
     await selectSource();
@@ -342,11 +259,11 @@ function savePerspective() {
   }
 
   let fileContent = fs.readFileSync(dataFilePath, 'utf8');
-  const marker = 'const PERSPECTIVES = [';
+  const marker = 'const INVESTMENT_THESES = [';
   const insertIndex = fileContent.indexOf(marker);
 
   if (insertIndex === -1) {
-    error('Could not find PERSPECTIVES array in database file.');
+    error('Could not find INVESTMENT_THESES array in database file.');
     process.exit(1);
   }
 
@@ -361,7 +278,7 @@ async function performDeploy() {
   const repoDir = path.join(__dirname, '..');
 
   try {
-    console.log(`\n${colors.dim}Deploying ${addedPerspectives.length} perspective(s)...${colors.reset}\n`);
+    console.log(`\n${colors.dim}Deploying ${addedPerspectives.length} thesis(es)...${colors.reset}\n`);
 
     // Bump cache version
     let currentVersion = 1;
@@ -413,7 +330,7 @@ async function skipDeploy() {
   header();
   section('Changes Saved Locally');
 
-  console.log(`\n${colors.green}✓ ${addedPerspectives.length} perspective(s) added to investment-theses-data.js${colors.reset}\n`);
+  console.log(`\n${colors.green}✓ ${addedPerspectives.length} thesis(es) added to investment-theses-data.js${colors.reset}\n`);
 
   console.log(`${colors.bright}When you\'re ready to deploy, run:${colors.reset}`);
   console.log(`\n  ${colors.dim}node scripts/publish.js --deploy${colors.reset}\n`);
