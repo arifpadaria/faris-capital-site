@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(firebase deploy *)",
+      "Bash(find /Users/arifpadaria -type d -name \"*[Oo]bsidian*\" -o -type d -name \"*vault*\" 2>/dev/null | head -10)",
+      "Read(//Users/arifpadaria/**)",
+      "Bash(chmod +x /Users/arifpadaria/Documents/faris-capital-site/scripts/publish.js)",
+      "Bash(node /Users/arifpadaria/Documents/faris-capital-site/scripts/publish.js --help)",
+      "Bash(node scripts/publish.js)"
     ]
   }
 }
