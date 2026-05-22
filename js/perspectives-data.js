@@ -4,6 +4,32 @@
  */
 const PERSPECTIVES = [
   {
+    id: "the-moat-in-ai-isnt-where-you-think-it-is-its-in-the-harness",
+    title: "“The Moat in AI Isn’t Where You Think It Is — It’s in the Harness”",
+    date: "May 22, 2026",
+    teaser: "Following up on my recent post on Autonomous AI…\n\nAcross a series of conversations over the last few months, with founders, investors, and CVC teams, one question continues to resurface:\nWhere is the REAL MOAT in AI agents?",
+    content: `
+      <p>March 20, 2026<br>Following up on my last post on Autonomous AI… a number of conversations, since then across founders, investors, and corporate venture teams, have centered around a simple question: Where does the real moat sit in this new wave of AI agents?</p>
+      <p>The default answers tend to focus on models, data, or UX. All important but increasingly, not sufficient. What’s emerging feels like a deeper structural shift.</p>
+      <p>We are beginning to see the rise of what I would call the “agent harness”; but not in the narrow sense of orchestration frameworks or developer tooling. Rather, this is the layer that connects AI to real-world systems, embeds it into operational workflows, enforces governance, and—critically—learns from execution over time. This is where AI transitions from assisting work to actually owning outcomes.</p>
+      <p>But it’s worth being precise, as the harness itself is unlikely to be the moat.</p>
+      <p>We’ve seen this before. Abstraction layers rarely capture enduring value on their own. Value accrues when they are tightly coupled with deployment when they become embedded in how work actually gets done.</p>
+      <p>For founders, this raises an important design question: Are you building a feature, or are you embedding into a system of record or system of execution?</p>
+      <p>For venture investors, the lens shifts slightly: Where are the compounding advantages forming data feedback loops, workflow ownership, and distribution, not just technical differentiation?</p>
+      <p>And for corporate venture and enterprise leaders, the implication is perhaps the most immediate: Where can these systems be integrated deeply enough into your core operations that they become indispensable and not easily replaced?</p>
+      <p>Because ultimately, the winners in this cycle won’t just build better AI.</p>
+      <p>They will build systems that are difficult to displace because they sit at the intersection of:</p>
+      <p>execution<br>data<br>and distribution</p>
+      <p>There are strong historical parallels.</p>
+      <p>Cloud platforms won by building ecosystems and lock-in.<br>Mobile scaled through distribution, not just innovation.<br>AI appears to be following a similar trajectory but at a much faster cadence.</p>
+      <p>So perhaps the more useful framing is this: Where is AI being deployed in a way that creates dependency, not just productivity?</p>
+      <p>That’s where enduring value and defensibility will be created.</p>
+      <p>Curious how others are thinking about this particularly those building, investing, or deploying these systems at scale.</p>
+      <p>Is the “agent harness” the next control layer…?? or simply a transitional abstraction that gets absorbed into the stack?</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7440853655945166848/"
+  },
+  {
     id: "autonomous-experts-and-the-next-s-curve-rethinking-where-value-will-accrue",
     title: "Autonomous Experts and the Next S-Curve: Rethinking Where Value Will Accrue",
     date: "May 21, 2026",
