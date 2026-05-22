@@ -4,8 +4,10 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
-    ],    
+      "**/node_modules/**",
+      ".github/**",
+      ".git/**"
+    ],
     "unused_redirects": [
       {
         "source": "/**",
@@ -13,7 +15,6 @@
         "type": 302
       }
     ]
-
-    
   }
 }
+     
