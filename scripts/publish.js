@@ -196,7 +196,9 @@ function parseMarkdownFile(content, filename) {
 
   if (frontmatterMatch) {
     const fm = frontmatterMatch[1];
-    const titleMatch = fm.match(/title:\s*['"](.*?)['"]/);
+    // Match title with either double or single quotes, handling apostrophes inside
+    let titleMatch = fm.match(/title:\s*"([^"]*)"/);
+    if (!titleMatch) titleMatch = fm.match(/title:\s*'([^']*)'/);
     title = titleMatch ? titleMatch[1] : filename.replace('.md', '');
   } else {
     title = filename.replace('.md', '');
