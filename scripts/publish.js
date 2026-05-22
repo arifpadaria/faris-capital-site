@@ -42,7 +42,7 @@ let contentLines = [];
 let publishDate = '';
 let addedPerspectives = []; // Track what we've added in this session
 
-const OBSIDIAN_PATH = '/Users/arifpadaria/Library/Mobile Documents/iCloud~md~obsidian/Documents/AP_Brain/08 - Writing';
+const OBSIDIAN_PATH = '/Users/arifpadaria/Library/Mobile Documents/iCloud~md~obsidian/Documents/AP_Brain/08 - Writing/LinkedIn/Published';
 
 function clear() {
   console.clear();
@@ -139,7 +139,7 @@ async function linkedinFlow() {
 async function obsidianFlow() {
   clear();
   header();
-  section('Publishing from Obsidian');
+  section('Publishing from Obsidian (LinkedIn/Published)');
 
   // List available markdown files
   let files = [];
@@ -150,18 +150,20 @@ async function obsidianFlow() {
       .reverse();
   } catch (e) {
     error(`Cannot access Obsidian vault at ${OBSIDIAN_PATH}`);
-    info('Make sure your Obsidian vault is synced via iCloud.');
+    info('Make sure:');
+    info('  1. Your Obsidian vault is synced via iCloud');
+    info('  2. Files are in: 08 - Writing/LinkedIn/Published/');
     await selectSource();
     return;
   }
 
   if (files.length === 0) {
-    error('No markdown files found in your Obsidian Writing folder.');
+    error('No markdown files found in 08 - Writing/LinkedIn/Published/');
     await selectSource();
     return;
   }
 
-  console.log(`\n${colors.dim}Found ${files.length} markdown files:${colors.reset}\n`);
+  console.log(`\n${colors.dim}Found ${files.length} markdown files in Published:${colors.reset}\n`);
   files.slice(0, 10).forEach((f, i) => {
     console.log(`  ${colors.bright}${i + 1}${colors.reset} ${f}`);
   });
