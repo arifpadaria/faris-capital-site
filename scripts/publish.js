@@ -350,22 +350,44 @@ async function performDeploy() {
     console.log(`\n${colors.dim}Deploying...${colors.reset}\n`);
 
     // Bump cache version
-    const currentVersion = 1;
+    let currentVersion = 1;
+    try {
+      const htmlContent = fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8');
+      const versionMatch = htmlContent.match(/\?v=(\d+)/);
+      if (versionMatch) {
+        currentVersion = parseInt(versionMatch[1]);
+      }
+    } catch (e) {
+      // Use default
+    }
+
     const newVersion = currentVersion + 1;
-    execSync(`sed -i '' 's/?v=${currentVersion}/?v=${newVersion}/g' *.html`, { cwd: repoDir });
+    console.log(`Bumping cache version: ?v=${currentVersion} → ?v=${newVersion}`);
+    execSync(`sed -i '' 's/?v=${currentVersion}/?v=${newVersion}/g' *.html`, { cwd: repoDir, stdio: 'pipe' });
 
     // Git operations
-    execSync('git add .', { cwd: repoDir });
-    execSync(`git commit -m "Add perspective: ${title.replace(/"/g, '\\"')}"`, { cwd: repoDir });
-    execSync('git push origin main', { cwd: repoDir });
+    console.log('Staging changes...');
+    execSync('git add .', { cwd: repoDir, stdio: 'pipe' });
+
+    console.log('Committing...');
+    execSync(`git commit -m "Add perspective: ${title.replace(/"/g, '\\"')}"`, { cwd: repoDir, stdio: 'pipe' });
+
+    console.log('Pushing to GitHub...');
+    // Use --no-verify to skip hooks, and ensure git uses credential helper
+    execSync('git push origin main', { cwd: repoDir, stdio: 'inherit', env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
 
     // Firebase deploy
-    execSync('firebase deploy --only hosting', { cwd: repoDir });
+    console.log('Deploying to Firebase...');
+    execSync('firebase deploy --only hosting', { cwd: repoDir, stdio: 'inherit' });
 
     success('Deployment complete! Your perspective is now live.');
-    info(`Cache version bumped to ${newVersion}. Hard refresh your browser to see updates.`);
+    info(`Cache version bumped to ?v=${newVersion}. Hard refresh your browser to see updates.`);
   } catch (error) {
     error(`Deployment failed: ${error.message}`);
+    info('Your perspective was saved locally. You can push manually later with:');
+    info('  cd ' + repoDir);
+    info('  git push origin main');
+    info('  firebase deploy');
   }
 }
 
