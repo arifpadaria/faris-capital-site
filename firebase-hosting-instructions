@@ -1,0 +1,8 @@
+Notes for running Firebase for Website
+How to go back
+When you are ready to bring your static site back online, simply delete the "redirects": [...] block from your firebase.json and
+ run the "firebase deploy" command again. Your original files (since your public is set to .) will start serving immediately.
+
+ For disabling again and pointing to LI profile - uncomment the redirect block and then run:
+ firebase deploy --only hosting
+ 

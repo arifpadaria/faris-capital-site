@@ -23,25 +23,8 @@
         </section>
 
         <section class="section container">
-            <div class="grid grid-3">
-                <div class="content-block" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Why Growth-Stage Ventures Stall Without
-                        Corporate Development Discipline</h3>
-                    <p style="font-size: 0.875rem; color: var(--accent-color); font-weight: 600;">Coming Soon...→</p>
-                    <!-- p style="font-size: 0.875rem; color: var(--accent-color); font-weight: 600;">Read Essay →</p> -->
-                </div>
-                <div class="content-block" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Capital Alignment in Capital-Intensive
-                        Innovation</h3>
-                    <p style="font-size: 0.875rem; color: var(--accent-color); font-weight: 600;">Coming Soon...→</p>
-                    <!-- p style="font-size: 0.875rem; color: var(--accent-color); font-weight: 600;">Read Essay →</p> -->
-                </div>
-                <div class="content-block" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Scaling Technology Ventures Across
-                        Jurisdictions</h3>
-                    <p style="font-size: 0.875rem; color: var(--accent-color); font-weight: 600;">Coming Soon...→</p>
-                    <!-- p style="font-size: 0.875rem; color: var(--accent-color); font-weight: 600;">Read Essay →</p> -->
-                </div>
+            <div id="perspectives-grid" class="grid grid-3">
+                <!-- Loaded dynamically from js/perspectives-data.js -->
             </div>
         </section>
     </main>
@@ -49,6 +32,26 @@
     <footer></footer>
 
     <script src="js/components.js"></script>
+    <script src="js/perspectives-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('perspectives-grid');
+            if (grid && typeof PERSPECTIVES !== 'undefined') {
+                grid.innerHTML = PERSPECTIVES.map(p => `
+                    <div class="content-block radius-card" style="border: 1px solid var(--border-color); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.75rem;">${p.date}</div>
+                            <h3 style="font-size: 1.25rem; line-height: 1.4; margin-bottom: 1rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600;">${p.title}</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${p.teaser}</p>
+                        </div>
+                        <a href="article.html?id=${p.id}" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
+                            Read Perspective <span style="transition: transform 0.2s;">→</span>
+                        </a>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
     <script src="js/main.js"></script>
 </body>
 

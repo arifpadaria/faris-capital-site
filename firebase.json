@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],    
+    "unused_redirects": [
+      {
+        "source": "/**",
+        "destination": "https://www.linkedin.com/in/padaria/",
+        "type": 302
+      }
+    ]
+
+    
+  }
+}

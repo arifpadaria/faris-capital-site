@@ -38,7 +38,7 @@
     --h2-size: clamp(1.75rem, 3.5vw, 2.5rem);
     /* Reduced max size from 3rem */
     --h3-size: 1.5rem;
-    --body-size: 1.125rem;
+    --body-size: clamp(0.95rem, 1rem + 0.5vw, 1.125rem);
     --small-size: 0.875rem;
 
     /* Spacing */
@@ -91,7 +91,6 @@ h6 {
     margin-bottom: var(--spacing-sm);
     letter-spacing: -0.01em;
 }
-
 h1 {
     font-size: var(--h1-size);
     font-weight: 700;
@@ -144,6 +143,21 @@ ul {
     list-style: none;
 }
 
+/* Use this class when you want real bullets (override the global reset) */
+.bullet-list {
+    list-style-type: disc;
+    list-style-position: outside;
+    /* restore left padding so bullets are visible */
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Optional: style the marker (supported in modern browsers) */
+.bullet-list li::marker {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -159,7 +173,8 @@ img {
 }
 
 .section {
-    padding: var(--spacing-lg) 0;
+    /* Reduced vertical padding for tighter layout across pages */
+    padding: var(--spacing-md) 0;
     position: relative;
     overflow: hidden;
 }
@@ -182,7 +197,7 @@ img {
     grid-template-columns: 1fr;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .grid-2 {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
@@ -239,6 +254,7 @@ img {
     letter-spacing: 0.05em;
     font-family: var(--font-body);
     font-size: 0.875rem;
+    min-height: 44px; /* ensure comfortable touch target */
 }
 
 .btn-primary {
@@ -302,11 +318,56 @@ img {
     transition: all var(--transition-fast);
 }
 
+/* Ensure header content lines up exactly with page containers on desktop
+   (enforce the same max-width, centering and horizontal padding). */
+.site-header .header-container.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    width: 100%;
+}
+
+/* Responsive logo sizing & offset tweaks
+   Use breakpoint-specific left offsets so the visible logo lines up with
+   section content across a wide range of desktop widths. These values
+   compensate for whitespace inside the PNG and different container widths. */
+
+/* Narrow desktop / large tablet — small left nudge */
+@media (min-width: 900px) and (max-width: 1099px) {
+    .logo img {
+        height: 72px;
+        display: block;
+        /* use trimmed image; no CSS offset needed */
+        margin-left: 0;
+    }
+}
+
+/* Standard desktop — moderate left nudge */
+@media (min-width: 1100px) and (max-width: 1399px) {
+    .logo img {
+        height: 64px;
+        display: block;
+        /* use trimmed image; no CSS offset needed */
+        margin-left: 0;
+    }
+}
+
+/* Wide / ultra-wide desktop — stronger left nudge as container grows */
+@media (min-width: 1400px) {
+    .logo img {
+        height: 64px;
+        display: block;
+        /* use trimmed image; no CSS offset needed */
+        margin-left: 0;
+    }
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 50px;
 }
 
 .logo {
@@ -384,22 +445,49 @@ img {
     width: 100%;
     height: calc(100vh - var(--header-height));
     background-color: var(--white);
-    padding: var(--spacing-md);
+    /* Reduced padding and gap for tighter mobile menu spacing */
+    padding: 1.25rem;
     transform: translateY(-150%);
     transition: transform var(--transition-smooth);
     z-index: 999;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     overflow-y: auto;
     align-items: center;
     justify-content: center;
 }
 
 .mobile-nav .nav-link {
-    font-size: 1.5rem;
-    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    line-height: 1.2;
+    font-family: var(--font-body);
     text-transform: none;
+    /* make each link a clear touch target and reduce perceived vertical spacing */
+    padding: 0.5rem 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    /* subtle divider between items (low-contrast) */
+    border-top: 1px solid rgba(11,18,32,0.04);
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.mobile-nav .nav-link:first-child {
+    border-top: none;
+}
+
+/* Touch / hover feedback for mobile nav items */
+.mobile-nav .nav-link:hover,
+.mobile-nav .nav-link:focus,
+.mobile-nav .nav-link:active {
+    background-color: rgba(15,42,95,0.04);
+    color: var(--text-primary);
+}
+/* Stronger visible focus for keyboard users on mobile/desktop */
+.mobile-nav .nav-link:focus-visible {
+    outline: 2px solid rgba(15,42,95,0.12);
+    outline-offset: 2px;
 }
 
 .mobile-nav.open {
@@ -411,7 +499,8 @@ img {
     background-color: var(--accent-color);
     /* Navy footer */
     color: var(--white);
-    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    /* Reduced vertical padding to remove excess headroom */
+    padding: 2.5rem 0 1.5rem;
     font-size: 0.9375rem;
     margin-top: auto;
 }
@@ -423,8 +512,20 @@ img {
 .site-footer .footer-line-1 {
     color: var(--white);
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     text-transform: none;
+}
+
+/* Footer contact links (email / phone) */
+.site-footer .footer-contact {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.125rem; /* ~18px, slightly larger for readability */
+    color: var(--white);
+}
+
+.site-footer .footer-contact:hover {
+    color: var(--accent-gold);
 }
 
 .site-footer a {
@@ -474,9 +575,111 @@ img {
 
 /* Hero Section Specifics */
 .hero {
-    padding: 180px 0 100px;
-    /* More top padding for breathing room */
+    /* Tighter hero spacing while still allowing breathing room */
+    padding: 120px 0 60px;
     max-width: 1400px;
+}
+
+/* Mobile / small-screen optimizations */
+@media (max-width: 767px) {
+    /* Ensure header height variable matches the smaller header size on mobile so mobile-nav positions correctly */
+    :root {
+        --header-height: 72px;
+    }
+    /* Reduce horizontal padding so content fits better on small screens
+       but keep a slightly larger left/right inset so content doesn't feel cut off on phones.
+       Use safe-area insets for devices with notches (iOS). */
+        .container { 
+                /* Reduce mobile container gutter to a comfortable size */
+                padding-left: calc(1.5rem + env(safe-area-inset-left));
+                padding-right: calc(1.5rem + env(safe-area-inset-right));
+            }
+
+    /* Slightly shorter header on mobile to reduce occupied vertical space */
+    .site-header {
+        height: 72px;
+    }
+
+    /* Tighter hero spacing on small screens, with left/right safe-area gutter
+       applied directly to the hero so headings align with the page container. */
+    .hero {
+        /* Slightly reduce hero gutter to match updated container on phones */
+        padding: 80px calc(1.75rem + env(safe-area-inset-left)) 40px calc(1.75rem + env(safe-area-inset-right));
+    }
+
+    /* Force hero heading to behave as block so its left alignment matches the container padding */
+    .hero h2 {
+        display: block;
+    }
+
+    /* Buttons: reduce padding and font-size for better fit */
+    .btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Mobile menu button: ensure comfortable tap target */
+    .mobile-menu-btn {
+        padding: 0.75rem;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Footer: compact and touch-friendly contact links */
+    .site-footer {
+        padding: 1.5rem 0;
+    }
+
+    .site-footer .footer-contact {
+        font-size: 1rem; /* reduce slightly on very small screens */
+    }
+
+    .footer-line {
+        margin-bottom: 0.25rem;
+    }
+
+    /* Reduce grid gaps so stacked content isn't too spaced out */
+    .grid {
+        gap: 1.5rem;
+    }
+    
+    /* Remove paragraph max-width on small screens so text flows naturally */
+    p {
+        max-width: none;
+    }
+
+    /* Hide large decorative motif on small screens to avoid overlap */
+    .global-motif {
+        display: none;
+    }
+
+    /* Slightly reduce logo image height on small screens */
+    .logo img {
+        height: 56px;
+    }
+}
+
+/* Tablet / small-desktop adjustments (addresses iPad layout) */
+@media (max-width: 1024px) {
+    /* Ensure header items align left with the container gutter; push the mobile menu button to the right */
+    .header-container {
+        justify-content: flex-start;
+    }
+
+    .mobile-menu-btn {
+        margin-left: auto;
+    }
+
+    /* Slightly larger hero gutter on tablets so headings don't hug the left edge */
+    .hero {
+        padding-left: calc(2rem + env(safe-area-inset-left));
+        padding-right: calc(2rem + env(safe-area-inset-right));
+    }
+    /* Apply matching container gutter on tablets so sections align with hero */
+    .container {
+        padding-left: calc(2rem + env(safe-area-inset-left));
+        padding-right: calc(2rem + env(safe-area-inset-right));
+    }
 }
 
 .hero h1 {
@@ -551,6 +754,7 @@ img {
     background-color: var(--white);
     box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
 }
+
 /* Logo Grid Styles */
 .logo-grid {
     display: grid;
@@ -571,7 +775,7 @@ img {
     width: 100%;
     max-width: 160px;
     height: 80px;
-    background-color: #F8FAFC; 
+    background-color: #F8FAFC;
     border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
@@ -593,3 +797,23 @@ img {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
+.footer-logo {
+    height: 10px;
+    /* Slightly smaller for the footer */
+    width: auto;
+    opacity: 0.5;
+    /* Optional: fades it slightly to look more "footer-like" */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo img {
+    height: 80px;
+    /* Adjust this height to fit your navbar */
+    width: auto;
+    /* Keeps the aspect ratio from distorting */
+    display: block;
+    /* Removes weird bottom spacing issues */
+}
+
+/* Debug outlines removed — logo should now be trimmed and align with container. */
