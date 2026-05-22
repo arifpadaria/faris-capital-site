@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technology, Capital & Scale — Faris Capital</title>
+    <title>Investment Theses — Faris Capital</title>
+    <meta name="description" content="Strategic investment theses on venture scale, AI, and institutional capital. Frameworks from Faris Capital.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,27 +18,26 @@
 
     <main>
         <section class="section hero container">
-            <h2>Technology, Capital & Scale</h2>
-            <p style="font-size: 1.25rem; font-weight: 500;">Technology ventures succeed when commercialization, capital
-                alignment and cross-border execution are designed together.</p>
+            <h2>Investment Theses</h2>
+            <p style="font-size: 1.25rem; font-weight: 500;">Strategic frameworks on venture scale, capital alignment, and where value forms in technology at global scale.</p>
         </section>
 
         <section class="section container">
-            <div id="perspectives-grid" class="grid grid-3">
-                <!-- Loaded dynamically from js/perspectives-data.js -->
+            <div id="theses-grid" class="grid grid-3">
+                <!-- Loaded dynamically from js/investment-theses-data.js -->
             </div>
         </section>
     </main>
 
     <footer></footer>
 
-    <script src="js/components.js?v=3"></script>
-    <script src="js/perspectives-data.js?v=3"></script>
+    <script src="js/components.js?v=4"></script>
+    <script src="js/investment-theses-data.js?v=4"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('perspectives-grid');
-            if (grid && typeof PERSPECTIVES !== 'undefined') {
-                grid.innerHTML = PERSPECTIVES.map(p => `
+            const grid = document.getElementById('theses-grid');
+            if (grid && typeof INVESTMENT_THESES !== 'undefined') {
+                grid.innerHTML = INVESTMENT_THESES.map(p => `
                     <div class="content-block radius-card" style="border: 1px solid var(--border-color); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                         <div>
                             <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.75rem;">${p.date}</div>
@@ -45,14 +45,14 @@
                             <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${p.teaser}</p>
                         </div>
                         <a href="article.html?id=${p.id}" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
-                            Read Perspective <span style="transition: transform 0.2s;">→</span>
+                            Read Thesis <span style="transition: transform 0.2s;">→</span>
                         </a>
                     </div>
                 `).join('');
             }
         });
     </script>
-    <script src="js/main.js?v=3"></script>
+    <script src="js/main.js?v=4"></script>
 </body>
 
 </html>

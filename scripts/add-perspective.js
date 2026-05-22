@@ -142,7 +142,7 @@ function savePerspective() {
     linkedinUrl: ${JSON.stringify(linkedinUrl)}
   },\n`;
 
-  const dataFilePath = path.join(__dirname, '../js/perspectives-data.js');
+  const dataFilePath = path.join(__dirname, '../js/investment-theses-data.js');
   if (!fs.existsSync(dataFilePath)) {
     console.error(`\nError: Database file not found at ${dataFilePath}`);
     process.exit(1);
@@ -162,7 +162,7 @@ function savePerspective() {
   const updatedContent = fileContent.slice(0, position) + newEntry + fileContent.slice(position);
   
   fs.writeFileSync(dataFilePath, updatedContent, 'utf8');
-  console.log(`\n[Success] Added "${title}" to perspectives-data.js (ID: ${id})`);
+  console.log(`\n[Success] Added "${title}" to investment-theses-data.js (ID: ${id})`);
 }
 
 function deployChanges() {

@@ -1,8 +1,8 @@
 /**
- * Perspectives Database for Faris Capital
- * Stores all essays and writeups, originally published on LinkedIn.
+ * Investment Theses Database for Faris Capital
+ * Stores strategic frameworks and writeups, originally published on LinkedIn.
  */
-const PERSPECTIVES = [
+const INVESTMENT_THESES = [
   {
     id: "the-fast-brain-the-slow-brain-and-the-missing-layer",
     title: "The Fast Brain, the Slow Brain, and the Missing Layer",

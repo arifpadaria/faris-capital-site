@@ -339,7 +339,7 @@ function savePerspective() {
     linkedinUrl: ${JSON.stringify(linkedinUrl || null)}
   },\n`;
 
-  const dataFilePath = path.join(__dirname, '../js/perspectives-data.js');
+  const dataFilePath = path.join(__dirname, '../js/investment-theses-data.js');
 
   if (!fs.existsSync(dataFilePath)) {
     error(`Database file not found at ${dataFilePath}`);
@@ -418,7 +418,7 @@ async function skipDeploy() {
   header();
   section('Changes Saved Locally');
 
-  console.log(`\n${colors.green}✓ ${addedPerspectives.length} perspective(s) added to perspectives-data.js${colors.reset}\n`);
+  console.log(`\n${colors.green}✓ ${addedPerspectives.length} perspective(s) added to investment-theses-data.js${colors.reset}\n`);
 
   console.log(`${colors.bright}When you\'re ready to deploy, run:${colors.reset}`);
   console.log(`\n  ${colors.dim}node scripts/publish.js --deploy${colors.reset}\n`);
