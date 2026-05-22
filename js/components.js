@@ -13,12 +13,11 @@ const Header = `
 </a>
     <nav class="nav-desktop">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="growth-advisory.html" class="nav-link">Venture Advisory</a>
-        <a href="corporate-development.html" class="nav-link">Corporate Development</a>
-        <a href="capital-alignment.html" class="nav-link">Capital Alignment</a>
-        <a href="global-markets.html" class="nav-link">Global Markets</a>
+        <a href="ventures.html" class="nav-link">For Ventures</a>
+        <a href="institutional-capital.html" class="nav-link">For Capital</a>
+        <a href="enterprises.html" class="nav-link">For Enterprises</a>
         <a href="investment-theses.html" class="nav-link">Investment Theses</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;">Contact</a>
     </nav>
 
@@ -30,12 +29,11 @@ const Header = `
 <!-- Mobile Nav -->
 <div class="mobile-nav">
     <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="growth-advisory.html" class="nav-link">Growth-Stage Advisory</a>
-    <a href="corporate-development.html" class="nav-link">Corporate & Venture Development</a>
-    <a href="capital-alignment.html" class="nav-link">Capital Alignment & Syndication</a>
-    <a href="global-markets.html" class="nav-link">Global Markets</a>
+    <a href="ventures.html" class="nav-link">For Ventures</a>
+    <a href="institutional-capital.html" class="nav-link">For Institutional Capital</a>
+    <a href="enterprises.html" class="nav-link">For Enterprises</a>
     <a href="investment-theses.html" class="nav-link">Investment Theses</a>
+    <a href="about.html" class="nav-link">About</a>
     <a href="contact.html" class="btn btn-primary" style="width: 100%;">Contact</a>
 </div>
 `;
