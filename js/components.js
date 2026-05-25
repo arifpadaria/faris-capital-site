@@ -9,7 +9,7 @@
 const Header = `
 <div class="header-container container">
     <a href="index.html" class="logo">
-  <img src="./images/faris-logo-lockup.png" alt="Faris Capital">
+  <img src="./images/weblogo.jpg" alt="Faris Capital">
 </a>
     <nav class="nav-desktop">
         <a href="index.html" class="nav-link">Home</a>
