@@ -376,6 +376,13 @@ img {
     font-weight: 700;
     color: var(--accent-color);
     letter-spacing: -0.02em;
+    display: inline-block;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
 .nav-desktop {
