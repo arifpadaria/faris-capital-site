@@ -59,7 +59,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-fast-brain-the-slow-brain-and-the-missing-layer",
     title: "The Fast Brain, the Slow Brain, and the Missing Layer",
-    date: "May 22, 2026",
+    date: "May 11, 2026",
     teaser: "In my last post, I described two jobs every production robot has to do simultaneously: think, and act.\n\nJob 1: Cognition - is what large AI models do well: interpret the environment, reason, plan, adapt. It tolerates variance. It can take a fraction of a second longer and still be useful.\n\nJob 2: Control - is different in kind. Motor signals, sensor fusion, safety loops. It needs guaranteed response times, every time, with no exceptions. Not fast on average. Guaranteed.\n\nI said these two jobs have fundamentally incompatible compute requirements.\n\nToday I want to name the paradigm, because it turns out the research community already has a name for it and the name matters.",
     content: `
       <p>May 11, 2026<br>The architecture researchers and roboticists have converged on is exactly what it sounds like.</p>
@@ -98,7 +98,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-two-jobs-every-robot-has-to-do-at-once",
     title: "The Two Jobs Every Robot Has to Do at Once",
-    date: "May 22, 2026",
+    date: "May 5, 2026",
     teaser: "Following up on my last post on Physical AI and the next S-curve in autonomous systems...\n\nI want to go one level deeper into something that I think is under appreciated: the core architectural tension that sits at the heart of deploying Physical AI at production scale.\n\nIt comes down to two jobs every robot has to do simultaneously — and the fact that those two jobs have fundamentally incompatible compute requirements.",
     content: `
       <p>May 5, 2026<br>Think about what a production-grade autonomous robot actually needs to do in the real world.</p>
@@ -137,7 +137,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-next-s-curve-is-physical",
     title: "The Next S-Curve Is Physical",
-    date: "May 22, 2026",
+    date: "April 23, 2026",
     teaser: "I've been writing about the autonomous AI wave unfolding in software: agents, harnesses, systems of execution, and where the moat forms in the digital layer.  \n\nThe thesis across those posts: when AI stops recommending and starts executing, the value doesn't sit in the model. It sits in the integration layer - in the harness that connects AI capability to real-world workflows.\n\nThere's a parallel wave building that follows exactly the same structural pattern — but in the physical world.\n\nPhysical AI.  And I think it's the next S-curve.",
     content: `
       <p>April 23, 2026<br>At GTC 2025, Jensen Huang made a statement I keep coming back to:</p>
@@ -173,7 +173,7 @@ const INVESTMENT_THESES = [
   {
     id: "when-the-ai-is-the-executor",
     title: "When the AI is the Executor",
-    date: "May 22, 2026",
+    date: "April 18, 2026",
     teaser: "I closed my last post with a question: when the AI is the executor, what does accountable governance actually look like?\n\nI spent the last couple of days at the YPO Corporate Governance Symposium in New York. Serious board members. Senior governance practitioners. Some of the most credentialed corporate governance faculty in the country.\n\nHere's what I found, and what it clarified...",
     content: `
       <p>April 18, 2026<br>I closed my last post with a question: when the AI is the executor, what does accountable governance actually look like?</p>
@@ -208,7 +208,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-trust-reckoning-when-accountability-cant-scale-the-way-intelligence-can",
     title: "The Trust Reckoning — When Accountability Can't Scale the Way Intelligence Can",
-    date: "May 22, 2026",
+    date: "April 14, 2026",
     teaser: "Later this week, I'll be heading to New York for a YPO Corporate Governance Symposium. It's an event I've been genuinely looking forward to: an intimate gathering of leaders wrestling with governance under real pressure. \n\nThe agenda includes a full session on AI governance and emerging technologies, and I'm going in ready to listen, learn, and participate. \n\nMost governance conversations I've been part of frame the challenge as: \"How do boards oversee AI risk?\"\n\nI'm bringing a different question...",
     content: `
       <p>April 14, 2026<br>A recent Accenture and Wharton report captured it plainly:</p>
@@ -305,7 +305,7 @@ const INVESTMENT_THESES = [
   {
     id: "from-systems-of-record-to-systems-of-action-where-the-new-moat-is-forming",
     title: "From Systems of Record to Systems of Action — Where the New MOAT Is Forming",
-    date: "May 22, 2026",
+    date: "March 24, 2026",
     teaser: "A broader shift is starting to take shape in AI:\nWe are moving from systems that store and inform… to systems that actually act...",
     content: `
       <p>March 24, 2026<br>Following up on my recent posts on Autonomous AI and the “agent harness”…a broader shift is becoming clearer:</p>
@@ -343,8 +343,8 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-moat-in-ai-isnt-where-you-think-it-is-its-in-the-harness",
-    title: "“The Moat in AI Isn’t Where You Think It Is — It’s in the Harness”",
-    date: "May 22, 2026",
+    title: “”The Moat in AI Isn’t Where You Think It Is — It’s in the Harness””,
+    date: “March 20, 2026”,
     teaser: "Following up on my recent post on Autonomous AI…\n\nAcross a series of conversations over the last few months, with founders, investors, and CVC teams, one question continues to resurface:\nWhere is the REAL MOAT in AI agents?",
     content: `
       <p>March 20, 2026<br>Following up on my last post on Autonomous AI… a number of conversations, since then across founders, investors, and corporate venture teams, have centered around a simple question: Where does the real moat sit in this new wave of AI agents?</p>
@@ -370,7 +370,7 @@ const INVESTMENT_THESES = [
   {
     id: "autonomous-experts-and-the-next-s-curve-rethinking-where-value-will-accrue",
     title: "Autonomous Experts and the Next S-Curve: Rethinking Where Value Will Accrue",
-    date: "May 21, 2026",
+    date: "March 19, 2026",
     teaser: "Last evening, I had the opportunity to dine with a small group of corporate venture and innovation leaders (thanks to Shahid Azim and C10 Labs) to discuss a question that is becoming increasingly urgent:  \n\nWhere should corporate venture invest as AI moves from copilots to autonomous operators?  \n\nI've outlined my key thoughts and takeaways in the attached writeup and welcome perspectives from others thinking about this transition; particularly how you’re seeing autonomy reshape investment strategy and enterprise innovation.\n\nWhere should corporate venture invest as AI moves from copilots to autonomous operators?",
     content: `
       <p>March 19, 2026<br>Last evening, I had the opportunity to join a small group of corporate venture and innovation leaders to discuss a question that is becoming increasingly urgent:</p>
