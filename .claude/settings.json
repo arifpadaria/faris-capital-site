@@ -25,12 +25,35 @@
       "Bash(sed -i '' 's/?v=4/?v=5/g' *.html && echo \"✓ Cache versions bumped to v=5\")",
       "Bash(grep -E \"\\\\.md$\")",
       "Bash(timeout 5 bash -c \"echo -e '2\\\\n9' | node scripts/publish.js\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(sed -i '' 's/?v=6/?v=7/g' *.html && grep \"?v=\" index.html | head -3)",
+      "Bash(firebase hosting:channel:list)",
+      "Bash(sed -i '' 's/?v=7/?v=8/g' *.html && git add *.html css/style.css && git commit -m \"Size logo to 50px height and bump cache to v=8\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=8/?v=9/g' *.html && git add images/weblogo.png js/components.js css/style.css *.html && git commit -m \"Switch to Website header PNG and increase logo to 100px\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=9/?v=10/g' *.html && git add js/components.js css/style.css *.html && git commit -m \"Revert to weblogo.jpg and increase height to 120px\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=10/?v=11/g' *.html && git add css/style.css *.html && git commit -m \"Increase logo height to 160px\" && git push origin main)",
+      "Bash(python3 -m http.server 8000)",
+      "Read(//tmp/**)",
+      "Bash(identify /Users/arifpadaria/Documents/faris-capital-site/images/weblogo.jpg)",
+      "Bash(python3)",
+      "Bash(pkill -f \"python3 -m http.server\")",
+      "Bash(sed -i '' 's/?v=11/?v=12/g' *.html && git add images/weblogo.svg js/components.js css/style.css *.html && git commit -m \"Update logo to faris-capital-horizontal.svg at 200px height\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=12/?v=13/g' *.html && git add images/weblogo.svg *.html && git commit -m \"Update faris-capital-horizontal.svg\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=13/?v=14/g' *.html && git add images/faris-capital-wordmark.svg js/components.js *.html && git commit -m \"Update footer logo to faris-capital-wordmark.svg\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=14/?v=15/g' *.html && git add images/faris-capital-reversed.svg js/components.js *.html && git commit -m \"Update footer logo to faris-capital-reversed.svg for visibility on blue background\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=15/?v=16/g' *.html && git add images/weblogo.svg images/faris-capital-reversed.svg css/style.css *.html && git commit -m \"Adjust logo spacing: widen F-c gap, increase CAPITAL font size, balance hyphens\" && git push origin main)",
+      "Bash(sed -i '' 's/?v=16/?v=17/g' *.html && git add js/investment-theses-data.js *.html && git commit -m \"Update thesis publication dates to match original article dates\" && git push origin main)",
+      "Bash(node -c /Users/arifpadaria/Documents/faris-capital-site/js/investment-theses-data.js)",
+      "Bash(python3 -m http.server 8000 > /tmp/server.log 2>&1 & *)",
+      "Bash(npx playwright *)",
+      "Bash(xxd)",
+      "Bash(curl -s http://localhost:8000/investment-theses.html)"
     ],
     "additionalDirectories": [
       "/Users/arifpadaria/.ssh",
       "/Users/arifpadaria",
-      "/Users/arifpadaria/Documents/faris-capital-site"
+      "/Users/arifpadaria/Documents/faris-capital-site",
+      "/private/tmp"
     ]
   }
 }
