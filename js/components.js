@@ -44,7 +44,7 @@ const Footer = `
         <div>
                         <!-- <div class="footer-line footer-line-1">Faris Capital</div> -->
 
-                        <img src="./images/fc-footlogo-new.png" alt="Faris Capital">
+                        <img src="./images/faris-capital-wordmark.svg" alt="Faris Capital">
             <div class="footer-line" style="font-size: 0.9rem; opacity: 0.8;"></div>
             <!-- <div class="footer-line" style="font-size: 0.9rem; margin-top: 0.25rem; line-height: 1.6; max-width: 300px;">
                 Growth-Stage Venture Advisory<br>Corporate & Venture Development<br>Capital Alignment
