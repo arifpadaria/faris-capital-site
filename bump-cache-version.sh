@@ -11,18 +11,13 @@ fi
 
 NEW_VERSION=$1
 
-# Find the current version (assuming it's v=1, v=2, etc.)
-CURRENT_VERSION=$(grep -o 'script src="js/[^"]*?v=[0-9]*' *.html | head -1 | grep -o 'v=[0-9]*' | cut -d= -f2)
+echo "Bumping all ?v=N cache-busting params to ?v=$NEW_VERSION..."
 
-if [ -z "$CURRENT_VERSION" ]; then
-  echo "Could not find current version. Make sure script tags have ?v=X format."
-  exit 1
-fi
-
-echo "Bumping cache version from $CURRENT_VERSION to $NEW_VERSION..."
-
-# Update all HTML files
-sed -i '' "s/?v=$CURRENT_VERSION/?v=$NEW_VERSION/g" *.html
+# Replace ANY ?v=<number> with ?v=$NEW_VERSION, regardless of what number it
+# currently has. This avoids drift where some links (e.g. css/style.css)
+# fall out of sync with others because they didn't match one specific
+# "current version" number.
+sed -i '' -E "s/\?v=[0-9]+/?v=$NEW_VERSION/g" *.html js/components.js
 
 echo "Done! Version bumped to ?v=$NEW_VERSION"
-echo "Don't forget to redeploy with: firebase deploy"
+echo "Don't forget to commit, push, and redeploy."
