@@ -280,7 +280,9 @@ async function performDeploy() {
   try {
     console.log(`\n${colors.dim}Deploying ${addedPerspectives.length} thesis(es)...${colors.reset}\n`);
 
-    // Bump cache version
+    // Bump cache version. Find the highest ?v=N currently in use across
+    // HTML + components.js, then replace ALL ?v=N (regardless of number,
+    // so no file can drift out of sync) with highest+1.
     let currentVersion = 1;
     try {
       const htmlContent = fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8');
@@ -294,7 +296,7 @@ async function performDeploy() {
 
     const newVersion = currentVersion + 1;
     console.log(`Bumping cache version: ?v=${currentVersion} → ?v=${newVersion}`);
-    execSync(`sed -i '' 's/?v=${currentVersion}/?v=${newVersion}/g' *.html`, { cwd: repoDir, stdio: 'pipe' });
+    execSync(`sed -i '' -E 's/\\?v=[0-9]+/?v=${newVersion}/g' *.html js/components.js`, { cwd: repoDir, stdio: 'pipe' });
 
     // Git operations
     console.log('Staging changes...');

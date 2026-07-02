@@ -9,7 +9,7 @@
 const Header = `
 <div class="header-container container">
     <a href="index.html" class="logo">
-  <img src="./images/faris-capital-wordmark-v2-med.svg" alt="Faris Capital">
+  <img src="./images/faris-capital-wordmark-v2-med.svg?v=22" alt="Faris Capital">
 </a>
     <nav class="nav-desktop">
         <a href="index.html" class="nav-link">Home</a>
@@ -40,7 +40,7 @@ const Footer = `
         <div>
                         <!-- <div class="footer-line footer-line-1">Faris Capital</div> -->
 
-                        <img src="./images/faris-capital-wordmark-v2-reversed.svg" alt="Faris Capital">
+                        <img src="./images/faris-capital-wordmark-v2-reversed.svg?v=22" alt="Faris Capital">
             <div class="footer-line" style="font-size: 0.9rem; opacity: 0.8;"></div>
             <!-- <div class="footer-line" style="font-size: 0.9rem; margin-top: 0.25rem; line-height: 1.6; max-width: 300px;">
                 Growth-Stage Venture Advisory<br>Corporate & Venture Development<br>Capital Alignment
