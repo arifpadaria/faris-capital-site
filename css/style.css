@@ -327,41 +327,6 @@ img {
     width: 100%;
 }
 
-/* Responsive logo sizing & offset tweaks
-   Use breakpoint-specific left offsets so the visible logo lines up with
-   section content across a wide range of desktop widths. These values
-   compensate for whitespace inside the PNG and different container widths. */
-
-/* Narrow desktop / large tablet — small left nudge */
-@media (min-width: 900px) and (max-width: 1099px) {
-    .logo img {
-        height: 72px;
-        display: block;
-        /* use trimmed image; no CSS offset needed */
-        margin-left: 0;
-    }
-}
-
-/* Standard desktop — moderate left nudge */
-@media (min-width: 1100px) and (max-width: 1399px) {
-    .logo img {
-        height: 64px;
-        display: block;
-        /* use trimmed image; no CSS offset needed */
-        margin-left: 0;
-    }
-}
-
-/* Wide / ultra-wide desktop — stronger left nudge as container grows */
-@media (min-width: 1400px) {
-    .logo img {
-        height: 64px;
-        display: block;
-        /* use trimmed image; no CSS offset needed */
-        margin-left: 0;
-    }
-}
-
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -380,8 +345,8 @@ img {
 }
 
 .logo img {
-    height: 200px;
-    width: 1000px;
+    height: 64px;
+    width: auto;
     display: block;
 }
 
@@ -660,9 +625,10 @@ img {
         display: none;
     }
 
-    /* Slightly reduce logo image height on small screens */
+    /* Logo sized to fit comfortably within the 72px mobile header */
     .logo img {
-        height: 56px;
+        height: 40px;
+        width: auto;
     }
 }
 
@@ -814,13 +780,5 @@ img {
     vertical-align: middle;
 }
 
-.logo img {
-    height: 80px;
-    /* Adjust this height to fit your navbar */
-    width: auto;
-    /* Keeps the aspect ratio from distorting */
-    display: block;
-    /* Removes weird bottom spacing issues */
-}
 
 /* Debug outlines removed — logo should now be trimmed and align with container. */
