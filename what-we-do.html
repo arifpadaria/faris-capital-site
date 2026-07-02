@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Do — Faris Capital</title>
+    <meta name="description" content="Advisory for growth-stage ventures, institutional capital, and enterprises — Faris Capital.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        .audience-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+        .audience-tab {
+            padding: 0.85rem 1.25rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+        }
+        .audience-tab.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-gold);
+        }
+        .audience-panel { display: none; }
+        .audience-panel.active { display: block; }
+    </style>
+</head>
+
+<body>
+
+    <header></header>
+
+    <main>
+        <!-- Hero -->
+        <section class="section hero container">
+            <h2>What We Do</h2>
+            <p style="font-size: 1.25rem; font-weight: 500; margin-bottom: 1rem;">Advisory at the intersection of venture scale, institutional capital, and enterprise strategy.</p>
+        </section>
+
+        <section class="section container" style="padding-top: 0;">
+            <div class="audience-tabs" role="tablist">
+                <button class="audience-tab active" data-tab="ventures" role="tab" aria-selected="true">For Ventures</button>
+                <button class="audience-tab" data-tab="capital" role="tab" aria-selected="false">For Institutional Capital</button>
+                <button class="audience-tab" data-tab="enterprises" role="tab" aria-selected="false">For Enterprises</button>
+            </div>
+
+            <!-- Ventures Panel -->
+            <div class="audience-panel active" id="panel-ventures">
+                <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem; max-width: 700px;">For founders scaling from Series A through institutional capital and exit.</p>
+                <div class="grid grid-3">
+                    <div class="content-block radius-card">
+                        <h3>Capital & Board</h3>
+                        <p>Fundraise positioning, investor introductions, and board participation aligned to your stage.</p>
+                    </div>
+                    <div class="content-block radius-card">
+                        <h3>Growth & Partnerships</h3>
+                        <p>Cross-border expansion, enterprise sales motion, and strategic alliances with corporates and sovereign platforms.</p>
+                    </div>
+                    <div class="content-block radius-card">
+                        <h3>M&A & Exit</h3>
+                        <p>Governance, structuring, and readiness for acquisition or exit.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2.5rem; text-align: center;">
+                    <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+                </div>
+            </div>
+
+            <!-- Capital Panel -->
+            <div class="audience-panel" id="panel-capital">
+                <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem; max-width: 700px;">Curated access to growth-stage technology ventures, deployed across global markets.</p>
+                <div class="grid grid-3">
+                    <div class="content-block radius-card">
+                        <h3>Sourcing & Diligence</h3>
+                        <p>Pre-screened deal flow across deep tech, AI, fintech, and infrastructure, backed by technical and market diligence.</p>
+                    </div>
+                    <div class="content-block radius-card">
+                        <h3>Syndication & Deployment</h3>
+                        <p>Coordinated co-investment structures across US, EMEA, GCC, and India technology ecosystems.</p>
+                    </div>
+                    <div class="content-block radius-card">
+                        <h3>Governance & Strategy</h3>
+                        <p>Board-level alignment and ongoing counsel on portfolio thesis and capital allocation.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2.5rem; text-align: center;">
+                    <a href="contact.html" class="btn btn-primary">Explore Opportunities</a>
+                </div>
+            </div>
+
+            <!-- Enterprises Panel -->
+            <div class="audience-panel" id="panel-enterprises">
+                <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem; max-width: 700px;">Corporate development and M&A advisory for enterprises navigating digital transformation.</p>
+                <div class="grid grid-3">
+                    <div class="content-block radius-card">
+                        <h3>M&A Strategy</h3>
+                        <p>Target identification, diligence, and post-deal integration of high-growth ventures.</p>
+                    </div>
+                    <div class="content-block radius-card">
+                        <h3>Venture Ecosystem Access</h3>
+                        <p>A curated pipeline of innovation-focused startups aligned with your technology roadmap.</p>
+                    </div>
+                    <div class="content-block radius-card">
+                        <h3>Corporate Venture Strategy</h3>
+                        <p>Building or scaling your corporate venture arm — sourcing, governance, and portfolio management.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2.5rem; text-align: center;">
+                    <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Track Record -->
+        <section class="section section-bg">
+            <div class="container">
+                <h2>Track Record</h2>
+                <div class="grid grid-2" style="margin-top: 1.5rem;">
+                    <ul class="bullet-list" style="padding-left: 20px; list-style-position: outside;">
+                        <li>Directed <strong>$500M+</strong> in venture investments and strategic partnerships</li>
+                        <li>Invested across <strong>200+ transactions</strong> in deep tech, AI, and infrastructure</li>
+                    </ul>
+                    <ul class="bullet-list" style="padding-left: 20px; list-style-position: outside;">
+                        <li><strong>$70M deployed</strong> at Microsoft with <strong>4x returns</strong> (3-year horizon)</li>
+                        <li>Co-managed a <strong>€300M portfolio</strong> at TVM Capital across deep-tech ventures</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="investment-theses.html" class="accent-link" style="font-size: 0.9rem; font-weight: 600;">Read our Investment Theses →</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer></footer>
+
+    <script src="js/components.js?v=21"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.audience-tab');
+            const panels = document.querySelectorAll('.audience-panel');
+
+            function activate(name) {
+                tabs.forEach(t => {
+                    const isActive = t.dataset.tab === name;
+                    t.classList.toggle('active', isActive);
+                    t.setAttribute('aria-selected', isActive);
+                });
+                panels.forEach(p => p.classList.toggle('active', p.id === `panel-${name}`));
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => activate(tab.dataset.tab));
+            });
+
+            const hash = window.location.hash.replace('#', '');
+            if (['ventures', 'capital', 'enterprises'].includes(hash)) {
+                activate(hash);
+            }
+        });
+    </script>
+    <script src="js/main.js?v=21"></script>
+</body>
+
+</html>
