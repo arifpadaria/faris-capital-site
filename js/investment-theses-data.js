@@ -4,6 +4,132 @@
  */
 const INVESTMENT_THESES = [
   {
+    id: "the-model-that-beat-its-teacher-has-a-speed-problem",
+    title: "The Model That Beat Its Teacher Has a Speed Problem",
+    date: "July 2, 2026",
+    teaser: "A new report scored 40 humanoid foundation models against each other. \n\nOne number in it quietly settles an argument I've been watching for two years: Vision-Language-Action models, the backbone of nearly every humanoid robot today, just got beaten by more than double on tasks they were never trained for.\n\nhashtag#PhysicalAI hashtag#Robotics hashtag#DeepTech hashtag#VentureCapital hashtag#AI hashtag#ArtificialIntelligence hashtag#VLA hashtag#FastBrain hashtag#SlowBrain hashtag#DreamZero hashtag#Humanoid",
+    content: `
+      <p>July 2, 2026<br>A report came out this week scoring all 40 known humanoid foundation models against each other. Buried in it is a number that quietly settles an argument I've been watching play out for two years.</p>
+      <p>NVIDIA's new model, DreamZero, generalizes to tasks it was never trained on at 62.2 percent. The best vision-language-action model, the architecture nearly every humanoid robot runs on today, manages 27.4 percent on the same test.</p>
+      <p>More than double. On tasks the model had never seen.</p>
+      <p>Here's why that gap exists.</p>
+      <p>Vision-language-action models, VLAs, learn the way an apprentice learns by watching a master: copy the motion. They're trained on teleoperation data, a human piloting a robot arm, recorded and labeled. That data is scarce and expensive to collect. Worse, it's physics-blind. The model learns what a successful pour looks like. It has no internal sense of what happens if the cup tips a little further, or the surface is slightly wet, or the grip is a few degrees off.</p>
+      <p>DreamZero and the new wave of "world-action models" do something different. Before acting, the model imagines the scene forward. It predicts what happens next, then acts on that prediction. That's the generalization jump. A robot that can imagine consequence handles the unfamiliar far better than one that can only imitate.</p>
+      <p>The catch, and it's a real one: DreamZero runs at 7Hz. For context, the actual motor control loop on a robot arm needs to run at 200Hz or more just to keep from being twitchy and unsafe. Imagination is slow. Reflex has to be fast.</p>
+      <p>So the field is doing what nature already figured out.</p>
+      <p>The report describes the emerging consensus as a hybrid: a fast layer running at 200Hz handling reflexive motion, sitting on top of a slower model, somewhere in the 7 to 34 billion parameter range, doing the imagining and planning underneath it. Physical Intelligence, GigaWorld, and NVIDIA's own GR00T line are all converging on some version of this split.</p>
+      <p>Kahneman called this System 1 and System 2 in humans. Fast, automatic, reflexive judgment paired with slow, deliberate reasoning. The humanoid robotics field just rediscovered the same architecture, for the same reason. You cannot make the slow system fast enough to be safe, and you cannot make the fast system smart enough to generalize. You need both, running at the same time, talking to each other.</p>
+      <p>There's a second number in the report worth sitting with.</p>
+      <p>The reason Physical Intelligence is valued at roughly 11 billion dollars on close to zero revenue isn't the algorithm. It's the data. Teleoperation data is scarce because someone has to physically drive a robot to generate it. Video is not scarce. It is, for practical purposes, infinite. The bottleneck that has constrained robot learning for a decade just moved from "how many hours can we pay people to teleoperate" to "how much of the internet's video can we turn into training signal." That's a different game, with a different cost curve, and it's why the smart money is chasing data flywheels instead of model architecture.</p>
+      <p>Here's the part that matters for anyone watching the control layer, which is the part of this I actually work on.</p>
+      <p>A faster, smarter Slow Brain does not close the gap I've written about in this series. It widens it.</p>
+      <p>Two posts ago I wrote about the missing robot ECU, the certified, standardized control layer that does not yet exist for humanoid robots the way it has existed for cars since the 1990s. The hybrid System 1/System 2 architecture this report describes is still entirely on the cognition side. A 200Hz reflex model and a 34B-parameter planning model are both still software running on probabilistic, throughput-optimized compute. Neither one, on its own, gives you a hard, certifiable guarantee that a motor command executes within a fixed time window, every time, without exception.</p>
+      <p>If anything, having two cognition layers instead of one makes that missing layer more load-bearing, not less. Both layers still have to hand off to something that turns a decision into motion, deterministically, in real time. That handoff is not solved by a better model. It never was.</p>
+      <p>I'm working on exactly that handoff right now. More soon.</p>
+      <p>What do you think? Is the System 1/System 2 split in these models actually new, or is it just naming something the field has been doing implicitly for years?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/model-beat-its-teacher-has-speed-problem-arif-padaria-d9yhc/?trackingId=qWIhFYe2LUckAW4x2QJHNA%3D%3D"
+  },
+  {
+    id: "the-gap-noboby-at-automate-has-named-yet",
+    title: "The Gap Noboby at Automate Has Named Yet",
+    date: "July 2, 2026",
+    teaser: "I spent a couple of days earlier this week walking the floor at hashtag#Automate, the largest robotics trade show in North America, looking for one specific thing. \n\nWhat I found wasn't a gap in anyone's effort. \n\nIt was a question almost nobody is asking yet, and a market-sized opportunity sitting underneath it.\n\nhashtag#Automate hashtag#PhysicalAI hashtag#Robotics hashtag#Automation hashtag#DeepTech hashtag#VentureCapital",
+    content: `
+      <p>June 26, 2026<br>I spent a couple of days this past week walking the floor at Automate, the largest robotics and automation trade show in North America. I went in with a simple list of questions: what's actually working, what isn't, what's the real use case hiding in plain sight, who's worth talking to, and what's conspicuously missing from all the noise about the next era of robotics.</p>
+      <p>The answer to that last question is the one I keep coming back to.</p>
+      <p>Using an AI model to actually control a robot, not just help a person program it faster, is a genuine paradigm shift. It's early. By my count, walking hall after hall, only a handful of companies on that floor are building toward it. That's not a knock on anyone. It's a young idea in a young part of the industry, and most of the floor's energy is, understandably, pointed somewhere else right now.</p>
+      <p>There's a quiet split happening in robotics software right now, and most of the industry is on one side of it without realizing there are two sides.</p>
+      <p>A lot of automation companies are racing to make robots "easier to code." Increasingly that means AI writing the robot code for you. That's a real and valuable improvement. It's also solving a different problem than the one I went to the show looking for.</p>
+      <p>"Easier to code" speeds up programming a robot for a high-throughput, low-mix task: same parts, same positions, same motion, over and over, just faster to set up. That's a genuinely useful problem to solve, and a lot of sharp engineering is going into it. "AI controls the robot" is aimed at something else entirely: high-mix, low-volume work in unstructured environments, where the part, the position, and the situation change every time, and hard-coding every case isn't practical. Most of the floor's attention is on the first problem. The second one is wide open.</p>
+      <p>Here's why that second problem is harder than it sounds, and also why it matters.</p>
+      <p>Industrial integrators have spent decades getting extremely good at eliminating uncertainty. A customer comes to them to automate a process, and the integrator's whole value proposition is designing a work cell where every variable is known in advance: exact part, exact position, exact motion. That's not a limitation. That's the product, and it's a genuinely impressive discipline built over decades. It also means that adding a model built to handle uncertainty into that world isn't simply a feature you bolt on. It changes a basic assumption the whole discipline is built around, which is exactly why it takes time, and why it's a much bigger lift than it might look from the outside.</p>
+      <p>"Go to the counter and get me a glass of water" is not a hard-automation task. The robot doesn't have fixed coordinates for the world, doesn't know what kind of glass it's reaching for, doesn't know where anything actually is until it looks. That flexibility is the whole point of an AI-controlled robot. The question I kept circling on the floor is what the industrial version of "get me a glass of water" actually is. Not a demo. A task someone will pay to automate, that hard-automation genuinely cannot solve, in volumes worth solving for.</p>
+      <p>I didn't leave with a single clean answer. I left with a sharper question, and a few candidates worth chasing.</p>
+      <p>The clearest signal I got was less a booth and more a pattern across two of them.</p>
+      <p>In one hall, a capable mobile robot rolled around on a wheeled base with a full arm attached. Genuinely good hardware, well built, clearly a serious engineering effort. On its own, it was waiting for something to tell it how to interpret and interact with the world in front of it, which is a hardware achievement looking for its missing half. A few aisles over, a small team had built a genuinely charming demo where you could play a board game against a robot arm, complete with a "hard mode" that quietly cheated and then needled you about it when it won. Everyone loved it, myself included. It was also entirely hard-coded: every piece position, every board square, fixed in advance. It's a clever piece of programming solving a fixed, well-defined version of the problem, by design.</p>
+      <p>That's the dividing line, in two booths I happened to wander past within minutes of each other. A capable body waiting for a brain. A clever brain that works precisely because the world it operates in was fully specified ahead of time. Closing that gap, body and adaptable brain together in the same system, is still rare on the floor.</p>
+      <p>A few exhibitors are pushing in that direction, combining force sensing with vision so a system can sense and feel its way through a task instead of just executing a fixed path. It's genuinely exciting progress, and exactly the kind of work that needs to happen for this to mature. It's also early days. There's real room left to run, which is precisely where I've chosen to spend my time.</p>
+      <p>One more conversation is worth sharing because it isn't about robots at all, and it's the clearest argument I heard all week for why this problem is bigger than humanoid robotics.</p>
+      <p>At one station, a team was using an AI model to catch product defects on a line moving fast enough to be genuinely fun to watch. The constraint that mattered wasn't the model's accuracy. It was speed: they needed a defect decision in roughly 50 milliseconds, in time to eject the bad unit a couple feet down the line. Getting there took serious compute hardware and serious optimization work, just to hit that one number, on one line.</p>
+      <p>That's the same problem I've been writing about, wearing a different costume. Not a robot arm this time. A vision model that has to make a real-time decision against a hard deadline, with real consequences if it's late. The companies that figure out how to compress AI inference to meet hard timing constraints aren't just solving robotics. They're solving a much larger category of industrial problem that happens to look like this one from the side.</p>
+      <p>So where does this leave the thesis from the last two posts?</p>
+      <p>Confirmed, but not the way I expected going in. I thought the floor would show me a clean split between booths that had the control layer and booths that didn't. What it actually showed me is that the question itself, how do you give a capable robot body a brain that can handle the world as it actually is, isn't yet the question most of the industry is asking. That's not a gap in anyone's effort or talent. It's just early. Most of the floor's enormous energy is, for good reason, focused on getting incredibly good at the problems already in front of it.</p>
+      <p>I find that encouraging rather than discouraging. A question that hasn't been widely asked yet, sitting underneath a market everyone agrees is enormous, is exactly the kind of opportunity worth building into.</p>
+      <p>I came home with a sharper question instead of a clean answer: what's the real industrial task that today's hard-automation approach can't quite reach, that's worth solving at volume. I have a few candidates. Working through them is exactly what I'm spending my time on right now.</p>
+      <p>If you were on the floor at Automate this year, I'd be curious whether you saw the same split, or something different.</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/gap-nobody-automate-has-named-yet-arif-padaria-p6dec/?trackingId=B9ST46U4TbzB5TEDMHCMpg%3D%3D"
+  },
+  {
+    id: "the-missing-robot-ecu-and-who-will-build-it",
+    title: "The Missing Robot ECU - and Who Will Build It",
+    date: "July 2, 2026",
+    teaser: "McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.\n\nI think the most important sentence in the report was buried three sections in. And it names a gap that no one has filled yet.\nhashtag#PhysicalAI, hashtag#Robotics, hashtag#DeepTech, hashtag#VentureCapital, hashtag#Manufacturing",
+    content: `
+      <p>June 14, 2026<br>Last post, I ended with a line that I keep thinking about.</p>
+      <p>"Models get commoditized. Infrastructure scales."</p>
+      <p>I was talking about the data layer. But the same logic applies one level deeper — at the layer where data meets hardware, where decisions become motion.</p>
+      <p>McKinsey published an analysis of humanoid robotics supply chains in April. The headline finding everyone quoted was about actuators: they account for 40 to 60 percent of the total hardware cost and remain the most constrained component in the stack. Fair enough.</p>
+      <p>But I think the most important sentence in that report was buried three sections in.</p>
+      <p>"There is no standardized, safety-certified robot ECU analogous to an automotive engine control unit."</p>
+      <p>That one sentence tells you more about where the durable opportunity lives than any bill-of-materials breakdown.</p>
+      <p>Here is the analogy that matters.</p>
+      <p>In the 1970s, every car manufacturer built its own engine control logic from scratch. Custom hardware, custom software, hand-integrated for each platform. That was not a strategic choice. It was the only option available. No standard existed.</p>
+      <p>Then Bosch and Siemens built the ECU. Not a better engine. A control layer that abstracted engine management into a standardized, certifiable module. By the 1990s, nearly every production vehicle on earth ran on one. The companies that defined that interface became Tier 1 infrastructure suppliers to an industry worth trillions.</p>
+      <p>The automotive ECU was not invented after car production scaled. It was invented before, during the exact window when volumes were approaching but architectures had not yet locked.</p>
+      <p>That window is when standards form.</p>
+      <p>McKinsey calls the current moment the "pre-modular phase."</p>
+      <p>Every humanoid OEM today is doing what car companies did in 1975. They are building the compute and control stack from scratch because they have no choice. A GPU board for perception. Distributed joint controllers. Custom middleware stitching it together. Hand-coded safety logic.</p>
+      <p>McKinsey's language is precise on why:</p>
+      <p>"OEMs are forced into vertical integration or close co-development, not because they have a strategic preference for keeping manufacturing in-house, but because no viable supplier options exist."</p>
+      <p>This is not an engineering failure. It is a market structure problem. The components exist. The integration layer and certification framework do not.</p>
+      <p>McKinsey classifies the compute and control supply chain as a "systems bottleneck" — not a capacity bottleneck. The chips are available. The missing piece is the platform that integrates them into something a production robot can actually certify and deploy.</p>
+      <p>And here is the thing about systems bottlenecks: they do not wait for the rest of the market to catch up. They resolve when someone builds the missing layer. Then that layer becomes infrastructure.</p>
+      <p>This window is specific and closing.</p>
+      <p>Three conditions drive the shift from vertical integration to platform ecosystems: predictable volumes, stable architectures, and converging interface standards.</p>
+      <p>VC funding in robotics hit $40.7 billion in 2025, three times the 2023 level. China committed a $138 billion state fund. The first condition is arriving. The second is starting to stabilize around a few dominant form factors.</p>
+      <p>The third — converging interface standards — does not emerge on its own. It gets defined by the first platform with enough adoption to become the de facto standard.</p>
+      <p>McKinsey's key line: "Design successes at the prototype stage convert into production incumbency once architectures stabilize and volumes scale."</p>
+      <p>The standard gets set during the pre-volume phase. Then it locks in. That is exactly how the automotive ECU became infrastructure. That is exactly the moment we are in right now for physical AI compute and control.</p>
+      <p>The pattern is now consistent.</p>
+      <p>The models are getting good. The Slow Brain is being solved, the data infrastructure is being capitalized, and the capital is following fast.</p>
+      <p>What is not built yet is the layer that connects all of it to reliable physical deployment. The real-time control platform. The missing robot ECU.</p>
+      <p>The company that builds it will not just ship a product. It will occupy the position that Bosch and Siemens hold in automotive. The compute control plane of an entire generation of autonomous physical systems.</p>
+      <p>I am working on exactly this problem right now. More to come.</p>
+      <p>What do you think? Is the control standardization race already decided — or still wide open?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/missing-robot-ecu-who-build-arif-padaria-7kchc/?trackingId=A58arthNCebmcJHuJidTDw%3D%3D"
+  },
+  {
+    id: "the-wrong-race",
+    title: "The Wrong Race",
+    date: "July 2, 2026",
+    teaser: "I spent part of last week at hashtag#BostonTechWeek, sitting in on technical sessions with founders building in the agentic AI space. One presentation stopped me cold — not because of the product, but because of the framing. The CTO walked through why the entire field is racing toward a solution that is, information-theoretically, the wrong one. This is my attempt to share that framing.",
+    content: `
+      <p>June 1, 2026<br>Everyone building AI coding tools is racing to make context windows bigger.</p>
+      <p>They're solving the wrong problem.</p>
+      <p>I was at Boston Tech Week last week and heard a technical presentation that reframed how I think about agentic coding infrastructure. The core insight has stayed with me.</p>
+      <p>The problem isn't that agents aren't smart enough. The problem is that context has two constraints that are in direct tension with each other.</p>
+      <p>The first is exhaustiveness. If an agent misses a symbol, a dependency, a cross-file relationship, that signal is gone. Information theory is unambiguous about this: signal lost in a processing chain cannot be recovered downstream. RAG is a sampling technique. It misses things. Those misses are permanent.</p>
+      <p>The second is signal-to-noise ratio. Here's where it gets counterintuitive. If you solve exhaustiveness by dumping an entire codebase into context, you've maximally destroyed SNR. Shannon-Hartley tells us that as irrelevant context grows, the channel capacity for transmitting useful information collapses. A bigger context window makes this worse, not better.</p>
+      <p>These two problems are in direct conflict. Every tool on the market resolves one at the expense of the other.</p>
+      <p>The correct architecture separates them.</p>
+      <p>Handle exhaustiveness ahead of time: parse every symbol, every dependency, every file, deterministically. Build a structured context base that is complete by construction.</p>
+      <p>Handle SNR at runtime: from that exhaustive base, resolve and assemble only what is relevant to the specific task. Progressive refinement. Broad orientation first, targeted detail second.</p>
+      <p>The teams getting this right are becoming non-negotiable infrastructure for enterprise engineering organizations. Not a tool. Infrastructure.</p>
+      <p>We don't even have the right word for this layer yet. "Compiler" is close but carries the wrong connotation. "Context engine" is too generic. Whatever we call it, the architecture is clear.</p>
+      <p>The race to build bigger context windows will continue. But the teams who figure out that exhaustiveness and relevance are separate problems, requiring separate solutions, are the ones building the foundation that everything else runs on.</p>
+      <p>What would you call this infrastructure layer?</p>
+      <p>If you're thinking about agentic coding infrastructure or seeing this context problem in your own engineering organization, I'd be curious to hear from you. Get in touch: arif@faris-capital.com</p>
+      <p>#AgenticAI #AIInfrastructure #BostonTechWeek #Compiler #ContextEngine</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/wrong-race-arif-padaria-5dz6e/?trackingId=%2F2SdrrtWGTdIto1wJOXo7g%3D%3D"
+  },
+  {
     id: "physical-ai-has-a-data-problem-that-software-ai-never-had",
     title: "Physical AI Has a Data Problem That Software AI Never Had",
     date: "May 22, 2026",

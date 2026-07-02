@@ -6,7 +6,8 @@
       "**/.*",
       "**/node_modules/**",
       ".github/**",
-      ".git/**"
+      ".git/**",
+      "archive/**"
     ],
     "headers": [
       {
