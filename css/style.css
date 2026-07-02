@@ -345,7 +345,7 @@ img {
 }
 
 .logo img {
-    height: 45px;
+    height: 60px;
     width: auto;
     display: block;
 }
@@ -627,7 +627,7 @@ img {
 
     /* Logo sized to fit comfortably within the 72px mobile header */
     .logo img {
-        height: 32px;
+        height: 50px;
         width: auto;
     }
 }
