@@ -342,12 +342,19 @@ img {
     color: var(--accent-color);
     letter-spacing: -0.02em;
     display: inline-block;
+    flex-shrink: 0;
 }
 
 .logo img {
     height: 76px;
     width: auto;
+    max-width: none;
     display: block;
+    flex-shrink: 0;
+}
+
+.logo img.logo-mobile {
+    display: none;
 }
 
 .nav-desktop {
@@ -625,10 +632,22 @@ img {
         display: none;
     }
 
-    /* Logo sized to fit comfortably within the 72px mobile header */
-    .logo img {
-        height: 62px;
+    /* Stacked logo on mobile: the single-line wordmark is too wide (11.5:1)
+       to render tall within the 72px header next to the menu button, so
+       swap to a two-line lockup which fits a much larger height in the
+       same width budget. Selectors use ".logo img.logo-desktop" (not just
+       ".logo-desktop") to out-specificity the base ".logo img" rule, which
+       otherwise wins and forces display:block regardless of this override. */
+    .logo img.logo-desktop {
+        display: none;
+    }
+
+    .logo img.logo-mobile {
+        display: block;
+        height: 52px;
         width: auto;
+        max-width: none;
+        flex-shrink: 0;
     }
 }
 
