@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faris Capital — Growth-Stage Venture Advisory</title>
     <meta name="description" content="We advise growth-stage technology ventures, institutional capital, and enterprises across global markets.">
-    <link rel="stylesheet" href="css/style.css?v=22">
+    <link rel="stylesheet" href="css/style.css?v=23">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -18,30 +18,23 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="section hero container">
+        <section class="section hero container" style="padding-bottom: 24px;">
             <div class="global-motif"></div>
             <!-- <h1>Faris Capital</h1>
             <br> -->
             <!-- Inline style for H2 size reduction as requested -->
             <h2
                 style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 2rem; color: var(--text-primary); max-width: 900px;">
-                Advising Growth-Stage Technology Ventures Across Global Markets</h2>
+                Scaling Ventures. Aligning Capital.</h2>
             <div class="hero-subhead">
-                <p>We help ventures scale, align capital, and build strategic partnerships across the United States, GCC and India.</p>
-            </div>
-
-            <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <!-- Role-based Navigation -->
-                <a href="what-we-do.html#ventures" class="btn btn-primary">I'm a Founder/Venture</a>
-                <a href="what-we-do.html#capital" class="btn btn-secondary">I'm an Investor/Fund</a>
-                <a href="what-we-do.html#enterprises" class="btn btn-secondary">I'm an Enterprise</a>
+                <p style="font-size: 1.25rem; font-weight: 500;">We help ventures scale — through advisory, capital alignment, and strategic partnerships.</p>
             </div>
         </section>
 
-        <!-- Who We Work With -->
-        <section class="section section-bg">
+        <!-- Who We Serve -->
+        <section class="section section-bg" style="padding: 32px 0;">
             <div class="container">
-                <h2>Who We Work With</h2>
+                <h2>Who We Serve</h2>
                 <div class="grid grid-3">
                     <div class="content-block radius-card">
                         <h3>Ventures</h3>
@@ -62,36 +55,22 @@
             </div>
         </section>
 
-        <!-- Built From Execution -->
-        <section class="section container">
-            <div class="grid grid-2" style="align-items: center;">
+        <!-- By the Numbers -->
+        <section class="section container" style="padding: 32px 0 48px;">
+            <h2 style="text-align: center;">By the Numbers</h2>
+            <p style="text-align: center; margin: 0.5rem auto 0; font-size: 1.25rem; font-weight: 500; color: var(--text-secondary);">Grounded in operating experience.</p>
+            <div class="grid grid-3" style="margin-top: 1.75rem; text-align: center;">
                 <div>
-                    <h2>Built From Execution</h2>
-                    <p>Faris Capital is grounded in operating experience — building companies, deploying capital, and executing growth across markets.</p>
+                    <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--accent-color);">$500M+</div>
+                    <p style="margin-top: 0.35rem; font-size: 0.95rem; color: var(--text-secondary);">Directed in venture investments</p>
                 </div>
                 <div>
-                    <ul class="bullet-list"
-                        style="background: var(--section-bg-gradient); padding: 2rem 2rem 2rem 3rem; border: 1px solid var(--border-color);">
-                        <li>Track record of successful M&A and IPO exits</li>
-                        <li>Directed $500M+ in venture investments and strategic partnerships</li>
-                        <li>Invested across 200+ private equity transactions</li>
-                    </ul>
+                    <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--accent-color);">200+</div>
+                    <p style="margin-top: 0.35rem; font-size: 0.95rem; color: var(--text-secondary);">Private equity and venture transactions</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Latest Investment Theses -->
-        <section class="section section-bg">
-            <div class="container">
-                <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; gap: 2rem; flex-wrap: wrap;">
-                    <div>
-                        <h2>Latest Investment Theses</h2>
-                        <p style="margin-top: 1rem; max-width: 600px;">Strategic frameworks on venture scale, capital alignment, and where value forms in technology at global scale.</p>
-                    </div>
-                    <a href="investment-theses.html" class="btn btn-secondary" style="white-space: nowrap;">View All →</a>
-                </div>
-                <div id="featured-theses" class="grid grid-2" style="gap: 2rem;">
-                    <!-- Latest 2 theses loaded dynamically -->
+                <div>
+                    <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--accent-color);">M&A + IPO</div>
+                    <p style="margin-top: 0.35rem; font-size: 0.95rem; color: var(--text-secondary);">Track record of successful exits</p>
                 </div>
             </div>
         </section>
@@ -101,30 +80,8 @@
     <!-- Footer Placeholder -->
     <footer></footer>
 
-    <script src="js/components.js?v=22"></script>
-    <script src="js/investment-theses-data.js?v=22"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('featured-theses');
-            if (grid && typeof INVESTMENT_THESES !== 'undefined' && INVESTMENT_THESES.length > 0) {
-                // Show the 2 most recent theses
-                const featured = INVESTMENT_THESES.slice(0, 2);
-                grid.innerHTML = featured.map(p => `
-                    <div class="content-block radius-card" style="border: 1px solid var(--border-color); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                        <div>
-                            <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.75rem;">${p.date}</div>
-                            <h3 style="font-size: 1.25rem; line-height: 1.4; margin-bottom: 1rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600;">${p.title}</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${p.teaser}</p>
-                        </div>
-                        <a href="article.html?id=${p.id}" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
-                            Read Thesis <span style="transition: transform 0.2s;">→</span>
-                        </a>
-                    </div>
-                `).join('');
-            }
-        });
-    </script>
-    <script src="js/main.js?v=22"></script>
+    <script src="js/components.js?v=23"></script>
+    <script src="js/main.js?v=23"></script>
 </body>
 
 </html>
