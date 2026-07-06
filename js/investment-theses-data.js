@@ -4,6 +4,32 @@
  */
 const INVESTMENT_THESES = [
   {
+    id: "250-years-of-betting-on-whats-next",
+    title: "250 Years of Betting on What's Next",
+    date: "July 5, 2026",
+    teaser: "250 years ago, a small group of people bet on a system built to make risky bets, over and over. \n\nRight now, AI, robotics, and space are all running that same experiment at once, faster than any prior American platform shift. Here's the pattern connecting a chatbot, a warehouse robot, and a reused rocket booster.\n\nhashtag#Innovation hashtag#ArtificialIntelligence hashtag#Robotics hashtag#Space hashtag#VentureCapital hashtag#DeepTech hashtag#America250",
+    content: `
+      <p>July 5, 2026<br>We just passed the 250th anniversary of a bet that a small group of people made: that a new system of organizing human effort would outperform the one they inherited.</p>
+      <p>They had no idea what they were building toward. Nobody in 1776 could have described the steam engine, let alone the microprocessor. What they built was a country structurally disposed to make that kind of bet, over and over, for two and a half centuries.</p>
+      <p>That pattern is the actual American story, more than any single invention. And right now, in one decade, we are watching that pattern compress in front of us across three frontiers at once.</p>
+      <p>Look at where we actually are.</p>
+      <p>Ten years ago, a machine that could hold a coherent conversation was science fiction. Today, models write code, pass bar exams, and are starting to run parts of businesses end to end. That happened in about a decade. It took electricity sixty years to go from Edison's lab to lighting most American homes.</p>
+      <p>Ten years ago, a humanoid robot that could fold laundry reliably didn't exist anywhere. Today, robots are logging tens of thousands of paid production hours in Amazon warehouses and BMW factories, not lab demos, real shifts, real output. Boston Dynamics' Atlas does backflips. Tesla's Optimus sorts parts on a live factory floor. The generalization gap that made robots brittle outside narrow tasks is closing faster than almost anyone in the field predicted two years ago.</p>
+      <p>And ten years ago, landing a rocket booster upright was a stunt people didn't believe would ever be routine. Today it is routine. SpaceX has landed and reflown boosters hundreds of times. Starship is being iterated toward full reusability at a cadence that would have seemed reckless to the aerospace industry a generation ago. We are closer to humans on Mars than at any point since Apollo, not because the physics changed, but because someone was willing to fail in public, fast, over and over, until the failure rate dropped.</p>
+      <p>Three frontiers. Same underlying pattern in each one: something that looked impossible, then looked like a stunt, then quietly became infrastructure.</p>
+      <p>The unglamorous part is always the real story.</p>
+      <p>The railroad barons of the 1850s were financing infrastructure for a form of long-distance commerce that mostly didn't exist yet. The people who built the electrical grid in the 1890s were wiring buildings for appliances that hadn't been invented. Nobody remembers the specific engineers who solved signal relay timing on the transcontinental railroad. Everyone remembers the railroad.</p>
+      <p>The same thing is happening right now, underneath the parts of AI and robotics that make headlines. A language model that can reason is not useful in the physical world until something turns that reasoning into a motor command, deterministically, in real time, without exception. A reusable rocket is not routine until someone solves the boring, unglamorous problem of turbine blade fatigue at scale. The demo is never the hard part. The infrastructure underneath the demo is the hard part, and it's where I've chosen to spend my time: not the flashy model or the flashy launch, but the control layer and the systems that make either one trustworthy enough to bet a business, or a life, on.</p>
+      <p>That's the pattern of every American platform shift: someone has to build the unglamorous layer before the glamorous layer means anything.</p>
+      <p>250 years in, the thing that made this work was never a monopoly on genius.</p>
+      <p>It was a structural willingness to fund things before the payoff was obvious, and to keep funding the boring layer long after the exciting demo had already gone viral. AI, robotics, and space are three different industries running the exact same experiment right now, at the fastest pace this country has ever run it.</p>
+      <p>That's the bet I'm still making, across every venture I'm involved in.</p>
+      <p>What are you willing to fund before it's obvious?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/250-years-betting-whats-next-arif-padaria-xoxrc/"
+  },
+  {
     id: "the-model-that-beat-its-teacher-has-a-speed-problem",
     title: "The Model That Beat Its Teacher Has a Speed Problem",
     date: "July 2, 2026",
