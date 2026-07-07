@@ -17,7 +17,7 @@ echo "Bumping all ?v=N cache-busting params to ?v=$NEW_VERSION..."
 # currently has. This avoids drift where some links (e.g. css/style.css)
 # fall out of sync with others because they didn't match one specific
 # "current version" number.
-sed -i '' -E "s/\?v=[0-9]+/?v=$NEW_VERSION/g" *.html js/components.js
+sed -i '' -E "s/\?v=[0-9]+/?v=$NEW_VERSION/g" *.html theses/*.html js/components.js
 
 echo "Done! Version bumped to ?v=$NEW_VERSION"
 echo "Don't forget to commit, push, and redeploy."

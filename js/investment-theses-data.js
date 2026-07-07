@@ -7,9 +7,9 @@ const INVESTMENT_THESES = [
     id: "250-years-of-betting-on-whats-next",
     title: "250 Years of Betting on What's Next",
     date: "July 5, 2026",
-    teaser: "250 years ago, a small group of people bet on a system built to make risky bets, over and over. \n\nRight now, AI, robotics, and space are all running that same experiment at once, faster than any prior American platform shift. Here's the pattern connecting a chatbot, a warehouse robot, and a reused rocket booster.\n\nhashtag#Innovation hashtag#ArtificialIntelligence hashtag#Robotics hashtag#Space hashtag#VentureCapital hashtag#DeepTech hashtag#America250",
+    teaser: "250 years ago, a small group of people bet on a system built to make risky bets, over and over. \n\nRight now, AI, robotics, and space are all running that same experiment at once, faster than any prior American platform shift. Here's the pattern connecting a chatbot, a warehouse robot, and a reused rocket booster.",
     content: `
-      <p>July 5, 2026<br>We just passed the 250th anniversary of a bet that a small group of people made: that a new system of organizing human effort would outperform the one they inherited.</p>
+      <p>We just passed the 250th anniversary of a bet that a small group of people made: that a new system of organizing human effort would outperform the one they inherited.</p>
       <p>They had no idea what they were building toward. Nobody in 1776 could have described the steam engine, let alone the microprocessor. What they built was a country structurally disposed to make that kind of bet, over and over, for two and a half centuries.</p>
       <p>That pattern is the actual American story, more than any single invention. And right now, in one decade, we are watching that pattern compress in front of us across three frontiers at once.</p>
       <p>Look at where we actually are.</p>
@@ -33,9 +33,9 @@ const INVESTMENT_THESES = [
     id: "the-model-that-beat-its-teacher-has-a-speed-problem",
     title: "The Model That Beat Its Teacher Has a Speed Problem",
     date: "July 2, 2026",
-    teaser: "A new report scored 40 humanoid foundation models against each other. \n\nOne number in it quietly settles an argument I've been watching for two years: Vision-Language-Action models, the backbone of nearly every humanoid robot today, just got beaten by more than double on tasks they were never trained for.\n\nhashtag#PhysicalAI hashtag#Robotics hashtag#DeepTech hashtag#VentureCapital hashtag#AI hashtag#ArtificialIntelligence hashtag#VLA hashtag#FastBrain hashtag#SlowBrain hashtag#DreamZero hashtag#Humanoid",
+    teaser: "A new report scored 40 humanoid foundation models against each other. \n\nOne number in it quietly settles an argument I've been watching for two years: Vision-Language-Action models, the backbone of nearly every humanoid robot today, just got beaten by more than double on tasks they were never trained for.",
     content: `
-      <p>July 2, 2026<br>A report came out this week scoring all 40 known humanoid foundation models against each other. Buried in it is a number that quietly settles an argument I've been watching play out for two years.</p>
+      <p>A report came out this week scoring all 40 known humanoid foundation models against each other. Buried in it is a number that quietly settles an argument I've been watching play out for two years.</p>
       <p>NVIDIA's new model, DreamZero, generalizes to tasks it was never trained on at 62.2 percent. The best vision-language-action model, the architecture nearly every humanoid robot runs on today, manages 27.4 percent on the same test.</p>
       <p>More than double. On tasks the model had never seen.</p>
       <p>Here's why that gap exists.</p>
@@ -59,11 +59,11 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-gap-noboby-at-automate-has-named-yet",
-    title: "The Gap Noboby at Automate Has Named Yet",
+    title: "The Gap Nobody at Automate Has Named Yet",
     date: "July 2, 2026",
-    teaser: "I spent a couple of days earlier this week walking the floor at hashtag#Automate, the largest robotics trade show in North America, looking for one specific thing. \n\nWhat I found wasn't a gap in anyone's effort. \n\nIt was a question almost nobody is asking yet, and a market-sized opportunity sitting underneath it.\n\nhashtag#Automate hashtag#PhysicalAI hashtag#Robotics hashtag#Automation hashtag#DeepTech hashtag#VentureCapital",
+    teaser: "I spent a couple of days earlier this week walking the floor at Automate, the largest robotics trade show in North America, looking for one specific thing. \n\nWhat I found wasn't a gap in anyone's effort. \n\nIt was a question almost nobody is asking yet, and a market-sized opportunity sitting underneath it.",
     content: `
-      <p>June 26, 2026<br>I spent a couple of days this past week walking the floor at Automate, the largest robotics and automation trade show in North America. I went in with a simple list of questions: what's actually working, what isn't, what's the real use case hiding in plain sight, who's worth talking to, and what's conspicuously missing from all the noise about the next era of robotics.</p>
+      <p>I spent a couple of days this past week walking the floor at Automate, the largest robotics and automation trade show in North America. I went in with a simple list of questions: what's actually working, what isn't, what's the real use case hiding in plain sight, who's worth talking to, and what's conspicuously missing from all the noise about the next era of robotics.</p>
       <p>The answer to that last question is the one I keep coming back to.</p>
       <p>Using an AI model to actually control a robot, not just help a person program it faster, is a genuine paradigm shift. It's early. By my count, walking hall after hall, only a handful of companies on that floor are building toward it. That's not a knock on anyone. It's a young idea in a young part of the industry, and most of the floor's energy is, understandably, pointed somewhere else right now.</p>
       <p>There's a quiet split happening in robotics software right now, and most of the industry is on one side of it without realizing there are two sides.</p>
@@ -93,9 +93,9 @@ const INVESTMENT_THESES = [
     id: "the-missing-robot-ecu-and-who-will-build-it",
     title: "The Missing Robot ECU - and Who Will Build It",
     date: "July 2, 2026",
-    teaser: "McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.\n\nI think the most important sentence in the report was buried three sections in. And it names a gap that no one has filled yet.\nhashtag#PhysicalAI, hashtag#Robotics, hashtag#DeepTech, hashtag#VentureCapital, hashtag#Manufacturing",
+    teaser: "McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.\n\nI think the most important sentence in the report was buried three sections in. And it names a gap that no one has filled yet.",
     content: `
-      <p>June 14, 2026<br>Last post, I ended with a line that I keep thinking about.</p>
+      <p>Last post, I ended with a line that I keep thinking about.</p>
       <p>"Models get commoditized. Infrastructure scales."</p>
       <p>I was talking about the data layer. But the same logic applies one level deeper — at the layer where data meets hardware, where decisions become motion.</p>
       <p>McKinsey published an analysis of humanoid robotics supply chains in April. The headline finding everyone quoted was about actuators: they account for 40 to 60 percent of the total hardware cost and remain the most constrained component in the stack. Fair enough.</p>
@@ -134,9 +134,9 @@ const INVESTMENT_THESES = [
     id: "the-wrong-race",
     title: "The Wrong Race",
     date: "July 2, 2026",
-    teaser: "I spent part of last week at hashtag#BostonTechWeek, sitting in on technical sessions with founders building in the agentic AI space. One presentation stopped me cold — not because of the product, but because of the framing. The CTO walked through why the entire field is racing toward a solution that is, information-theoretically, the wrong one. This is my attempt to share that framing.",
+    teaser: "I spent part of last week at Boston Tech Week, sitting in on technical sessions with founders building in the agentic AI space. One presentation stopped me cold — not because of the product, but because of the framing. The CTO walked through why the entire field is racing toward a solution that is, information-theoretically, the wrong one. This is my attempt to share that framing.",
     content: `
-      <p>June 1, 2026<br>Everyone building AI coding tools is racing to make context windows bigger.</p>
+      <p>Everyone building AI coding tools is racing to make context windows bigger.</p>
       <p>They're solving the wrong problem.</p>
       <p>I was at Boston Tech Week last week and heard a technical presentation that reframed how I think about agentic coding infrastructure. The core insight has stayed with me.</p>
       <p>The problem isn't that agents aren't smart enough. The problem is that context has two constraints that are in direct tension with each other.</p>
@@ -161,7 +161,7 @@ const INVESTMENT_THESES = [
     date: "May 22, 2026",
     teaser: "Last post I described the architectural gap: robots need two incompatible things simultaneously - a Slow Brain for reasoning, and a Fast Brain for real-time control. That's the infrastructure problem.\n\nBut there's a second constraint running in parallel, and it's just as structural. It's the data problem.\n\nAnd it's not the kind of problem you solve by waiting for the next generation of GPUs.",
     content: `
-      <p>May 22, 2026<br>LLMs Inherited the Internet. Robots Inherited Nothing.</p>
+      <p>LLMs Inherited the Internet. Robots Inherited Nothing.</p>
       <p>Here's the asymmetry that matters.</p>
       <p>When researchers built the first large language models, they didn't have to collect a corpus. The corpus already existed. Common Crawl, Wikipedia, books, academic papers. Four centuries of human writing, already digitized and indexed. GPT-3 trained on roughly 300 billion tokens of this inherited data. It cost billions to compute, but zero to acquire the raw material.</p>
       <p>The dataset problem was solved before the model era began.</p>
@@ -214,7 +214,7 @@ const INVESTMENT_THESES = [
     date: "May 11, 2026",
     teaser: "In my last post, I described two jobs every production robot has to do simultaneously: think, and act.\n\nJob 1: Cognition - is what large AI models do well: interpret the environment, reason, plan, adapt. It tolerates variance. It can take a fraction of a second longer and still be useful.\n\nJob 2: Control - is different in kind. Motor signals, sensor fusion, safety loops. It needs guaranteed response times, every time, with no exceptions. Not fast on average. Guaranteed.\n\nI said these two jobs have fundamentally incompatible compute requirements.\n\nToday I want to name the paradigm, because it turns out the research community already has a name for it and the name matters.",
     content: `
-      <p>May 11, 2026<br>The architecture researchers and roboticists have converged on is exactly what it sounds like.</p>
+      <p>The architecture researchers and roboticists have converged on is exactly what it sounds like.</p>
       <p>The Slow Brain handles cognition. High compute, probabilistic, latency-tolerant. NVIDIA's GR00T model family runs here. The VLA (Vision-Language-Action) model ecosystem runs here. Simulation platforms, world models, foundation models for robotics: all Slow Brain.</p>
       <p>The Fast Brain handles control. Deterministic. Hard real-time. Architecturally separate from the AI compute stack. Sub-millisecond timing. CAN-FD and EtherCAT buses with microsecond-level jitter tolerance. Safety-certified.</p>
       <p>NVIDIA's GR00T N1 acknowledged this publicly: it has a System 2 component for vision, language, and reasoning, and a System 1 component for translating plans into continuous motor commands. Two systems. Two different computational characters. NVIDIA built the model that way because the physics demands it.</p>
@@ -253,7 +253,7 @@ const INVESTMENT_THESES = [
     date: "May 5, 2026",
     teaser: "Following up on my last post on Physical AI and the next S-curve in autonomous systems...\n\nI want to go one level deeper into something that I think is under appreciated: the core architectural tension that sits at the heart of deploying Physical AI at production scale.\n\nIt comes down to two jobs every robot has to do simultaneously - and the fact that those two jobs have fundamentally incompatible compute requirements.",
     content: `
-      <p>May 5, 2026<br>Think about what a production-grade autonomous robot actually needs to do in the real world.</p>
+      <p>Think about what a production-grade autonomous robot actually needs to do in the real world.</p>
       <p>Job 1: Think.</p>
       <p>The robot needs to understand its environment. Interpret visual input. Reason about what it's seeing. Plan a sequence of actions. Adapt when something unexpected happens.</p>
       <p>This is high-level cognition. It's the kind of work that large AI models are extraordinarily good at - and getting better at fast. NVIDIA's GR00T N1 model, their foundation model for humanoid robots, handles exactly this: vision, language, reasoning, and action planning. It's the "brain" in the classic sense.</p>
@@ -292,7 +292,7 @@ const INVESTMENT_THESES = [
     date: "April 23, 2026",
     teaser: "I've been writing about the autonomous AI wave unfolding in software: agents, harnesses, systems of execution, and where the moat forms in the digital layer.  \n\nThe thesis across those posts: when AI stops recommending and starts executing, the value doesn't sit in the model. It sits in the integration layer - in the harness that connects AI capability to real-world workflows.\n\nThere's a parallel wave building that follows exactly the same structural pattern - but in the physical world.\n\nPhysical AI.  And I think it's the next S-curve.",
     content: `
-      <p>April 23, 2026<br>At GTC 2025, Jensen Huang made a statement I keep coming back to:</p>
+      <p>At GTC 2025, Jensen Huang made a statement I keep coming back to:</p>
       <p>"The next big thing is Physical AI. AI with a body."</p>
       <p>He wasn't talking about a product category. He was talking about a platform shift.</p>
       <p>Physical AI is the convergence of robotics, AI inference, and real-time control into systems that don't just think they act in the physical world. Humanoid robots in factories. Autonomous manipulation in warehouses. Surgical systems, agricultural automation, industrial inspection.</p>
@@ -328,7 +328,7 @@ const INVESTMENT_THESES = [
     date: "April 18, 2026",
     teaser: "I closed my last post with a question: when the AI is the executor, what does accountable governance actually look like?\n\nI spent the last couple of days at the YPO Corporate Governance Symposium in New York. Serious board members. Senior governance practitioners. Some of the most credentialed corporate governance faculty in the country.\n\nHere's what I found, and what it clarified...",
     content: `
-      <p>April 18, 2026<br>I closed my last post with a question: when the AI is the executor, what does accountable governance actually look like?</p>
+      <p>I closed my last post with a question: when the AI is the executor, what does accountable governance actually look like?</p>
       <p>I spent the last couple of days at the YPO Corporate Governance Symposium in New York. Serious board members. Senior governance practitioners. Some of the most credentialed corporate governance faculty in the country.</p>
       <p>Here's what I found, and what it clarified.</p>
       <p>The room was still asking the risk management question.</p>
@@ -363,7 +363,7 @@ const INVESTMENT_THESES = [
     date: "April 14, 2026",
     teaser: "Later this week, I'll be heading to New York for a YPO Corporate Governance Symposium. It's an event I've been genuinely looking forward to: an intimate gathering of leaders wrestling with governance under real pressure. \n\nThe agenda includes a full session on AI governance and emerging technologies, and I'm going in ready to listen, learn, and participate. \n\nMost governance conversations I've been part of frame the challenge as: \"How do boards oversee AI risk?\"\n\nI'm bringing a different question...",
     content: `
-      <p>April 14, 2026<br>A recent Accenture and Wharton report captured it plainly:</p>
+      <p>A recent Accenture and Wharton report captured it plainly:</p>
       <p>"Intelligence may be scalable, but accountability is not."</p>
       <p>That sentence deserves more attention than it's getting.</p>
       <p>We are in an interesting moment. AI agent deployments are accelerating rapidly:</p>
@@ -411,7 +411,7 @@ const INVESTMENT_THESES = [
     date: "May 22, 2026",
     teaser: "Memory Is the Moat - Why Stateful AI Beats Stateless AI Every Time\n\nFollowing up on my recent series on AI agents, the harness layer, and Systems of Action...\n\nOne thread I've touched on in every post but haven't fully developed:\nPersistent memory and context.  Let me fix that.",
     content: `
-      <p>April 13, 2026<br>Here's something that doesn't get said enough in the current AI conversation.</p>
+      <p>Here's something that doesn't get said enough in the current AI conversation.</p>
       <p>As foundation models converge in capability, it won't be the model that differentiates you. It will be what the system remembers.</p>
       <p>Think about what a stateless AI agent does. It wakes up at the start of every session with no memory of what it did yesterday, no knowledge of the workflows it's run, the edge cases it encountered, the exceptions it learned to handle.</p>
       <p>Every interaction starts from zero. Every session relearns the same lessons.</p>
@@ -460,7 +460,7 @@ const INVESTMENT_THESES = [
     date: "March 24, 2026",
     teaser: "A broader shift is starting to take shape in AI:\nWe are moving from systems that store and inform... to systems that actually act...",
     content: `
-      <p>March 24, 2026<br>Following up on my recent posts on Autonomous AI and the "agent harness"...a broader shift is becoming clearer:</p>
+      <p>Following up on my recent posts on Autonomous AI and the "agent harness"...a broader shift is becoming clearer:</p>
       <p>We are moving from systems of record → to systems of action.</p>
       <p>For the past 20+ years, enterprise software has largely been built to store data, analyze it, and support human decision-making. But not to Execute. That's now changing.</p>
       <p>What's different this time is not just better models it's the emergence of systems that can actually act. We're starting to see early signals in the real world:</p>
@@ -499,7 +499,7 @@ const INVESTMENT_THESES = [
     date: "March 20, 2026",
     teaser: "Following up on my recent post on Autonomous AI...\n\nAcross a series of conversations over the last few months, with founders, investors, and CVC teams, one question continues to resurface:\nWhere is the REAL MOAT in AI agents?",
     content: `
-      <p>March 20, 2026<br>Following up on my last post on Autonomous AI... a number of conversations, since then across founders, investors, and corporate venture teams, have centered around a simple question: Where does the real moat sit in this new wave of AI agents?</p>
+      <p>Following up on my last post on Autonomous AI... a number of conversations, since then across founders, investors, and corporate venture teams, have centered around a simple question: Where does the real moat sit in this new wave of AI agents?</p>
       <p>The default answers tend to focus on models, data, or UX. All important but increasingly, not sufficient. What's emerging feels like a deeper structural shift.</p>
       <p>We are beginning to see the rise of what I would call the "agent harness"; but not in the narrow sense of orchestration frameworks or developer tooling. Rather, this is the layer that connects AI to real-world systems, embeds it into operational workflows, enforces governance, and-critically-learns from execution over time. This is where AI transitions from assisting work to actually owning outcomes.</p>
       <p>But it's worth being precise, as the harness itself is unlikely to be the moat.</p>
@@ -525,7 +525,7 @@ const INVESTMENT_THESES = [
     date: "March 19, 2026",
     teaser: "Last evening, I had the opportunity to dine with a small group of corporate venture and innovation leaders (thanks to Shahid Azim and C10 Labs) to discuss a question that is becoming increasingly urgent:  \n\nWhere should corporate venture invest as AI moves from copilots to autonomous operators?  \n\nI've outlined my key thoughts and takeaways in the attached writeup and welcome perspectives from others thinking about this transition; particularly how you're seeing autonomy reshape investment strategy and enterprise innovation.\n\nWhere should corporate venture invest as AI moves from copilots to autonomous operators?",
     content: `
-      <p>March 19, 2026<br>Last evening, I had the opportunity to join a small group of corporate venture and innovation leaders to discuss a question that is becoming increasingly urgent:</p>
+      <p>Last evening, I had the opportunity to join a small group of corporate venture and innovation leaders to discuss a question that is becoming increasingly urgent:</p>
       <p>Where will value accrue as AI systems move from copilots to autonomous operators?</p>
       <p>Having spent the better part of my career across corporate venture (Microsoft), public-private investment (MassCEC), university ecosystems (KAUST), and large-scale innovation platforms (NEOM), I've seen multiple technology cycles unfold. What feels different now is not just the pace of AI innovation-but the nature of the shift itself.</p>
       <p>From Tools to Autonomous Operators</p>

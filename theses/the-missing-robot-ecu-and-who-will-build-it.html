@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Missing Robot ECU - and Who Will Build It — Faris Capital</title>
+    <meta name="description" content="McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.">
+    <link rel="canonical" href="https://faris-capital.com/theses/the-missing-robot-ecu-and-who-will-build-it.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Faris Capital">
+    <meta property="og:title" content="The Missing Robot ECU - and Who Will Build It">
+    <meta property="og:description" content="McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.">
+    <meta property="og:url" content="https://faris-capital.com/theses/the-missing-robot-ecu-and-who-will-build-it.html">
+    <meta property="og:image" content="https://faris-capital.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:published_time" content="2026-07-02">
+    <meta property="article:author" content="Arif Padaria">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Missing Robot ECU - and Who Will Build It">
+    <meta name="twitter:description" content="McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.">
+    <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
+    <link rel="stylesheet" href="/css/style.css?v=26">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <header></header>
+
+    <main>
+        <!-- Header spacer to push content below sticky nav -->
+        <div style="height: var(--header-height);"></div>
+
+        <section class="section container">
+            <div style="margin-bottom: 2rem;">
+                <a href="/investment-theses.html" style="font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span>←</span> Back to Investment Theses
+                </a>
+            </div>
+
+            <article style="max-width: 760px; margin: 0 auto; padding: 1rem 0 4rem 0;">
+                <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">July 2, 2026</div>
+
+                <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 700;">The Missing Robot ECU - and Who Will Build It</h1>
+
+                <div style="font-size: 1.25rem; line-height: 1.6; font-weight: 400; color: var(--text-secondary); margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 3px solid var(--accent-gold); font-family: var(--font-body);">
+                <p style="margin-bottom: 0.75rem;">McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.</p>
+                <p style="margin-bottom: 0.75rem;">I think the most important sentence in the report was buried three sections in. And it names a gap that no one has filled yet.</p>
+                </div>
+
+                <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 3.5rem; font-family: var(--font-body); font-weight: 300;">
+<p>Last post, I ended with a line that I keep thinking about.</p>
+      <p>"Models get commoditized. Infrastructure scales."</p>
+      <p>I was talking about the data layer. But the same logic applies one level deeper — at the layer where data meets hardware, where decisions become motion.</p>
+      <p>McKinsey published an analysis of humanoid robotics supply chains in April. The headline finding everyone quoted was about actuators: they account for 40 to 60 percent of the total hardware cost and remain the most constrained component in the stack. Fair enough.</p>
+      <p>But I think the most important sentence in that report was buried three sections in.</p>
+      <p>"There is no standardized, safety-certified robot ECU analogous to an automotive engine control unit."</p>
+      <p>That one sentence tells you more about where the durable opportunity lives than any bill-of-materials breakdown.</p>
+      <p>Here is the analogy that matters.</p>
+      <p>In the 1970s, every car manufacturer built its own engine control logic from scratch. Custom hardware, custom software, hand-integrated for each platform. That was not a strategic choice. It was the only option available. No standard existed.</p>
+      <p>Then Bosch and Siemens built the ECU. Not a better engine. A control layer that abstracted engine management into a standardized, certifiable module. By the 1990s, nearly every production vehicle on earth ran on one. The companies that defined that interface became Tier 1 infrastructure suppliers to an industry worth trillions.</p>
+      <p>The automotive ECU was not invented after car production scaled. It was invented before, during the exact window when volumes were approaching but architectures had not yet locked.</p>
+      <p>That window is when standards form.</p>
+      <p>McKinsey calls the current moment the "pre-modular phase."</p>
+      <p>Every humanoid OEM today is doing what car companies did in 1975. They are building the compute and control stack from scratch because they have no choice. A GPU board for perception. Distributed joint controllers. Custom middleware stitching it together. Hand-coded safety logic.</p>
+      <p>McKinsey's language is precise on why:</p>
+      <p>"OEMs are forced into vertical integration or close co-development, not because they have a strategic preference for keeping manufacturing in-house, but because no viable supplier options exist."</p>
+      <p>This is not an engineering failure. It is a market structure problem. The components exist. The integration layer and certification framework do not.</p>
+      <p>McKinsey classifies the compute and control supply chain as a "systems bottleneck" — not a capacity bottleneck. The chips are available. The missing piece is the platform that integrates them into something a production robot can actually certify and deploy.</p>
+      <p>And here is the thing about systems bottlenecks: they do not wait for the rest of the market to catch up. They resolve when someone builds the missing layer. Then that layer becomes infrastructure.</p>
+      <p>This window is specific and closing.</p>
+      <p>Three conditions drive the shift from vertical integration to platform ecosystems: predictable volumes, stable architectures, and converging interface standards.</p>
+      <p>VC funding in robotics hit $40.7 billion in 2025, three times the 2023 level. China committed a $138 billion state fund. The first condition is arriving. The second is starting to stabilize around a few dominant form factors.</p>
+      <p>The third — converging interface standards — does not emerge on its own. It gets defined by the first platform with enough adoption to become the de facto standard.</p>
+      <p>McKinsey's key line: "Design successes at the prototype stage convert into production incumbency once architectures stabilize and volumes scale."</p>
+      <p>The standard gets set during the pre-volume phase. Then it locks in. That is exactly how the automotive ECU became infrastructure. That is exactly the moment we are in right now for physical AI compute and control.</p>
+      <p>The pattern is now consistent.</p>
+      <p>The models are getting good. The Slow Brain is being solved, the data infrastructure is being capitalized, and the capital is following fast.</p>
+      <p>What is not built yet is the layer that connects all of it to reliable physical deployment. The real-time control platform. The missing robot ECU.</p>
+      <p>The company that builds it will not just ship a product. It will occupy the position that Bosch and Siemens hold in automotive. The compute control plane of an entire generation of autonomous physical systems.</p>
+      <p>I am working on exactly this problem right now. More to come.</p>
+      <p>What do you think? Is the control standardization race already decided — or still wide open?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-family: var(--font-body); font-weight: 300;">This thesis was originally published on LinkedIn. Join the discussion, add your thoughts, and follow for regular updates.</p>
+                    <a href="https://www.linkedin.com/pulse/missing-robot-ecu-who-build-arif-padaria-7kchc/?trackingId=A58arthNCebmcJHuJidTDw%3D%3D" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        View on LinkedIn
+                    </a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="/js/components.js?v=26"></script>
+    <script src="/js/main.js?v=26"></script>
+</body>
+
+</html>

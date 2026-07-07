@@ -6,7 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Theses — Faris Capital</title>
     <meta name="description" content="Strategic investment theses on venture scale, AI, and institutional capital. Frameworks from Faris Capital.">
-    <link rel="stylesheet" href="css/style.css?v=25">
+    <link rel="canonical" href="https://faris-capital.com/investment-theses.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Faris Capital">
+    <meta property="og:title" content="Investment Theses — Faris Capital">
+    <meta property="og:description" content="Strategic investment theses on venture scale, AI, and institutional capital. Frameworks from Faris Capital.">
+    <meta property="og:url" content="https://faris-capital.com/investment-theses.html">
+    <meta property="og:image" content="https://faris-capital.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Investment Theses — Faris Capital">
+    <meta name="twitter:description" content="Strategic investment theses on venture scale, AI, and institutional capital. Frameworks from Faris Capital.">
+    <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
+    <link rel="stylesheet" href="css/style.css?v=26">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,8 +47,8 @@
 
     <footer></footer>
 
-    <script src="js/components.js?v=25"></script>
-    <script src="js/investment-theses-data.js?v=25"></script>
+    <script src="js/components.js?v=26"></script>
+    <script src="js/investment-theses-data.js?v=26"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('theses-grid');
@@ -44,7 +60,7 @@
                             <h3 style="font-size: 1.25rem; line-height: 1.4; margin-bottom: 1rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600;">${p.title}</h3>
                             <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${p.teaser}</p>
                         </div>
-                        <a href="article.html?id=${p.id}" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
+                        <a href="theses/${p.id}.html" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
                             Read Thesis <span style="transition: transform 0.2s;">→</span>
                         </a>
                     </div>
@@ -52,7 +68,7 @@
             }
         });
     </script>
-    <script src="js/main.js?v=25"></script>
+    <script src="js/main.js?v=26"></script>
 </body>
 
 </html>
