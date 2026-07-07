@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fast Brain, the Slow Brain, and the Missing Layer — Faris Capital</title>
+    <meta name="description" content="In my last post, I described two jobs every production robot has to do simultaneously: think, and act.">
+    <link rel="canonical" href="https://faris-capital.com/theses/the-fast-brain-the-slow-brain-and-the-missing-layer.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Faris Capital">
+    <meta property="og:title" content="The Fast Brain, the Slow Brain, and the Missing Layer">
+    <meta property="og:description" content="In my last post, I described two jobs every production robot has to do simultaneously: think, and act.">
+    <meta property="og:url" content="https://faris-capital.com/theses/the-fast-brain-the-slow-brain-and-the-missing-layer.html">
+    <meta property="og:image" content="https://faris-capital.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:published_time" content="2026-05-11">
+    <meta property="article:author" content="Arif Padaria">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Fast Brain, the Slow Brain, and the Missing Layer">
+    <meta name="twitter:description" content="In my last post, I described two jobs every production robot has to do simultaneously: think, and act.">
+    <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
+    <link rel="stylesheet" href="/css/style.css?v=26">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <header></header>
+
+    <main>
+        <!-- Header spacer to push content below sticky nav -->
+        <div style="height: var(--header-height);"></div>
+
+        <section class="section container">
+            <div style="margin-bottom: 2rem;">
+                <a href="/investment-theses.html" style="font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span>←</span> Back to Investment Theses
+                </a>
+            </div>
+
+            <article style="max-width: 760px; margin: 0 auto; padding: 1rem 0 4rem 0;">
+                <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">May 11, 2026</div>
+
+                <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 700;">The Fast Brain, the Slow Brain, and the Missing Layer</h1>
+
+                <div style="font-size: 1.25rem; line-height: 1.6; font-weight: 400; color: var(--text-secondary); margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 3px solid var(--accent-gold); font-family: var(--font-body);">
+                <p style="margin-bottom: 0.75rem;">In my last post, I described two jobs every production robot has to do simultaneously: think, and act.</p>
+                <p style="margin-bottom: 0.75rem;">Job 1: Cognition - is what large AI models do well: interpret the environment, reason, plan, adapt. It tolerates variance. It can take a fraction of a second longer and still be useful.</p>
+                <p style="margin-bottom: 0.75rem;">Job 2: Control - is different in kind. Motor signals, sensor fusion, safety loops. It needs guaranteed response times, every time, with no exceptions. Not fast on average. Guaranteed.</p>
+                <p style="margin-bottom: 0.75rem;">I said these two jobs have fundamentally incompatible compute requirements.</p>
+                <p style="margin-bottom: 0.75rem;">Today I want to name the paradigm, because it turns out the research community already has a name for it and the name matters.</p>
+                </div>
+
+                <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 3.5rem; font-family: var(--font-body); font-weight: 300;">
+<p>The architecture researchers and roboticists have converged on is exactly what it sounds like.</p>
+      <p>The Slow Brain handles cognition. High compute, probabilistic, latency-tolerant. NVIDIA's GR00T model family runs here. The VLA (Vision-Language-Action) model ecosystem runs here. Simulation platforms, world models, foundation models for robotics: all Slow Brain.</p>
+      <p>The Fast Brain handles control. Deterministic. Hard real-time. Architecturally separate from the AI compute stack. Sub-millisecond timing. CAN-FD and EtherCAT buses with microsecond-level jitter tolerance. Safety-certified.</p>
+      <p>NVIDIA's GR00T N1 acknowledged this publicly: it has a System 2 component for vision, language, and reasoning, and a System 1 component for translating plans into continuous motor commands. Two systems. Two different computational characters. NVIDIA built the model that way because the physics demands it.</p>
+      <p>The Slow Brain Is Getting Solved</p>
+      <p>The cognition side of this problem is advancing faster than most people outside the industry realize.</p>
+      <p>GR00T moved from N1 to N1.7 to N2 in under a year. N2 helps robots succeed at new tasks in new environments more than twice as often as prior leading approaches. Cosmos 3 launched as NVIDIA's world simulation platform, giving robot systems the ability to rehearse in virtual environments at scale - no fleet deployment is happening at scale today without millions of hours of virtual rehearsal first.</p>
+      <p>There's a newer research trend amplifying this: what the PNAS calls Evolvable AI. Systems designed to autonomously generate and refine their own low-level control code, adapt their own operational rules, and improve across sessions without human intervention. The Slow Brain is beginning to evolve itself.</p>
+      <p>The capital signal confirms the direction. Physical Intelligence is valued at $5.6 billion. Skild AI at over $14 billion. Jeff Bezos has committed $6.2 billion to Project Prometheus for agentic manufacturing AI, with reports of a $100 billion vehicle taking shape. Every major infrastructure bet in this space right now is a bet on the Slow Brain getting better.</p>
+      <p>The Slow Brain is getting solved.</p>
+      <p>The Fast Brain Is Not</p>
+      <p>Here's where it gets interesting. And where I think the structural opportunity lives.</p>
+      <p>Researchers have a name for why the Fast Brain problem is hard. It's called Moravec's Paradox. Hans Moravec identified it in the 1980s: high-level reasoning is computationally cheap for machines; basic sensorimotor skills - walking on uneven ground, manipulating an irregular object, maintaining balance mid-task - are computationally expensive.</p>
+      <p>We solved the reasoning side. Talking to an AI is now trivial. Moving reliably in the physical world is still hard.</p>
+      <p>Moravec's Paradox predicts exactly what the industry is experiencing: the Slow Brain (reasoning and planning) is being solved rapidly, while the Fast Brain (deterministic physical control) remains the stubborn constraint.</p>
+      <p>The Fast Brain requires something GPUs are architecturally not designed to provide: guaranteed timing. Not throughput. Guarantees. A GPU optimized for parallel compute throughput does not deliver the deterministic response times real-time motor control requires. These are not the same problem.</p>
+      <p>Today, production deployments handle this by bolting together separate embedded microcontrollers running real-time operating systems alongside the AI compute stack. It works in small-scale controlled environments. It does not scale cleanly into high-volume production, complex robot bodies, or regulated industries that require functional safety certification.</p>
+      <p>The Gap Is Larger Than Most People Are Tracking</p>
+      <p>In March 2026, Morgan Stanley published a 44-page analysis of the agentic manufacturing transition - robots and AI converging to transform how factories work. They profiled 18 private companies building in this space.</p>
+      <p>Zero of the 18 addressed the real-time deterministic control layer.</p>
+      <p>In April 2026, 36 startups from 10 countries pitched at a Physical AI and humanoids summit. Multiple companies attacked Slow Brain inference efficiency, sensing, simulation, and safety. None addressed the Fast Brain control layer.</p>
+      <p>This is not because the problem isn't real. It's because the category hasn't been named yet.</p>
+      <p>And the scale of the opportunity is larger than the humanoid robot conversation suggests. When Morgan Stanley frames it as "When Factory = Robot" - when every machine on a factory floor becomes an interconnected intelligent node - the Fast Brain isn't just a humanoid problem. It's the infrastructure layer of the entire agentic manufacturing transition. Every machine needs deterministic real-time control. Every machine needs to be certified, safe, and reliable in an environment where failure costs are real.</p>
+      <p>The Slow Brain layers are being capitalized. The Fast Brain real-time control layer is the un-seized position.</p>
+      <p>Where This Goes</p>
+      <p>The pattern here is the same one I wrote about in the Agent Harness series on the software side: when AI moves from recommending to executing, value doesn't accumulate at the model layer. It accumulates at the integration layer. The harness. The infrastructure that connects AI capability to reliable real-world outcomes.</p>
+      <p>In Physical AI, the Fast Brain is that layer.</p>
+      <p>I'm actively engaged with a company working on exactly this problem. I'll share more when I can. In the meantime, I'd be curious to hear from robotics engineers and compute architects who are seeing this constraint up close in production deployments.</p>
+      <p>The companies that name and solve this layer won't just build products. They'll build the control plane for an entirely new generation of autonomous physical systems.</p>
+      <p>Reach me at arif@faris-capital.com</p>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-family: var(--font-body); font-weight: 300;">This thesis was originally published on LinkedIn. Join the discussion, add your thoughts, and follow for regular updates.</p>
+                    <a href="https://www.linkedin.com/pulse/fast-brain-slow-missing-layer-arif-padaria-hv63e/?trackingId=cpbYaF0Ar9Kf%2F%2FUQiuCvXQ%3D%3D" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        View on LinkedIn
+                    </a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="/js/components.js?v=26"></script>
+    <script src="/js/main.js?v=26"></script>
+</body>
+
+</html>

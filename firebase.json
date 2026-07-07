@@ -7,7 +7,25 @@
       "**/node_modules/**",
       ".github/**",
       ".git/**",
-      "archive/**"
+      "archive/**",
+      "scripts/**",
+      "logo building directory/**",
+      "**/*.md",
+      "**/*.sh",
+      "firebase-hosting-instructions",
+      "email-signature.html"
+    ],
+    "redirects": [
+      { "source": "/ventures.html", "destination": "/what-we-do.html#ventures", "type": 301 },
+      { "source": "/institutional-capital.html", "destination": "/what-we-do.html#capital", "type": 301 },
+      { "source": "/enterprises.html", "destination": "/what-we-do.html#enterprises", "type": 301 },
+      { "source": "/growth-advisory.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/capital-alignment.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/corporate-development.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/capital-platforms.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/global-markets.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/venture-builder.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/advisory.html", "destination": "/what-we-do.html", "type": 301 }
     ],
     "headers": [
       {
@@ -49,4 +67,3 @@
     ]
   }
 }
-     

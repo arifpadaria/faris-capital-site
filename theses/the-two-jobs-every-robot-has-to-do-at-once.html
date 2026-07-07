@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Two Jobs Every Robot Has to Do at Once — Faris Capital</title>
+    <meta name="description" content="Following up on my last post on Physical AI and the next S-curve in autonomous systems...">
+    <link rel="canonical" href="https://faris-capital.com/theses/the-two-jobs-every-robot-has-to-do-at-once.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Faris Capital">
+    <meta property="og:title" content="The Two Jobs Every Robot Has to Do at Once">
+    <meta property="og:description" content="Following up on my last post on Physical AI and the next S-curve in autonomous systems...">
+    <meta property="og:url" content="https://faris-capital.com/theses/the-two-jobs-every-robot-has-to-do-at-once.html">
+    <meta property="og:image" content="https://faris-capital.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:published_time" content="2026-05-05">
+    <meta property="article:author" content="Arif Padaria">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Two Jobs Every Robot Has to Do at Once">
+    <meta name="twitter:description" content="Following up on my last post on Physical AI and the next S-curve in autonomous systems...">
+    <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
+    <link rel="stylesheet" href="/css/style.css?v=26">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <header></header>
+
+    <main>
+        <!-- Header spacer to push content below sticky nav -->
+        <div style="height: var(--header-height);"></div>
+
+        <section class="section container">
+            <div style="margin-bottom: 2rem;">
+                <a href="/investment-theses.html" style="font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span>←</span> Back to Investment Theses
+                </a>
+            </div>
+
+            <article style="max-width: 760px; margin: 0 auto; padding: 1rem 0 4rem 0;">
+                <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">May 5, 2026</div>
+
+                <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 700;">The Two Jobs Every Robot Has to Do at Once</h1>
+
+                <div style="font-size: 1.25rem; line-height: 1.6; font-weight: 400; color: var(--text-secondary); margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 3px solid var(--accent-gold); font-family: var(--font-body);">
+                <p style="margin-bottom: 0.75rem;">Following up on my last post on Physical AI and the next S-curve in autonomous systems...</p>
+                <p style="margin-bottom: 0.75rem;">I want to go one level deeper into something that I think is under appreciated: the core architectural tension that sits at the heart of deploying Physical AI at production scale.</p>
+                <p style="margin-bottom: 0.75rem;">It comes down to two jobs every robot has to do simultaneously - and the fact that those two jobs have fundamentally incompatible compute requirements.</p>
+                </div>
+
+                <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 3.5rem; font-family: var(--font-body); font-weight: 300;">
+<p>Think about what a production-grade autonomous robot actually needs to do in the real world.</p>
+      <p>Job 1: Think.</p>
+      <p>The robot needs to understand its environment. Interpret visual input. Reason about what it's seeing. Plan a sequence of actions. Adapt when something unexpected happens.</p>
+      <p>This is high-level cognition. It's the kind of work that large AI models are extraordinarily good at - and getting better at fast. NVIDIA's GR00T N1 model, their foundation model for humanoid robots, handles exactly this: vision, language, reasoning, and action planning. It's the "brain" in the classic sense.</p>
+      <p>Job 2: Act.</p>
+      <p>While the robot is thinking, it also needs to be executing. Precisely. In real time. Motor control signals need to go out on a strict schedule - in some cases, with microsecond-level timing guarantees. Sensor data needs to be fused instantly. Safety loops need to monitor and respond to anomalies without any tolerance for delay or variance.</p>
+      <p>This is real-time control. And it has a completely different character from Job 1.</p>
+      <p>Why These Two Jobs Don't Coexist Easily</p>
+      <p>Here's the problem.</p>
+      <p>GPUs - the compute engine powering the AI revolution - are optimized for throughput. They're designed to process enormous amounts of data in parallel, which makes them exceptional for training models and running inference.</p>
+      <p>But throughput optimization is the opposite of what real-time deterministic control requires.</p>
+      <p>Real-time control needs guaranteed response times. Not fast on average. Guaranteed. Every time. With no exceptions.</p>
+      <p>A GPU operating in throughput mode doesn't provide that guarantee. It's architecturally designed for something different.</p>
+      <p>This isn't a critique of GPUs. It's a fundamental property of the compute problem. Cognition and control are different jobs that require different architectures operating in parallel.</p>
+      <p>NVIDIA themselves acknowledged this structure explicitly in the public design of GR00T N1. The model has two systems: one for high-level reasoning and planning, one for translating plans into motor actions. Two systems. Two different computational characters.</p>
+      <p>Where the Gap Is</p>
+      <p>The cognition side of this problem is being solved. Fast. GR00T N1. Jetson Thor. The VLA model ecosystem. Simulation platforms. These are maturing rapidly.</p>
+      <p>The control side - the real-time deterministic layer that handles what happens below the cognition level, where the rubber meets the road in a literal sense - is a different story.</p>
+      <p>Today, most robotics deployments handle this with separate embedded microcontrollers and real-time operating systems that run alongside the AI compute stack. They're not integrated. They're bridged by integration work rather than unified by design..</p>
+      <p>That works at small scale in controlled lab environments.</p>
+      <p>It creates significant challenges as you try to scale production deployments, improve coordination across increasingly complex robot bodies, and meet the functional safety certifications that regulated industries require.</p>
+      <p>This Is Not a Model Problem</p>
+      <p>I want to be precise about this, because the industry conversation tends to focus on models.</p>
+      <p>The gap between what Physical AI can do in a lab and what it can reliably do in production at scale is not primarily a model quality problem.</p>
+      <p>It's a systems architecture problem.</p>
+      <p>The models are good and getting better. The missing piece is the compute infrastructure that connects cognition to physical action in a way that is deterministic, reliable, safe, and scalable.</p>
+      <p>That infrastructure layer is where I'm paying close attention.</p>
+      <p>In my next post in this series, I'll name the architectural paradigm I think describes this challenge - and what solving it looks like.</p>
+      <p>Curious to hear from others working at this layer: robotics engineers, compute architects, and enterprise operators deploying autonomous systems in production environments.</p>
+      <p>Reach me at arif@faris-capital.com</p>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-family: var(--font-body); font-weight: 300;">This thesis was originally published on LinkedIn. Join the discussion, add your thoughts, and follow for regular updates.</p>
+                    <a href="https://www.linkedin.com/pulse/two-jobs-every-robot-has-do-once-arif-padaria-iiyme/?trackingId=ERG8izH7W0xtKjM6Ly%2BNqg%3D%3D" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        View on LinkedIn
+                    </a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="/js/components.js?v=26"></script>
+    <script src="/js/main.js?v=26"></script>
+</body>
+
+</html>

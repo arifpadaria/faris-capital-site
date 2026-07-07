@@ -216,6 +216,21 @@ async function continueOrDeploy() {
   }
 }
 
+// Strip LinkedIn copy-paste artifacts: trailing hashtag blocks, inline
+// "hashtag#Foo" prefixes (keeping the word, since inline hashtags are usually
+// real names like Automate), and a leading standalone date line (the site
+// renders the date separately).
+function sanitizeText(text) {
+  let out = text.trim();
+  // Drop a trailing block made only of hashtag tokens (optionally comma-separated)
+  out = out.replace(/(?:\s|,)*(?:hashtag#\w+(?:\s|,)*)+$/g, '').trim();
+  // Inline occurrences: keep the word itself
+  out = out.replace(/hashtag#(\w+)/g, '$1');
+  const months = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
+  out = out.replace(new RegExp(`^${months} \\d{1,2}, \\d{4}\\s*\\n+`), '');
+  return out;
+}
+
 function toSlug(str) {
   return str
     .toLowerCase()
@@ -236,8 +251,8 @@ function formatContent(text) {
 
 function savePerspective() {
   const id = toSlug(title);
-  const teaserText = teaserLines.join('\n').trim();
-  const rawContent = contentLines.join('\n').trim();
+  const teaserText = sanitizeText(teaserLines.join('\n'));
+  const rawContent = sanitizeText(contentLines.join('\n'));
   const formattedContent = formatContent(rawContent);
 
   const newEntry = `  {
@@ -271,6 +286,11 @@ function savePerspective() {
   const updatedContent = fileContent.slice(0, position) + newEntry + fileContent.slice(position);
 
   fs.writeFileSync(dataFilePath, updatedContent, 'utf8');
+
+  // Regenerate the static thesis pages (theses/<id>.html) so the new post
+  // gets a shareable page with real meta tags.
+  execSync(`node "${path.join(__dirname, 'generate-thesis-pages.js')}"`, { stdio: 'pipe' });
+
   return id;
 }
 
@@ -296,7 +316,7 @@ async function performDeploy() {
 
     const newVersion = currentVersion + 1;
     console.log(`Bumping cache version: ?v=${currentVersion} → ?v=${newVersion}`);
-    execSync(`sed -i '' -E 's/\\?v=[0-9]+/?v=${newVersion}/g' *.html js/components.js`, { cwd: repoDir, stdio: 'pipe' });
+    execSync(`sed -i '' -E 's/\\?v=[0-9]+/?v=${newVersion}/g' *.html theses/*.html js/components.js`, { cwd: repoDir, stdio: 'pipe' });
 
     // Git operations
     console.log('Staging changes...');

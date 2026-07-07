@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
 
     navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        // Simple match: if href is 'about.html' and current page is 'about.html'
+        const linkPath = (link.getAttribute('href') || '').split('/').pop();
+        // Compare filenames only, since nav hrefs are root-absolute
         if (linkPath === currentPath) {
             link.classList.add('active');
         }

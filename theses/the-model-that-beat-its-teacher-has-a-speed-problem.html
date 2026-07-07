@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Model That Beat Its Teacher Has a Speed Problem — Faris Capital</title>
+    <meta name="description" content="A new report scored 40 humanoid foundation models against each other.">
+    <link rel="canonical" href="https://faris-capital.com/theses/the-model-that-beat-its-teacher-has-a-speed-problem.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Faris Capital">
+    <meta property="og:title" content="The Model That Beat Its Teacher Has a Speed Problem">
+    <meta property="og:description" content="A new report scored 40 humanoid foundation models against each other.">
+    <meta property="og:url" content="https://faris-capital.com/theses/the-model-that-beat-its-teacher-has-a-speed-problem.html">
+    <meta property="og:image" content="https://faris-capital.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:published_time" content="2026-07-02">
+    <meta property="article:author" content="Arif Padaria">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Model That Beat Its Teacher Has a Speed Problem">
+    <meta name="twitter:description" content="A new report scored 40 humanoid foundation models against each other.">
+    <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
+    <link rel="stylesheet" href="/css/style.css?v=26">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+    <header></header>
+
+    <main>
+        <!-- Header spacer to push content below sticky nav -->
+        <div style="height: var(--header-height);"></div>
+
+        <section class="section container">
+            <div style="margin-bottom: 2rem;">
+                <a href="/investment-theses.html" style="font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span>←</span> Back to Investment Theses
+                </a>
+            </div>
+
+            <article style="max-width: 760px; margin: 0 auto; padding: 1rem 0 4rem 0;">
+                <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">July 2, 2026</div>
+
+                <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 700;">The Model That Beat Its Teacher Has a Speed Problem</h1>
+
+                <div style="font-size: 1.25rem; line-height: 1.6; font-weight: 400; color: var(--text-secondary); margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 3px solid var(--accent-gold); font-family: var(--font-body);">
+                <p style="margin-bottom: 0.75rem;">A new report scored 40 humanoid foundation models against each other.</p>
+                <p style="margin-bottom: 0.75rem;">One number in it quietly settles an argument I've been watching for two years: Vision-Language-Action models, the backbone of nearly every humanoid robot today, just got beaten by more than double on tasks they were never trained for.</p>
+                </div>
+
+                <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 3.5rem; font-family: var(--font-body); font-weight: 300;">
+<p>A report came out this week scoring all 40 known humanoid foundation models against each other. Buried in it is a number that quietly settles an argument I've been watching play out for two years.</p>
+      <p>NVIDIA's new model, DreamZero, generalizes to tasks it was never trained on at 62.2 percent. The best vision-language-action model, the architecture nearly every humanoid robot runs on today, manages 27.4 percent on the same test.</p>
+      <p>More than double. On tasks the model had never seen.</p>
+      <p>Here's why that gap exists.</p>
+      <p>Vision-language-action models, VLAs, learn the way an apprentice learns by watching a master: copy the motion. They're trained on teleoperation data, a human piloting a robot arm, recorded and labeled. That data is scarce and expensive to collect. Worse, it's physics-blind. The model learns what a successful pour looks like. It has no internal sense of what happens if the cup tips a little further, or the surface is slightly wet, or the grip is a few degrees off.</p>
+      <p>DreamZero and the new wave of "world-action models" do something different. Before acting, the model imagines the scene forward. It predicts what happens next, then acts on that prediction. That's the generalization jump. A robot that can imagine consequence handles the unfamiliar far better than one that can only imitate.</p>
+      <p>The catch, and it's a real one: DreamZero runs at 7Hz. For context, the actual motor control loop on a robot arm needs to run at 200Hz or more just to keep from being twitchy and unsafe. Imagination is slow. Reflex has to be fast.</p>
+      <p>So the field is doing what nature already figured out.</p>
+      <p>The report describes the emerging consensus as a hybrid: a fast layer running at 200Hz handling reflexive motion, sitting on top of a slower model, somewhere in the 7 to 34 billion parameter range, doing the imagining and planning underneath it. Physical Intelligence, GigaWorld, and NVIDIA's own GR00T line are all converging on some version of this split.</p>
+      <p>Kahneman called this System 1 and System 2 in humans. Fast, automatic, reflexive judgment paired with slow, deliberate reasoning. The humanoid robotics field just rediscovered the same architecture, for the same reason. You cannot make the slow system fast enough to be safe, and you cannot make the fast system smart enough to generalize. You need both, running at the same time, talking to each other.</p>
+      <p>There's a second number in the report worth sitting with.</p>
+      <p>The reason Physical Intelligence is valued at roughly 11 billion dollars on close to zero revenue isn't the algorithm. It's the data. Teleoperation data is scarce because someone has to physically drive a robot to generate it. Video is not scarce. It is, for practical purposes, infinite. The bottleneck that has constrained robot learning for a decade just moved from "how many hours can we pay people to teleoperate" to "how much of the internet's video can we turn into training signal." That's a different game, with a different cost curve, and it's why the smart money is chasing data flywheels instead of model architecture.</p>
+      <p>Here's the part that matters for anyone watching the control layer, which is the part of this I actually work on.</p>
+      <p>A faster, smarter Slow Brain does not close the gap I've written about in this series. It widens it.</p>
+      <p>Two posts ago I wrote about the missing robot ECU, the certified, standardized control layer that does not yet exist for humanoid robots the way it has existed for cars since the 1990s. The hybrid System 1/System 2 architecture this report describes is still entirely on the cognition side. A 200Hz reflex model and a 34B-parameter planning model are both still software running on probabilistic, throughput-optimized compute. Neither one, on its own, gives you a hard, certifiable guarantee that a motor command executes within a fixed time window, every time, without exception.</p>
+      <p>If anything, having two cognition layers instead of one makes that missing layer more load-bearing, not less. Both layers still have to hand off to something that turns a decision into motion, deterministically, in real time. That handoff is not solved by a better model. It never was.</p>
+      <p>I'm working on exactly that handoff right now. More soon.</p>
+      <p>What do you think? Is the System 1/System 2 split in these models actually new, or is it just naming something the field has been doing implicitly for years?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-family: var(--font-body); font-weight: 300;">This thesis was originally published on LinkedIn. Join the discussion, add your thoughts, and follow for regular updates.</p>
+                    <a href="https://www.linkedin.com/pulse/model-beat-its-teacher-has-speed-problem-arif-padaria-d9yhc/?trackingId=qWIhFYe2LUckAW4x2QJHNA%3D%3D" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight: 600;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        View on LinkedIn
+                    </a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="/js/components.js?v=26"></script>
+    <script src="/js/main.js?v=26"></script>
+</body>
+
+</html>
