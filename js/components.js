@@ -9,8 +9,8 @@
 const Header = `
 <div class="header-container container">
     <a href="/index.html" class="logo">
-  <img src="/images/faris-capital-wordmark-v2-med.svg?v=26" alt="Faris Capital" class="logo-desktop">
-  <img src="/images/faris-capital-wordmark-stacked.svg?v=26" alt="Faris Capital" class="logo-mobile">
+  <img src="/images/faris-capital-wordmark-v2-med.svg?v=27" alt="Faris Capital" class="logo-desktop">
+  <img src="/images/faris-capital-wordmark-stacked.svg?v=27" alt="Faris Capital" class="logo-mobile">
 </a>
     <nav class="nav-desktop">
         <a href="/index.html" class="nav-link">Home</a>
@@ -37,24 +37,37 @@ const Header = `
 
 const Footer = `
 <div class="container">
-    <div class="grid grid-2" style="gap: 2rem;">
+    <div class="footer-grid">
         <div>
-                        <!-- <div class="footer-line footer-line-1">Faris Capital</div> -->
-
-                        <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=26" alt="Faris Capital">
-            <div class="footer-line" style="font-size: 0.9rem; opacity: 0.8;"></div>
-            <!-- <div class="footer-line" style="font-size: 0.9rem; margin-top: 0.25rem; line-height: 1.6; max-width: 300px;">
-                Growth-Stage Venture Advisory<br>Corporate & Venture Development<br>Capital Alignment
-            </div> -->
+            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=27" alt="Faris Capital">
+            <p class="footer-tagline">Advisory for growth-stage ventures, institutional capital, and enterprises across global markets.</p>
         </div>
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; opacity: 0.9;">
-            <div class="footer-line">
+        <div>
+            <div class="footer-heading">Site</div>
+            <nav class="footer-nav">
+                <a href="/index.html">Home</a>
+                <a href="/what-we-do.html">What We Do</a>
+                <a href="/investment-theses.html">Investment Theses</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+        </div>
+        <div>
+            <div class="footer-heading">Connect</div>
+            <div class="footer-line" style="margin-bottom: 0.85rem;">
                 <a href="mailto:contact@faris-capital.com" class="footer-contact">contact@faris-capital.com</a>
             </div>
-            <div class="footer-line">
+            <div class="footer-line" style="margin-bottom: 0.85rem;">
                 <a href="https://wa.me/16172978222" class="footer-contact">+1.617.297.8222</a>
             </div>
+            <a href="https://www.linkedin.com/company/fariscapital/" target="_blank" rel="noopener" class="footer-social">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+            </a>
         </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Faris Capital LLC. All rights reserved.</span>
     </div>
 </div>
 `;
