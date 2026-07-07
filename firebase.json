@@ -25,7 +25,8 @@
       { "source": "/capital-platforms.html", "destination": "/what-we-do.html", "type": 301 },
       { "source": "/global-markets.html", "destination": "/what-we-do.html", "type": 301 },
       { "source": "/venture-builder.html", "destination": "/what-we-do.html", "type": 301 },
-      { "source": "/advisory.html", "destination": "/what-we-do.html", "type": 301 }
+      { "source": "/advisory.html", "destination": "/what-we-do.html", "type": 301 },
+      { "source": "/theses/the-gap-noboby-at-automate-has-named-yet.html", "destination": "/theses/the-gap-nobody-at-automate-has-named-yet.html", "type": 301 }
     ],
     "headers": [
       {
