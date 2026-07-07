@@ -39,6 +39,13 @@ function escapeAttr(str) {
     .replace(/>/g, '&gt;');
 }
 
+// Escapes a string for safe embedding inside a <script type="application/ld+json">
+// block — JSON.stringify handles quoting/escaping; the extra replace guards
+// against "</script>" appearing in article text and closing the tag early.
+function jsonLdString(str) {
+  return JSON.stringify(String(str || '')).replace(/</g, '\\u003c');
+}
+
 // First paragraph of the teaser, single line, capped for meta descriptions
 function metaDescription(teaser) {
   const first = String(teaser || '').split(/\n+/)[0].trim();
@@ -100,6 +107,29 @@ function pageHtml(t) {
     <link rel="stylesheet" href="/css/style.css?v=${V}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": ${jsonLdString(t.title)},
+      "description": ${jsonLdString(desc)},
+      "url": ${jsonLdString(url)},
+      "image": "${SITE}/images/og-image.png"${published ? `,\n      "datePublished": "${published}"` : ''},
+      "author": {
+        "@type": "Person",
+        "name": "Arif Padaria"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Faris Capital",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "${SITE}/images/favicon-192.png"
+        }
+      }
+    }
+    </script>
 </head>
 
 <body>
@@ -161,3 +191,32 @@ for (const t of theses) {
   console.log(`Wrote theses/${t.id}.html`);
 }
 console.log(`Done: ${theses.length} thesis pages (cache v=${V}).`);
+
+// Regenerate sitemap.xml: static pages + one <url> per thesis, so new posts
+// are automatically included without hand-editing this file.
+function isoOrToday(dateStr) {
+  const d = new Date(dateStr);
+  return isNaN(d) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10);
+}
+
+const staticPages = [
+  { loc: '/', priority: '1.0' },
+  { loc: '/what-we-do.html', priority: '0.8' },
+  { loc: '/investment-theses.html', priority: '0.8' },
+  { loc: '/about.html', priority: '0.6' },
+  { loc: '/contact.html', priority: '0.6' },
+];
+
+const urlEntries = [
+  ...staticPages.map(p => `  <url>\n    <loc>${SITE}${p.loc}</loc>\n    <priority>${p.priority}</priority>\n  </url>`),
+  ...theses.map(t => `  <url>\n    <loc>${SITE}/theses/${t.id}.html</loc>\n    <lastmod>${isoOrToday(t.date)}</lastmod>\n    <priority>0.7</priority>\n  </url>`),
+];
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries.join('\n')}
+</urlset>
+`;
+
+fs.writeFileSync(path.join(repoDir, 'sitemap.xml'), sitemap, 'utf8');
+console.log(`Wrote sitemap.xml (${staticPages.length + theses.length} URLs).`);

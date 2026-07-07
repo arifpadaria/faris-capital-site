@@ -1,9 +1,12 @@
-/* 
+/*
  * Design System for Faris Capital (Redesign)
  * Elevated Institutional, Jazzy, Refined
+ *
+ * Fonts (Playfair Display, Inter) are loaded via <link> in each page's
+ * <head>, not @import here — @import blocks the render and defeats the
+ * preconnect hints already in place. Every page must include the font
+ * <link> alongside this stylesheet; see index.html for the canonical tag.
  */
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
     /* Color Palette - Refined & "Oomph" */
@@ -874,6 +877,28 @@ img {
 .hero h1 {
     margin-bottom: 1rem;
     line-height: 1;
+}
+
+/* Secondary-page hero heading: a real <h1> for SEO/accessibility, styled to
+   match the site's existing H2 visual language (size, color, gold
+   underline) rather than the large navy display H1 used on the homepage. */
+.hero h1.hero-heading {
+    font-size: var(--h2-size);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    display: inline-block;
+    line-height: 1.1;
+}
+
+.hero h1.hero-heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-gold);
+    margin-top: 1rem;
 }
 
 .hero-subhead {

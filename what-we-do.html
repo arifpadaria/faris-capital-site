@@ -22,9 +22,10 @@
     <meta name="twitter:title" content="What We Do — Faris Capital">
     <meta name="twitter:description" content="Advisory for growth-stage ventures, institutional capital, and enterprises — Faris Capital.">
     <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
-    <link rel="stylesheet" href="css/style.css?v=30">
+    <link rel="stylesheet" href="css/style.css?v=31">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .audience-tabs {
             display: flex;
@@ -60,19 +61,19 @@
     <main>
         <!-- Hero -->
         <section class="section hero container" style="padding-bottom: 24px;">
-            <h2>What We Do</h2>
+            <h1 class="hero-heading">What We Do</h1>
             <p style="font-size: 1.25rem; font-weight: 500; margin-bottom: 0;">Advisory at the intersection of venture scale, institutional capital, and enterprise strategy.</p>
         </section>
 
         <section class="section container" style="padding-top: 8px;">
-            <div class="audience-tabs" role="tablist">
-                <button class="audience-tab active" data-tab="ventures" role="tab" aria-selected="true">For Ventures</button>
-                <button class="audience-tab" data-tab="capital" role="tab" aria-selected="false">For Institutional Capital</button>
-                <button class="audience-tab" data-tab="enterprises" role="tab" aria-selected="false">For Enterprises</button>
+            <div class="audience-tabs" role="tablist" aria-label="Who we advise">
+                <button class="audience-tab active" data-tab="ventures" role="tab" id="tab-ventures" aria-selected="true" aria-controls="panel-ventures" tabindex="0">For Ventures</button>
+                <button class="audience-tab" data-tab="capital" role="tab" id="tab-capital" aria-selected="false" aria-controls="panel-capital" tabindex="-1">For Institutional Capital</button>
+                <button class="audience-tab" data-tab="enterprises" role="tab" id="tab-enterprises" aria-selected="false" aria-controls="panel-enterprises" tabindex="-1">For Enterprises</button>
             </div>
 
             <!-- Ventures Panel -->
-            <div class="audience-panel active" id="panel-ventures">
+            <div class="audience-panel active" id="panel-ventures" role="tabpanel" aria-labelledby="tab-ventures" tabindex="0">
                 <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem; max-width: 700px;">For founders scaling from Series A through institutional capital and exit.</p>
                 <div class="grid grid-3">
                     <div class="content-block radius-card">
@@ -94,7 +95,7 @@
             </div>
 
             <!-- Capital Panel -->
-            <div class="audience-panel" id="panel-capital">
+            <div class="audience-panel" id="panel-capital" role="tabpanel" aria-labelledby="tab-capital" tabindex="0">
                 <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem; max-width: 700px;">Curated access to growth-stage technology ventures, deployed across global markets.</p>
                 <div class="grid grid-3">
                     <div class="content-block radius-card">
@@ -116,7 +117,7 @@
             </div>
 
             <!-- Enterprises Panel -->
-            <div class="audience-panel" id="panel-enterprises">
+            <div class="audience-panel" id="panel-enterprises" role="tabpanel" aria-labelledby="tab-enterprises" tabindex="0">
                 <p style="font-size: 1.1rem; font-weight: 500; margin-bottom: 2rem; max-width: 700px;">Corporate development and M&A advisory for enterprises navigating digital transformation.</p>
                 <div class="grid grid-3">
                     <div class="content-block radius-card">
@@ -162,23 +163,43 @@
 
     <footer></footer>
 
-    <script src="js/components.js?v=30"></script>
+    <script src="js/components.js?v=31"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.audience-tab');
+            const tabs = Array.from(document.querySelectorAll('.audience-tab'));
             const panels = document.querySelectorAll('.audience-panel');
 
-            function activate(name) {
+            function activate(name, { focus = false } = {}) {
                 tabs.forEach(t => {
                     const isActive = t.dataset.tab === name;
                     t.classList.toggle('active', isActive);
                     t.setAttribute('aria-selected', isActive);
+                    t.tabIndex = isActive ? 0 : -1;
+                    if (isActive && focus) t.focus();
                 });
                 panels.forEach(p => p.classList.toggle('active', p.id === `panel-${name}`));
             }
 
-            tabs.forEach(tab => {
+            tabs.forEach((tab, index) => {
                 tab.addEventListener('click', () => activate(tab.dataset.tab));
+
+                // Arrow-key navigation per the WAI-ARIA tabs pattern
+                tab.addEventListener('keydown', (e) => {
+                    let targetIndex = null;
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        targetIndex = (index + 1) % tabs.length;
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        targetIndex = (index - 1 + tabs.length) % tabs.length;
+                    } else if (e.key === 'Home') {
+                        targetIndex = 0;
+                    } else if (e.key === 'End') {
+                        targetIndex = tabs.length - 1;
+                    }
+                    if (targetIndex !== null) {
+                        e.preventDefault();
+                        activate(tabs[targetIndex].dataset.tab, { focus: true });
+                    }
+                });
             });
 
             const hash = window.location.hash.replace('#', '');
@@ -187,7 +208,7 @@
             }
         });
     </script>
-    <script src="js/main.js?v=30"></script>
+    <script src="js/main.js?v=31"></script>
 </body>
 
 </html>
