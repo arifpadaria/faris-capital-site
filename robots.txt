@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /article.html
+Disallow: /404.html
+
+Sitemap: https://faris-capital.com/sitemap.xml
