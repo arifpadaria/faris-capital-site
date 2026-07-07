@@ -22,7 +22,7 @@
     <meta name="twitter:title" content="Faris Capital — Growth-Stage Venture Advisory">
     <meta name="twitter:description" content="We advise growth-stage technology ventures, institutional capital, and enterprises across global markets.">
     <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
-    <link rel="stylesheet" href="css/style.css?v=26">
+    <link rel="stylesheet" href="css/style.css?v=27">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -34,16 +34,17 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="section hero container" style="padding-bottom: 24px;">
-            <div class="global-motif"></div>
-            <!-- <h1>Faris Capital</h1>
-            <br> -->
-            <!-- Inline style for H2 size reduction as requested -->
-            <h2
-                style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 2rem; color: var(--text-primary); max-width: 900px;">
-                Scaling Ventures. Aligning Capital.</h2>
-            <div class="hero-subhead">
-                <p style="font-size: 1.25rem; font-weight: 500;">We help ventures scale — through advisory, capital alignment, and strategic partnerships.</p>
+        <section class="section hero hero-home">
+            <div class="container">
+                <div class="eyebrow">Growth-Stage Venture Advisory</div>
+                <h1>Scaling Ventures.<br>Aligning Capital.</h1>
+                <div class="hero-subhead">
+                    <p>We help ventures scale — through advisory, capital alignment, and strategic partnerships across global markets.</p>
+                </div>
+                <div class="hero-actions">
+                    <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+                    <a href="investment-theses.html" class="btn btn-secondary">Read our Investment Theses</a>
+                </div>
             </div>
         </section>
 
@@ -71,22 +72,33 @@
             </div>
         </section>
 
+        <!-- Latest Thinking -->
+        <section class="section container" style="padding: 48px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;">
+                <h2>Latest Thinking</h2>
+                <a href="investment-theses.html" class="accent-link" style="font-size: 0.95rem; font-weight: 600; margin-bottom: 2rem;">View all theses →</a>
+            </div>
+            <div id="latest-thinking-grid" class="grid grid-3" style="margin-top: -1rem;"></div>
+        </section>
+
         <!-- By the Numbers -->
-        <section class="section container" style="padding: 32px 0 48px;">
-            <h2 style="text-align: center;">By the Numbers</h2>
-            <p style="text-align: center; margin: 0.5rem auto 0; font-size: 1.25rem; font-weight: 500; color: var(--text-secondary);">Grounded in operating experience.</p>
-            <div class="grid grid-3" style="margin-top: 1.75rem; text-align: center;">
-                <div>
-                    <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--accent-color);">$500M+</div>
-                    <p style="margin-top: 0.35rem; font-size: 0.95rem; color: var(--text-secondary);">Directed in venture investments</p>
-                </div>
-                <div>
-                    <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--accent-color);">200+</div>
-                    <p style="margin-top: 0.35rem; font-size: 0.95rem; color: var(--text-secondary);">Private equity and venture transactions</p>
-                </div>
-                <div>
-                    <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--accent-color);">M&A + IPO</div>
-                    <p style="margin-top: 0.35rem; font-size: 0.95rem; color: var(--text-secondary);">Track record of successful exits</p>
+        <section class="section section-bg" style="padding: 32px 0 48px;">
+            <div class="container">
+                <h2 class="text-center" style="text-align: center;">By the Numbers</h2>
+                <p style="text-align: center; margin: 0.5rem auto 0; font-size: 1.25rem; font-weight: 500; color: var(--text-secondary);">Grounded in operating experience.</p>
+                <div class="grid grid-3" style="margin-top: 1.75rem; text-align: center;">
+                    <div>
+                        <div class="stat-value"><span class="count-up" data-prefix="$" data-target="500" data-suffix="M+">0</span></div>
+                        <p class="stat-label">Directed in venture investments</p>
+                    </div>
+                    <div>
+                        <div class="stat-value"><span class="count-up" data-target="200" data-suffix="+">0</span></div>
+                        <p class="stat-label">Private equity and venture transactions</p>
+                    </div>
+                    <div>
+                        <div class="stat-value">4</div>
+                        <p class="stat-label">Continents of active deployment — US, Europe, GCC, India</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -96,8 +108,53 @@
     <!-- Footer Placeholder -->
     <footer></footer>
 
-    <script src="js/components.js?v=26"></script>
-    <script src="js/main.js?v=26"></script>
+    <script src="js/components.js?v=27"></script>
+    <script src="js/investment-theses-data.js?v=27"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Latest Thinking: the three newest theses (array is newest-first)
+            const grid = document.getElementById('latest-thinking-grid');
+            if (grid && typeof INVESTMENT_THESES !== 'undefined') {
+                grid.innerHTML = INVESTMENT_THESES.slice(0, 3).map(p => `
+                    <div class="thesis-card">
+                        <div class="thesis-date">${p.date}</div>
+                        <h3>${p.title}</h3>
+                        <p>${p.teaser.split('\n')[0]}</p>
+                        <a href="theses/${p.id}.html" class="accent-link">Read Thesis <span>→</span></a>
+                    </div>
+                `).join('');
+            }
+
+            // Count-up for "By the Numbers" stats, triggered once on scroll into view
+            const counters = document.querySelectorAll('.count-up');
+            if (counters.length) {
+                const runCounter = (el) => {
+                    const target = parseInt(el.dataset.target, 10);
+                    const prefix = el.dataset.prefix || '';
+                    const suffix = el.dataset.suffix || '';
+                    const duration = 1200;
+                    const start = performance.now();
+                    function tick(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = prefix + Math.round(target * eased) + suffix;
+                        if (progress < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                };
+                const countObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            runCounter(entry.target);
+                            countObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                counters.forEach(el => countObserver.observe(el));
+            }
+        });
+    </script>
+    <script src="js/main.js?v=27"></script>
 </body>
 
 </html>

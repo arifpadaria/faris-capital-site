@@ -90,8 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Also animate Hero elements specifically
-    const heroElements = document.querySelectorAll('.hero > *');
+    // Also animate Hero elements specifically (direct children, or children
+    // of a nested .container for full-bleed heroes like .hero-home)
+    const heroElements = document.querySelectorAll('.hero > *:not(.container), .hero > .container > *');
     heroElements.forEach((el, index) => {
         el.classList.add('fade-up');
         el.style.transitionDelay = `${index * 100}ms`; // Manual stagger

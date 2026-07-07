@@ -114,6 +114,14 @@ h2::after {
     margin-top: 1rem;
 }
 
+/* When a heading is centered, its underline should center with it rather
+   than staying pinned left (the default, correct for left-aligned headings). */
+h2.text-center,
+h2.text-center::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 h3 {
     font-size: var(--h3-size);
     font-family: var(--font-heading);
@@ -478,8 +486,7 @@ img {
     background-color: var(--accent-color);
     /* Navy footer */
     color: var(--white);
-    /* Reduced vertical padding to remove excess headroom */
-    padding: 2.5rem 0 1.5rem;
+    padding: 3.5rem 0 0;
     font-size: 0.9375rem;
     margin-top: auto;
 }
@@ -493,6 +500,14 @@ img {
     font-family: var(--font-heading);
     font-size: 1.75rem;
     text-transform: none;
+}
+
+.site-footer .footer-tagline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-top: 0.85rem;
+    max-width: 280px;
+    line-height: 1.6;
 }
 
 /* Footer contact links (email / phone) */
@@ -517,6 +532,90 @@ img {
     border-color: var(--accent-gold);
 }
 
+.site-footer .footer-heading {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+}
+
+.site-footer .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.site-footer .footer-nav a {
+    border-bottom: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9375rem;
+}
+
+.site-footer .footer-nav a:hover {
+    color: var(--accent-gold);
+}
+
+.site-footer .footer-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: none !important;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.site-footer .footer-social:hover {
+    color: var(--accent-gold);
+}
+
+.site-footer .footer-social svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.site-footer .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+.site-footer .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 1.25rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 767px) {
+    .site-footer {
+        padding: 2.5rem 0 0;
+    }
+
+    .site-footer .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .site-footer .footer-contact {
+        font-size: 1rem;
+    }
+
+    .site-footer .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 /* Cards with "Oomph" */
 .radius-card {
     background: var(--white);
@@ -539,24 +638,108 @@ img {
     font-family: var(--font-heading);
 }
 
-.content-block {
-    /* Apply base card styles if not using .card class explicitly, 
-       or assume content blocks are just text. 
-       Let's upgrade them to have hover effects if they feel like cards.
-    */
-    transition: transform 0.3s ease;
-}
-
-.content-block:hover {
-    transform: translateY(-3px);
-    /* Subtle lift for text blocks too */
-}
+/* .content-block is always paired with .radius-card in this codebase, which
+   already provides the lift+shadow+border hover — no separate transform here
+   (a second competing transform on the same element just fights the first). */
 
 /* Hero Section Specifics */
 .hero {
     /* Tighter hero spacing while still allowing breathing room */
     padding: 120px 0 60px;
     max-width: 1400px;
+}
+
+/* Homepage Hero — full navy panel with layered gold motif */
+.hero-home {
+    background-color: var(--accent-color);
+    background-image:
+        radial-gradient(ellipse 60% 90% at 88% 15%, rgba(197, 160, 89, 0.16) 0%, rgba(197, 160, 89, 0) 70%),
+        radial-gradient(ellipse 50% 70% at 8% 95%, rgba(197, 160, 89, 0.08) 0%, rgba(197, 160, 89, 0) 70%);
+    padding: 168px 0 96px;
+    max-width: none;
+    overflow: hidden;
+}
+
+.hero-home::before {
+    /* Fine contour lines, evoking routes/geography without being literal */
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image:
+        repeating-linear-gradient(115deg, transparent 0 78px, rgba(255,255,255,0.035) 78px 79px),
+        repeating-linear-gradient(25deg, transparent 0 92px, rgba(255,255,255,0.03) 92px 93px);
+    pointer-events: none;
+}
+
+.hero-home .container {
+    position: relative;
+}
+
+.hero-home .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+}
+
+.hero-home .eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent-gold);
+}
+
+.hero-home h1 {
+    color: var(--white);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    max-width: 920px;
+    text-wrap: balance;
+}
+
+.hero-home h1::after {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 3px;
+    background-color: var(--accent-gold);
+    margin-top: 1.75rem;
+}
+
+.hero-home .hero-subhead,
+.hero-home .hero-subhead p {
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 620px;
+    font-size: 1.375rem;
+    margin-bottom: 2.5rem;
+}
+
+.hero-home .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hero-home .btn-secondary {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-home .btn-secondary:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+@media (max-width: 767px) {
+    .hero-home {
+        padding: 128px calc(1.75rem + env(safe-area-inset-left)) 64px calc(1.75rem + env(safe-area-inset-right));
+    }
 }
 
 /* Mobile / small-screen optimizations */
@@ -787,6 +970,79 @@ img {
     transform: translateY(-2px);
     background-color: var(--white);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Institution logos: uniform monochrome treatment so the grid reads as one
+   set regardless of each source logo's original colors, full color on hover. */
+.logo-item img {
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.3s ease;
+    max-height: 36px;
+    width: auto;
+}
+
+.logo-item:hover img {
+    filter: grayscale(0) opacity(1);
+}
+
+/* Latest Thinking (homepage thesis strip) */
+.thesis-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all var(--transition-fast);
+}
+
+.thesis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--accent-gold);
+}
+
+.thesis-card .thesis-date {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.thesis-card h3 {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.thesis-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.thesis-card .accent-link {
+    margin-top: auto;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Stat blocks with count-up (By the Numbers) */
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.stat-label {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
 }
 
 .footer-logo {
