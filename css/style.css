@@ -166,6 +166,14 @@ ul {
     font-size: 1rem;
 }
 
+/* When two bullet-lists sit in a .grid-2 (e.g. Track Record on What We Do),
+   the first list's margin-bottom is invisible on desktop (columns are
+   side-by-side) but becomes a visible extra gap once the grid stacks to a
+   single column on mobile. Drop it whenever another list follows directly. */
+.bullet-list:has(+ .bullet-list) {
+    margin-bottom: 0;
+}
+
 img {
     max-width: 100%;
     height: auto;
