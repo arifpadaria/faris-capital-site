@@ -812,7 +812,13 @@ img {
     .grid {
         gap: 1.5rem;
     }
-    
+
+    /* Two bullet-lists stacked in a .grid-2 (Track Record) should read as
+       one continuous list on mobile, not two blocks a full grid-gap apart. */
+    .grid:has(> .bullet-list + .bullet-list) {
+        gap: 0;
+    }
+
     /* Remove paragraph max-width on small screens so text flows naturally */
     p {
         max-width: none;
