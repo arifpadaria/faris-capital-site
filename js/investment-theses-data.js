@@ -58,7 +58,7 @@ const INVESTMENT_THESES = [
     linkedinUrl: "https://www.linkedin.com/pulse/model-beat-its-teacher-has-speed-problem-arif-padaria-d9yhc/?trackingId=qWIhFYe2LUckAW4x2QJHNA%3D%3D"
   },
   {
-    id: "the-gap-noboby-at-automate-has-named-yet",
+    id: "the-gap-nobody-at-automate-has-named-yet",
     title: "The Gap Nobody at Automate Has Named Yet",
     date: "July 2, 2026",
     teaser: "I spent a couple of days earlier this week walking the floor at Automate, the largest robotics trade show in North America, looking for one specific thing. \n\nWhat I found wasn't a gap in anyone's effort. \n\nIt was a question almost nobody is asking yet, and a market-sized opportunity sitting underneath it.",
@@ -151,7 +151,6 @@ const INVESTMENT_THESES = [
       <p>The race to build bigger context windows will continue. But the teams who figure out that exhaustiveness and relevance are separate problems, requiring separate solutions, are the ones building the foundation that everything else runs on.</p>
       <p>What would you call this infrastructure layer?</p>
       <p>If you're thinking about agentic coding infrastructure or seeing this context problem in your own engineering organization, I'd be curious to hear from you. Get in touch: arif@faris-capital.com</p>
-      <p>#AgenticAI #AIInfrastructure #BostonTechWeek #Compiler #ContextEngine</p>
     `,
     linkedinUrl: "https://www.linkedin.com/pulse/wrong-race-arif-padaria-5dz6e/?trackingId=%2F2SdrrtWGTdIto1wJOXo7g%3D%3D"
   },
