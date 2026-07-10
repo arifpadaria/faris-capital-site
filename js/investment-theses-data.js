@@ -28,6 +28,30 @@ const INVESTMENT_THESES = [
     linkedinUrl: "https://www.linkedin.com/pulse/performance-gets-you-demo-certifiability-factory-floor-arif-padaria-aq1pc/"
   },
   {
+    id: "performance-gets-you-the-demo-certifiability-gets-you-the-factory-floor",
+    title: "Performance Gets You the Demo. Certifiability Gets You the Factory Floor.",
+    date: "July 9, 2026",
+    teaser: "NVIDIA just sent its robotics safety stack to two separate inspection labs. \n\nAgility is doing the same for Digit. \n\nThat's not a coincidence, it's the industry quietly admitting that the real gate on humanoid deployment isn't model capability. \n\nIt's whether anyone can certify the thing.",
+    content: `
+      <p>NVIDIA just put IGT Thor, Halos OS, and its sensor bridge stack in front of TUV Rheinland for functional safety inspection. A second lab, TUV SUD, is separately reviewing the Thor chip itself against ISO 26262. Agility Robotics is doing the same thing with an accredited lab for Digit, ahead of formal certification.</p>
+      <p>Read that again. The two most credible names in humanoid robotics are not racing to publish another benchmark this month. They're racing to get audited.</p>
+      <p>That's the tell.</p>
+      <p>This series has spent the last few months tracking the compute-architecture side of Physical AI: the Fast Brain and Slow Brain split, the missing robot ECU, the widening gap between how fast models can imagine and how fast a motor actually has to move. All of that is still true. But there's a second bottleneck running in parallel to the control-layer problem, and it just became impossible to ignore: nobody has a clean answer yet for how you certify a robot that runs on probabilistic AI.</p>
+      <p>Industrial robot safety has a real standards stack. ISO 10218 was revised in 2025, folding in the collaborative-robot rules that used to sit off to the side, and pulling functional safety and cybersecurity further into the core requirement. That stack assumes a machine whose behavior is fundamentally predictable. Humanoids break that assumption at the root. A humanoid can lose its balance. It can fall. Its emergency stop isn't a power cutoff, it's a policy decision about how to fail safely while still upright, still moving, still deciding. The standard built specifically for that reality, ISO 25785-1, is still in development, with credible reporting pointing to a timeline years out.</p>
+      <p>The machines are shipping before the rulebook for them is finished.</p>
+      <p>Here's what the certification pattern actually looks like, and it's not what most pitch decks imply.</p>
+      <p>In automotive, a chip supplier almost never claims "this part is certified, ship it." Infineon builds AURIX under an ISO 26262-compliant process and hands the OEM a safety manual, failure-mode data, and integration assumptions. The OEM does the hazard analysis, allocates the safety targets, and owns the final certified system. The supplier's job is to shrink how much work and risk is left for the OEM to close out.</p>
+      <p>Robotics is converging on the identical pattern. NVIDIA isn't claiming Thor is SIL-certified. It's building the evidence package, the inspection relationships, the readiness posture, so an OEM like Agility can integrate it into a system Agility ultimately certifies. Component-certifiable, not self-certified. That distinction sounds like a technicality. It is actually the entire business model.</p>
+      <p>Here's the part that matters for anyone building in this layer, which is the part of this I actually work on.</p>
+      <p>If component-level certifiability is what OEMs are actually buying, then the compute architecture underneath a robot isn't just competing on TOPS, watts, or latency anymore. It's competing on how much audit surface it hands the OEM. A safety-critical function that's cleanly partitioned from the probabilistic AI stack, with a documented fault-containment boundary and a supervisor that can be reasoned about independently, is worth more to an integrator than a faster chip with an unbounded software stack sitting on top of it.</p>
+      <p>I've had this conversation directly with investors in the last two weeks. The sharpest pushback isn't "is it fast enough." It's "how does your customer actually get this certified." That's the right question, and it's one I'd rather be asked now than after a deployment.</p>
+      <p>Performance without a certification path is a demo. Certifiability is what turns it into something an OEM can actually put on a factory floor, or next to a human.</p>
+      <p>What do you think? Is functional safety becoming the real gatekeeper for Physical AI at scale, ahead of raw model capability?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/performance-gets-you-demo-certifiability-factory-floor-arif-padaria-aq1pc/"
+  },
+  {
     id: "250-years-of-betting-on-whats-next",
     title: "250 Years of Betting on What's Next",
     date: "July 5, 2026",
