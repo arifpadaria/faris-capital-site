@@ -84,7 +84,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-gap-nobody-at-automate-has-named-yet",
     title: "The Gap Nobody at Automate Has Named Yet",
-    date: "July 2, 2026",
+    date: "June 26, 2026",
     teaser: "I spent a couple of days earlier this week walking the floor at Automate, the largest robotics trade show in North America, looking for one specific thing. \n\nWhat I found wasn't a gap in anyone's effort. \n\nIt was a question almost nobody is asking yet, and a market-sized opportunity sitting underneath it.",
     content: `
       <p>I spent a couple of days this past week walking the floor at Automate, the largest robotics and automation trade show in North America. I went in with a simple list of questions: what's actually working, what isn't, what's the real use case hiding in plain sight, who's worth talking to, and what's conspicuously missing from all the noise about the next era of robotics.</p>
@@ -116,7 +116,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-missing-robot-ecu-and-who-will-build-it",
     title: "The Missing Robot ECU - and Who Will Build It",
-    date: "July 2, 2026",
+    date: "June 14, 2026",
     teaser: "McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.\n\nI think the most important sentence in the report was buried three sections in. And it names a gap that no one has filled yet.",
     content: `
       <p>Last post, I ended with a line that I keep thinking about.</p>
@@ -157,7 +157,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-wrong-race",
     title: "The Wrong Race",
-    date: "July 2, 2026",
+    date: "June 1, 2026",
     teaser: "I spent part of last week at Boston Tech Week, sitting in on technical sessions with founders building in the agentic AI space. One presentation stopped me cold — not because of the product, but because of the framing. The CTO walked through why the entire field is racing toward a solution that is, information-theoretically, the wrong one. This is my attempt to share that framing.",
     content: `
       <p>Everyone building AI coding tools is racing to make context windows bigger.</p>
