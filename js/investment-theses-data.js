@@ -4,6 +4,34 @@
  */
 const INVESTMENT_THESES = [
   {
+    id: "the-silence-was-the-signal",
+    title: "The Silence Was the Signal",
+    date: "August 1, 2026",
+    teaser: "Jensen Huang posted on X for the first time ever this week, sharing a letter signed by 25 companies arguing for open AI models. \n\nThree of the most important names in AI didn't sign it, and didn't fight it either. \n\nThat silence tells you more than the letter does.",
+    content: `
+      <p>Jensen Huang posted on X for the first time ever this week. Not a product announcement. A letter.</p>
+      <p>Twenty-five organizations signed it: NVIDIA, Microsoft, Meta, Palantir Technologies, Dell Technologies, IBM, Mistral, Mozilla, Hugging Face, The Linux Foundation, A16Z, Perplexity, Y Combinator, and a dozen more. The argument: open-weight AI models, models where you can download the actual trained parameters and run them on your own infrastructure, are essential to American security, to how AI diffuses through the economy, and to the sovereignty of any nation or company that doesn't want to rent its intelligence through someone else's API.</p>
+      <p>Three names are conspicuously absent. OpenAI. Anthropic. Google.</p>
+      <p>That's the part worth sitting with.</p>
+      <p>I wrote back in March that the real moat in AI wouldn't be the model. It would be whatever sits on top of the model, the layer that connects raw capability to a real workflow, enforces how it's governed, and gets smarter every time it's actually used. At the time that was a thesis. This week it looks like an admission, made by exactly the companies you'd expect to defend the model layer if they believed it was still worth defending.</p>
+      <p>Here's why the signatory list matters more than the letter's content.</p>
+      <p>A coalition of hardware makers, cloud platforms, a private equity-adjacent software company, and venture funds does not rationally lobby for making the thing they build substitutable, unless their actual business doesn't depend on it being scarce. Nvidia doesn't need anyone's weights to be proprietary. Neither does a chip or cloud company whose revenue comes from running whatever model shows up, open or closed. Advocating for open weights costs them nothing and, if anything, grows the addressable market for the infrastructure underneath.</p>
+      <p>Credit where it's due: Jensen Huang is the one who put this in front of everyone.</p>
+      <p>He didn't have to post the letter himself. Nvidia's business doesn't hinge on whether the industry accepts this argument, it benefits either way. But putting his name and his account behind a coalition letter, on a platform he'd never used for exactly this kind of thing before, is what turned a policy document into something the whole industry had to react to, or conspicuously not react to.</p>
+      <p>And the silence from the closed labs is the more interesting tell.</p>
+      <p>Sam Altman said he was glad to see the letter. Satya Nadella backed it directly. Neither of them fought it, even though open, freely downloadable weights are the most direct competitive threat imaginable to a company whose entire business model is metering access to a model you can't inspect or run yourself. If OpenAI or Anthropic genuinely believed their moat was the model, this is the fight they'd pick. They didn't pick it. Read literally, that means they've already priced in that the model itself is becoming a commodity, and they're positioning to compete somewhere else entirely: deployment, orchestration, the parts of the stack that sit above the weights, not inside them.</p>
+      <p>The timing isn't an accident either.</p>
+      <p>A Chinese lab released an open-weight model this month that's now among the most capable in the world, freely downloadable, no API required. Washington is reportedly weighing restrictions on Chinese AI labs and liability rules for anyone running Chinese-origin models. Jensen Huang has said publicly that some of these Chinese open models are excellent, a more generous read than you'll hear from either American closed lab. A 25-company American coalition making the sovereignty argument now, in that specific window, is not a coincidence. It's a bet that whoever controls the substitutable, auditable infrastructure layer wins the next phase, regardless of whose weights happen to be running on it that week.</p>
+      <p>None of this means models stop mattering. It means they stop being the differentiator.</p>
+      <p>If a trained model becomes as substitutable as a commodity chip, and enough of the industry's most consequential players are now behaving as if it already has, the argument I made in March gets sharper, not softer. Durable value moves to whoever owns the orchestration layer, the domain-specific integration, the governance and audit trail, the workflow that a customer can't rip out without real cost. Not because that's a more elegant story. Because the companies with the most to lose from being wrong just told you, in public, where they think the fight actually is.</p>
+      <p>The practical question for anyone building or investing right now isn't which model to bet on.</p>
+      <p>It's whether what you're building would survive a world where every model, closed or open, converges toward the same baseline capability within eighteen months. If the answer depends on which specific model you've built around, that's not a moat. It's a rental agreement with an expiration date nobody's told you about yet.</p>
+      <p>Which side of this letter surprised you more, who signed it, or who didn't?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/silence-signal-arif-padaria-ai0ac/?trackingId=mjNiH%2Brp%2F6pHNoRhhKIHyg%3D%3D"
+  },
+  {
     id: "the-physics-problem-has-a-geography",
     title: "The Physics Problem Has a Geography",
     date: "August 1, 2026",
