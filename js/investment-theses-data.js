@@ -6,7 +6,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-silence-was-the-signal",
     title: "The Silence Was the Signal",
-    date: "August 1, 2026",
+    date: "July 25, 2026",
     teaser: "Jensen Huang posted on X for the first time ever this week, sharing a letter signed by 25 companies arguing for open AI models. \n\nThree of the most important names in AI didn't sign it, and didn't fight it either. \n\nThat silence tells you more than the letter does.",
     content: `
       <p>Jensen Huang posted on X for the first time ever this week. Not a product announcement. A letter.</p>
@@ -34,7 +34,7 @@ const INVESTMENT_THESES = [
   {
     id: "the-physics-problem-has-a-geography",
     title: "The Physics Problem Has a Geography",
-    date: "August 1, 2026",
+    date: "July 21, 2026",
     teaser: "Navin Chaddha's latest post lays out why AI's real constraint is now physics, not model capability. \n\nI went looking for the stress test: three sovereign AI bets in the Gulf, three very different answers to the same power and cooling problem.",
     content: `
       <p>Navin Chaddha published a piece this week (https://tinyurl.com/yr9pv2hw) drawing on conversations with Google , Meta , and TSMC executives at the Silicon Catalyst Summit. His argument: AI's constraints have stopped being about model capability. They're now about physics. Power, cooling, memory bandwidth, the speed of light through copper versus glass.</p>
