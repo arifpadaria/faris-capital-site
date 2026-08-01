@@ -4,6 +4,31 @@
  */
 const INVESTMENT_THESES = [
   {
+    id: "the-physics-problem-has-a-geography",
+    title: "The Physics Problem Has a Geography",
+    date: "August 1, 2026",
+    teaser: "Navin Chaddha's latest post lays out why AI's real constraint is now physics, not model capability. \n\nI went looking for the stress test: three sovereign AI bets in the Gulf, three very different answers to the same power and cooling problem.",
+    content: `
+      <p>Navin Chaddha published a piece this week (https://tinyurl.com/yr9pv2hw) drawing on conversations with Google , Meta , and TSMC executives at the Silicon Catalyst Summit. His argument: AI's constraints have stopped being about model capability. They're now about physics. Power, cooling, memory bandwidth, the speed of light through copper versus glass.</p>
+      <p>Read that as an investor, and one number stops you cold: the United States, the largest AI infrastructure market on Earth, adds only 30 to 40 gigawatts of net new power capacity a year. Turbine lead times already stretch to 2029 and 2030. A single gigawatt of data center capacity takes three years to build, no matter how much capital shows up.</p>
+      <p>So I went looking for a stress test.</p>
+      <p>Where is someone trying to build gigawatt-scale AI infrastructure without the luxury of an existing grid? The Gulf is the best live experiment running, and I've had a front-row seat to some of it.</p>
+      <p>Three sovereign efforts, three different bets on the same physics problem:</p>
+      <p>Saudi Arabia's HUMAIN is moving fast and moving big.</p>
+      <p>1.9 gigawatts targeted by 2030, 6.6 by 2034, a $77 billion build, chip contracts with AMD and Nvidia already signed. That's a serious opening position in a market where most players are still writing strategy memos. The next chapter worth watching is how the power buildout keeps pace with the compute orders, the same question every hyperscaler on earth is wrestling with right now, not a Saudi-specific one.</p>
+      <p>NEOM's answer is the one I find most technically interesting, and I'll admit some bias, having spent time there myself.</p>
+      <p>The DataVolt AI Factory campus at Oxagon is designed to run on its own renewable microgrid, solar, wind, and green hydrogen, and to reject 70 percent of its liquid-cooled heat load straight into seawater instead of burning fresh water on cooling towers in the desert. That's a genuinely elegant engineering answer to a problem most of the industry hasn't even tried to solve yet. It's also a build-it-yourself power grid on top of a build-it-yourself data center, a harder sequencing problem than plugging into existing capacity. I'm genuinely curious to see how fast they close that gap.</p>
+      <p>Then there's the UAE, running a different playbook entirely.</p>
+      <p>G42 's Khazna already operates over 400 megawatts of live capacity today, the largest data center footprint in the Middle East, with the first 200 megawatts of its 5 gigawatt Stargate campus on track for this year. The distinguishing factor isn't ambition. Every serious player in the region has that. It's that the UAE is drawing on power capacity, the 5.6 gigawatt Barakah nuclear plant, that was already built and already running before anyone was talking about AI power constraints.</p>
+      <p>None of these three have this fully solved. Nobody does, anywhere in the world, per Chaddha's own reporting from Google and Meta.</p>
+      <p>But the comparison is a useful reminder that in this next phase of AI infrastructure, decisions made a decade ago for entirely different reasons are turning out to matter as much as this year's capex announcement.</p>
+      <p>Credit to Navin Chaddha for the framing that got me looking. If the bottleneck really is physical, the map of who's positioned well starts looking a lot more interesting than the map of who's spending the most.</p>
+      <p>Which of these three bets are you watching most closely?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/physics-problem-has-geography-arif-padaria-zh5qf/?trackingId=AhfGsLxE2SKf0%2BSvWNxmvQ%3D%3D"
+  },
+  {
     id: "performance-gets-you-the-demo-certifiability-gets-you-the-factory-floor",
     title: "Performance Gets You the Demo. Certifiability Gets You the Factory Floor.",
     date: "July 9, 2026",
