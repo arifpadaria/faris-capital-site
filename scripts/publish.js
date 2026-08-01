@@ -12,6 +12,17 @@ const path = require('path');
 const readline = require('readline');
 const { execSync } = require('child_process');
 
+// Load FIREBASE_TOKEN from .env if not already in environment
+const envPath = path.join(__dirname, '../.env');
+if (fs.existsSync(envPath)) {
+  fs.readFileSync(envPath, 'utf8').split('\n').forEach(line => {
+    const [key, ...val] = line.split('=');
+    if (key && val.length && !process.env[key.trim()]) {
+      process.env[key.trim()] = val.join('=').trim();
+    }
+  });
+}
+
 // ANSI colors for terminal UI
 const colors = {
   reset: '\x1b[0m',
@@ -334,7 +345,11 @@ async function performDeploy() {
 
     // Firebase deploy
     console.log('Deploying to Firebase...');
-    execSync('firebase deploy --only hosting', { cwd: repoDir, stdio: 'inherit' });
+    const firebaseToken = process.env.FIREBASE_TOKEN;
+    const firebaseCmd = firebaseToken
+      ? `firebase deploy --only hosting --token "${firebaseToken}"`
+      : 'firebase deploy --only hosting';
+    execSync(firebaseCmd, { cwd: repoDir, stdio: 'inherit' });
 
     success('Deployment complete! Your perspectives are now live.');
     info(`Cache version bumped to ?v=${newVersion}. Hard refresh your browser to see updates.`);
