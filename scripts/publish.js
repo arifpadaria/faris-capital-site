@@ -117,7 +117,8 @@ async function linkedinFlow() {
     return linkedinFlow();
   }
 
-  publishDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const detectedDate = extractDateFromText(contentLines.join('\n'));
+  publishDate = detectedDate || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   await reviewAndConfirm();
 }
@@ -231,6 +232,12 @@ async function continueOrDeploy() {
 // "hashtag#Foo" prefixes (keeping the word, since inline hashtags are usually
 // real names like Automate), and a leading standalone date line (the site
 // renders the date separately).
+function extractDateFromText(text) {
+  const months = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
+  const match = text.trim().match(new RegExp(`^(${months} \\d{1,2}, \\d{4})`));
+  return match ? match[1] : null;
+}
+
 function sanitizeText(text) {
   let out = text.trim();
   // Drop a trailing block made only of hashtag tokens (optionally comma-separated)
