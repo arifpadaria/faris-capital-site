@@ -48,7 +48,15 @@ let linkedinUrl = '';
 let teaserLines = [];
 let contentLines = [];
 let publishDate = '';
+let theme = '';
 let addedPerspectives = []; // Track what we've added in this session
+
+const THEME_OPTIONS = [
+  { key: 'physical-ai', label: 'Physical AI & Robotics' },
+  { key: 'governance', label: 'AI Governance & Trust' },
+  { key: 'agentic-infra', label: 'Agentic Infrastructure' },
+  { key: 'venture', label: 'Venture & Capital Strategy' }
+];
 
 function clear() {
   console.clear();
@@ -120,6 +128,22 @@ async function linkedinFlow() {
   const detectedDate = extractDateFromText(contentLines.join('\n'));
   publishDate = detectedDate || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+  await selectTheme();
+}
+
+async function selectTheme() {
+  console.log('\n' + colors.dim + 'Which theme does this belong to?' + colors.reset);
+  THEME_OPTIONS.forEach((t, i) => console.log(`  ${colors.bright}${i + 1}${colors.reset} ${t.label}`));
+
+  const choice = await prompt(`Choose (1-${THEME_OPTIONS.length})`);
+  const idx = parseInt(choice, 10) - 1;
+
+  if (idx < 0 || idx >= THEME_OPTIONS.length || isNaN(idx)) {
+    error('Invalid choice.');
+    return selectTheme();
+  }
+
+  theme = THEME_OPTIONS[idx].key;
   await reviewAndConfirm();
 }
 
@@ -148,6 +172,9 @@ async function reviewAndConfirm() {
 
   console.log(`${colors.bright}Date:${colors.reset}`);
   console.log(`  ${publishDate}\n`);
+
+  console.log(`${colors.bright}Theme:${colors.reset}`);
+  console.log(`  ${THEME_OPTIONS.find(t => t.key === theme).label}\n`);
 
   console.log(`${colors.bright}Teaser (appears on grid card):${colors.reset}`);
   const teaserText = teaserLines.join('\n').trim();
@@ -215,6 +242,7 @@ async function continueOrDeploy() {
     linkedinUrl = '';
     teaserLines = [];
     contentLines = [];
+    theme = '';
     await selectSource();
   } else if (choice === '2') {
     await performDeploy();
@@ -275,6 +303,7 @@ function savePerspective() {
 
   const newEntry = `  {
     id: ${JSON.stringify(id)},
+    theme: ${JSON.stringify(theme)},
     title: ${JSON.stringify(title)},
     date: ${JSON.stringify(publishDate)},
     teaser: ${JSON.stringify(teaserText)},

@@ -23,8 +23,9 @@ const SITE = 'https://faris-capital.com';
 const dataRaw = fs.readFileSync(path.join(repoDir, 'js/investment-theses-data.js'), 'utf8');
 const ctx = {};
 vm.createContext(ctx);
-vm.runInContext(dataRaw + '\n;__theses = INVESTMENT_THESES;', ctx);
+vm.runInContext(dataRaw + '\n;__theses = INVESTMENT_THESES; __themes = THEMES;', ctx);
 const theses = ctx.__theses;
+const THEMES = ctx.__themes;
 
 // Match the cache-busting version currently used by the site
 const indexHtml = fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8');
@@ -72,7 +73,7 @@ function pageHtml(t) {
 
   const linkedinBlock = t.linkedinUrl ? `
                 <div style="border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem;">
-                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-family: var(--font-body); font-weight: 300;">This thesis was originally published on LinkedIn. Join the discussion, add your thoughts, and follow for regular updates.</p>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0; font-family: var(--font-body); font-weight: 300;">This perspective was originally published on LinkedIn. Join the discussion, add your thoughts, and follow for regular updates.</p>
                     <a href="${escapeAttr(t.linkedinUrl)}" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight: 600;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         View on LinkedIn
@@ -143,12 +144,15 @@ function pageHtml(t) {
         <section class="section container">
             <div style="margin-bottom: 2rem;">
                 <a href="/investment-theses.html" style="font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.5rem;">
-                    <span>←</span> Back to Investment Theses
+                    <span>←</span> Back to Perspectives
                 </a>
             </div>
 
             <article style="max-width: 760px; margin: 0 auto; padding: 1rem 0 4rem 0;">
-                <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600; margin-bottom: 1rem;">${escapeAttr(t.date)}</div>
+                <div style="display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600;">${escapeAttr(t.date)}</div>${t.theme && THEMES[t.theme] ? `
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); font-weight: 600;">${escapeAttr(THEMES[t.theme].label)}</div>` : ''}
+                </div>
 
                 <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 700;">${escapeAttr(t.title)}</h1>
 
