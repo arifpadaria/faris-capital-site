@@ -10,6 +10,14 @@ const path = require('path');
 
 const SITE = 'https://faris-capital.com';
 
+// Converts "August 16, 2026" -> "2026-08-16". Falls back to the raw date
+// string (slugified) if it doesn't parse, so a file still gets written.
+function isoDate(dateStr) {
+  const d = new Date(dateStr);
+  if (!isNaN(d)) return d.toISOString().slice(0, 10);
+  return String(dateStr || 'undated').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+
 // Minimal HTML -> Markdown for the simple tag set used in the data file
 // (<p>, <br>, plain text). Good enough for Medium's paste importer.
 function htmlToMarkdown(html) {
@@ -53,7 +61,7 @@ ${body}
 *Originally published on [LinkedIn](${thesis.linkedinUrl || ''}) and [Faris Capital](${canonicalUrl}).*
 `;
 
-  const outPath = path.join(outDir, `${thesis.id}.md`);
+  const outPath = path.join(outDir, `${isoDate(thesis.date)}-${thesis.id}.md`);
   fs.writeFileSync(outPath, md, 'utf8');
   return outPath;
 }
