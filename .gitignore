@@ -67,3 +67,7 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# Medium drafts staged by scripts/publish.js — local paste-and-discard files,
+# not deployed (already excluded via firebase.json's **/*.md ignore)
+medium-export/

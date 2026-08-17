@@ -10,7 +10,9 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const vm = require('vm');
 const { execSync } = require('child_process');
+const { writeMediumFile } = require('./medium-export');
 
 // Load FIREBASE_TOKEN from .env if not already in environment
 const envPath = path.join(__dirname, '../.env');
@@ -337,6 +339,20 @@ function savePerspective() {
   // Regenerate the static thesis pages (theses/<id>.html) so the new post
   // gets a shareable page with real meta tags.
   execSync(`node "${path.join(__dirname, 'generate-thesis-pages.js')}"`, { stdio: 'pipe' });
+
+  // Stage a Medium-ready Markdown file at medium-export/<id>.md. Medium has
+  // no public API for creating posts, so this is a local file you paste
+  // from into Medium's editor by hand.
+  const repoDir = path.join(__dirname, '..');
+  const ctx = {};
+  vm.createContext(ctx);
+  vm.runInContext(updatedContent + '\n;__themes = THEMES;', ctx);
+  const mediumPath = writeMediumFile(
+    { id, theme, title, date: publishDate, teaser: teaserText, content: formattedContent, linkedinUrl },
+    ctx.__themes,
+    repoDir
+  );
+  info(`Medium draft ready: ${path.relative(repoDir, mediumPath)}`);
 
   return id;
 }
