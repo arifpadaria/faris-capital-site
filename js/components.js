@@ -9,13 +9,13 @@
 const Header = `
 <div class="header-container container">
     <a href="/index.html" class="logo">
-  <img src="/images/faris-capital-wordmark-v2-med.svg?v=36" alt="Faris Capital" class="logo-desktop">
-  <img src="/images/faris-capital-wordmark-stacked.svg?v=36" alt="Faris Capital" class="logo-mobile">
+  <img src="/images/faris-capital-wordmark-v2-med.svg?v=37" alt="Faris Capital" class="logo-desktop">
+  <img src="/images/faris-capital-wordmark-stacked.svg?v=37" alt="Faris Capital" class="logo-mobile">
 </a>
     <nav class="nav-desktop">
         <a href="/index.html" class="nav-link">Home</a>
         <a href="/what-we-do.html" class="nav-link">What We Do</a>
-        <a href="/investment-theses.html" class="nav-link">Investment Theses</a>
+        <a href="/investment-theses.html" class="nav-link">Perspectives</a>
         <a href="/about.html" class="nav-link">About</a>
         <a href="/contact.html" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;">Contact</a>
     </nav>
@@ -29,7 +29,7 @@ const Header = `
 <div class="mobile-nav">
     <a href="/index.html" class="nav-link">Home</a>
     <a href="/what-we-do.html" class="nav-link">What We Do</a>
-    <a href="/investment-theses.html" class="nav-link">Investment Theses</a>
+    <a href="/investment-theses.html" class="nav-link">Perspectives</a>
     <a href="/about.html" class="nav-link">About</a>
     <a href="/contact.html" class="btn btn-primary" style="width: 100%;">Contact</a>
 </div>
@@ -39,7 +39,7 @@ const Footer = `
 <div class="container">
     <div class="footer-grid">
         <div>
-            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=36" alt="Faris Capital">
+            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=37" alt="Faris Capital">
             <p class="footer-tagline">Advisory for growth-stage ventures, institutional capital, and enterprises across global markets.</p>
         </div>
         <div>
@@ -47,7 +47,7 @@ const Footer = `
             <nav class="footer-nav">
                 <a href="/index.html">Home</a>
                 <a href="/what-we-do.html">What We Do</a>
-                <a href="/investment-theses.html">Investment Theses</a>
+                <a href="/investment-theses.html">Perspectives</a>
                 <a href="/about.html">About</a>
                 <a href="/contact.html">Contact</a>
             </nav>

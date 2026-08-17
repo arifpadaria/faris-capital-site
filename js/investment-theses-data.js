@@ -1,10 +1,41 @@
 /**
- * Investment Theses Database for Faris Capital
- * Stores strategic frameworks and writeups, originally published on LinkedIn.
+ * Perspectives Database for Faris Capital
+ * Stores strategic writeups and frameworks, originally published on LinkedIn.
  */
+const THEMES = {
+  "physical-ai": { label: "Physical AI & Robotics" },
+  "governance": { label: "AI Governance & Trust" },
+  "agentic-infra": { label: "Agentic Infrastructure" },
+  "venture": { label: "Venture & Capital Strategy" }
+};
+
 const INVESTMENT_THESES = [
   {
+    id: "one-line-in-sahil-bhaiwalas-data-thesis-points-at-the-next-100b-question",
+    theme: "physical-ai",
+    title: "One Line in Sahil Bhaiwala's Data Thesis Points at the Next $100B Question",
+    date: "August 16, 2026",
+    teaser: "Handshake AI's Sahil Bhaiwala made the sharpest case I've read this year for the data-authoring economy, and scoped it carefully enough to set physical intelligence aside for a future post. That's exactly the layer I've spent this year tracking.",
+    content: `
+      <p>Sahil Bhaiwala, Chief Strategy and Innovation Officer at Handshake AI, published one of the sharpest breakdowns I've read this year on why the "data labeling" industry is misnamed and massively undervalued. Knowledge work has no chess-like win condition, so someone has to write the rules: design the scenario, build the environment, author the rubric that can grade any valid answer. He calls it data authoring, and he makes the case that it's a $100B+ market within three years, concentrated among a handful of players who can do the hard, capital-intensive parts of it at scale.</p>
+      <p>It's a rigorous piece, and rigorous is the right word. He scopes the argument carefully: he explicitly sets physical intelligence aside from the analysis, flags that robots will need "three-dimensional environment simulations and scenarios authored by experts," and says he'll take it on in a future post.</p>
+      <p>That's the discipline that makes the rest of the thesis worth trusting. It's also the most interesting open question in the piece.</p>
+      <p>Here's why the two problems don't collapse into one.</p>
+      <p>Everything in Bhaiwala's framework, the shift from labeling to authoring, the rubric as the definition of winning, the idea that the scarce input is expert judgment, not human hours, works when the task lives inside a simulated environment you can fully specify. A tool the agent can call. A database it can query. A verifier that reads the output and scores it. That's true when the "environment" is a replica of QuickBooks or a Bloomberg terminal, because software is finite. Every state it can be in is, in principle, enumerable.</p>
+      <p>A robot's environment is the physical world. It isn't finite, and it doesn't hold still. Friction changes with humidity. A part is a few millimeters off-spec from the CAD file. A human walks into the workspace. Authoring every physical state in advance the way you can author every financial-modeling task in advance isn't a smaller version of the same problem. It's a different problem, which is likely exactly why he set it aside rather than force a premature answer into an already-ambitious piece.</p>
+      <p>This is the split I've been tracking all year across the Physical AI work.</p>
+      <p>Software agents run on a cognition layer that gets smarter every time someone feeds it better training data, better rubrics, better evals. That's the layer Handshake, Scale, and Mercor are fighting over, and Bhaiwala's case for why value concentrates there is convincing. But a robot also has a control layer underneath it, the part making sensor-fusion and motor decisions in real time, with hard latency guarantees software agents never have to meet. Better authored data makes the cognition layer smarter. It doesn't make the control layer deterministic. Those are two different infrastructure problems, and the industry is only now starting to treat them as separate questions instead of one.</p>
+      <p>I'm actively engaged with a company building that second layer, the deterministic control infrastructure that has to exist underneath any amount of authored training data before a robot can act on it reliably. It's not a data problem in Bhaiwala's sense. It's a systems architecture problem, and it's the natural next chapter to his own thesis, not a challenge to it.</p>
+      <p>Both economies are real, and they're about to need each other.</p>
+      <p>The data-authoring economy Bhaiwala describes is underpriced and getting bigger fast. Sitting right next to it is a second one: the real-time infrastructure that lets a physical system act on any of that authored data safely. Neither replaces the other. The companies and investors who understand both layers exist, and treat them as complementary rather than substitutes, are the ones positioned well for what comes next. I'd genuinely like to see Bhaiwala's future post on this.</p>
+      <p>If you've thought about the physical-intelligence data problem: does it get solved with better simulation, cheaper real-world collection, or something structurally different from what's working for knowledge work?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/one-line-sahil-bhaiwalas-data-thesis-points-next-100b-arif-padaria-zwhyc/"
+  },
+  {
     id: "the-silence-was-the-signal",
+    theme: "governance",
     title: "The Silence Was the Signal",
     date: "July 25, 2026",
     teaser: "Jensen Huang posted on X for the first time ever this week, sharing a letter signed by 25 companies arguing for open AI models. \n\nThree of the most important names in AI didn't sign it, and didn't fight it either. \n\nThat silence tells you more than the letter does.",
@@ -33,6 +64,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-physics-problem-has-a-geography",
+    theme: "physical-ai",
     title: "The Physics Problem Has a Geography",
     date: "July 21, 2026",
     teaser: "Navin Chaddha's latest post lays out why AI's real constraint is now physics, not model capability. \n\nI went looking for the stress test: three sovereign AI bets in the Gulf, three very different answers to the same power and cooling problem.",
@@ -58,6 +90,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "performance-gets-you-the-demo-certifiability-gets-you-the-factory-floor",
+    theme: "physical-ai",
     title: "Performance Gets You the Demo. Certifiability Gets You the Factory Floor.",
     date: "July 9, 2026",
     teaser: "NVIDIA just sent its robotics safety stack to two separate inspection labs. \n\nAgility is doing the same for Digit. \n\nThat's not a coincidence, it's the industry quietly admitting that the real gate on humanoid deployment isn't model capability. \n\nIt's whether anyone can certify the thing.",
@@ -82,6 +115,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "250-years-of-betting-on-whats-next",
+    theme: "venture",
     title: "250 Years of Betting on What's Next",
     date: "July 5, 2026",
     teaser: "250 years ago, a small group of people bet on a system built to make risky bets, over and over. \n\nRight now, AI, robotics, and space are all running that same experiment at once, faster than any prior American platform shift. Here's the pattern connecting a chatbot, a warehouse robot, and a reused rocket booster.",
@@ -108,6 +142,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-model-that-beat-its-teacher-has-a-speed-problem",
+    theme: "physical-ai",
     title: "The Model That Beat Its Teacher Has a Speed Problem",
     date: "July 2, 2026",
     teaser: "A new report scored 40 humanoid foundation models against each other. \n\nOne number in it quietly settles an argument I've been watching for two years: Vision-Language-Action models, the backbone of nearly every humanoid robot today, just got beaten by more than double on tasks they were never trained for.",
@@ -136,6 +171,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-gap-nobody-at-automate-has-named-yet",
+    theme: "physical-ai",
     title: "The Gap Nobody at Automate Has Named Yet",
     date: "June 26, 2026",
     teaser: "I spent a couple of days earlier this week walking the floor at Automate, the largest robotics trade show in North America, looking for one specific thing. \n\nWhat I found wasn't a gap in anyone's effort. \n\nIt was a question almost nobody is asking yet, and a market-sized opportunity sitting underneath it.",
@@ -168,6 +204,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-missing-robot-ecu-and-who-will-build-it",
+    theme: "physical-ai",
     title: "The Missing Robot ECU - and Who Will Build It",
     date: "June 14, 2026",
     teaser: "McKinsey just published a supply chain analysis of humanoid robotics. Everyone quoted the actuator cost data.\n\nI think the most important sentence in the report was buried three sections in. And it names a gap that no one has filled yet.",
@@ -209,6 +246,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-wrong-race",
+    theme: "agentic-infra",
     title: "The Wrong Race",
     date: "June 1, 2026",
     teaser: "I spent part of last week at Boston Tech Week, sitting in on technical sessions with founders building in the agentic AI space. One presentation stopped me cold — not because of the product, but because of the framing. The CTO walked through why the entire field is racing toward a solution that is, information-theoretically, the wrong one. This is my attempt to share that framing.",
@@ -233,6 +271,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "physical-ai-has-a-data-problem-that-software-ai-never-had",
+    theme: "physical-ai",
     title: "Physical AI Has a Data Problem That Software AI Never Had",
     date: "May 22, 2026",
     teaser: "Last post I described the architectural gap: robots need two incompatible things simultaneously - a Slow Brain for reasoning, and a Fast Brain for real-time control. That's the infrastructure problem.\n\nBut there's a second constraint running in parallel, and it's just as structural. It's the data problem.\n\nAnd it's not the kind of problem you solve by waiting for the next generation of GPUs.",
@@ -286,6 +325,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-fast-brain-the-slow-brain-and-the-missing-layer",
+    theme: "physical-ai",
     title: "The Fast Brain, the Slow Brain, and the Missing Layer",
     date: "May 11, 2026",
     teaser: "In my last post, I described two jobs every production robot has to do simultaneously: think, and act.\n\nJob 1: Cognition - is what large AI models do well: interpret the environment, reason, plan, adapt. It tolerates variance. It can take a fraction of a second longer and still be useful.\n\nJob 2: Control - is different in kind. Motor signals, sensor fusion, safety loops. It needs guaranteed response times, every time, with no exceptions. Not fast on average. Guaranteed.\n\nI said these two jobs have fundamentally incompatible compute requirements.\n\nToday I want to name the paradigm, because it turns out the research community already has a name for it and the name matters.",
@@ -325,6 +365,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-two-jobs-every-robot-has-to-do-at-once",
+    theme: "physical-ai",
     title: "The Two Jobs Every Robot Has to Do at Once",
     date: "May 5, 2026",
     teaser: "Following up on my last post on Physical AI and the next S-curve in autonomous systems...\n\nI want to go one level deeper into something that I think is under appreciated: the core architectural tension that sits at the heart of deploying Physical AI at production scale.\n\nIt comes down to two jobs every robot has to do simultaneously - and the fact that those two jobs have fundamentally incompatible compute requirements.",
@@ -364,6 +405,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-next-s-curve-is-physical",
+    theme: "physical-ai",
     title: "The Next S-Curve Is Physical",
     date: "April 23, 2026",
     teaser: "I've been writing about the autonomous AI wave unfolding in software: agents, harnesses, systems of execution, and where the moat forms in the digital layer.  \n\nThe thesis across those posts: when AI stops recommending and starts executing, the value doesn't sit in the model. It sits in the integration layer - in the harness that connects AI capability to real-world workflows.\n\nThere's a parallel wave building that follows exactly the same structural pattern - but in the physical world.\n\nPhysical AI.  And I think it's the next S-curve.",
@@ -400,6 +442,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "when-the-ai-is-the-executor",
+    theme: "governance",
     title: "When the AI is the Executor",
     date: "April 18, 2026",
     teaser: "I closed my last post with a question: when the AI is the executor, what does accountable governance actually look like?\n\nI spent the last couple of days at the YPO Corporate Governance Symposium in New York. Serious board members. Senior governance practitioners. Some of the most credentialed corporate governance faculty in the country.\n\nHere's what I found, and what it clarified...",
@@ -435,6 +478,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-trust-reckoning-when-accountability-cant-scale-the-way-intelligence-can",
+    theme: "governance",
     title: "The Trust Reckoning - When Accountability Can't Scale the Way Intelligence Can",
     date: "April 14, 2026",
     teaser: "Later this week, I'll be heading to New York for a YPO Corporate Governance Symposium. It's an event I've been genuinely looking forward to: an intimate gathering of leaders wrestling with governance under real pressure. \n\nThe agenda includes a full session on AI governance and emerging technologies, and I'm going in ready to listen, learn, and participate. \n\nMost governance conversations I've been part of frame the challenge as: \"How do boards oversee AI risk?\"\n\nI'm bringing a different question...",
@@ -483,6 +527,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "memory-is-the-moat",
+    theme: "agentic-infra",
     title: "Memory Is the Moat",
     date: "May 22, 2026",
     teaser: "Memory Is the Moat - Why Stateful AI Beats Stateless AI Every Time\n\nFollowing up on my recent series on AI agents, the harness layer, and Systems of Action...\n\nOne thread I've touched on in every post but haven't fully developed:\nPersistent memory and context.  Let me fix that.",
@@ -532,6 +577,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "from-systems-of-record-to-systems-of-action-where-the-new-moat-is-forming",
+    theme: "agentic-infra",
     title: "From Systems of Record to Systems of Action - Where the New MOAT Is Forming",
     date: "March 24, 2026",
     teaser: "A broader shift is starting to take shape in AI:\nWe are moving from systems that store and inform... to systems that actually act...",
@@ -571,6 +617,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "the-moat-in-ai-isnt-where-you-think-it-is-its-in-the-harness",
+    theme: "agentic-infra",
     title: `The Moat in AI Isn't Where You Think It Is - It's in the Harness`,
     date: "March 20, 2026",
     teaser: "Following up on my recent post on Autonomous AI...\n\nAcross a series of conversations over the last few months, with founders, investors, and CVC teams, one question continues to resurface:\nWhere is the REAL MOAT in AI agents?",
@@ -597,6 +644,7 @@ const INVESTMENT_THESES = [
   },
   {
     id: "autonomous-experts-and-the-next-s-curve-rethinking-where-value-will-accrue",
+    theme: "venture",
     title: "Autonomous Experts and the Next S-Curve: Rethinking Where Value Will Accrue",
     date: "March 19, 2026",
     teaser: "Last evening, I had the opportunity to dine with a small group of corporate venture and innovation leaders (thanks to Shahid Azim and C10 Labs) to discuss a question that is becoming increasingly urgent:  \n\nWhere should corporate venture invest as AI moves from copilots to autonomous operators?  \n\nI've outlined my key thoughts and takeaways in the attached writeup and welcome perspectives from others thinking about this transition; particularly how you're seeing autonomy reshape investment strategy and enterprise innovation.\n\nWhere should corporate venture invest as AI moves from copilots to autonomous operators?",
