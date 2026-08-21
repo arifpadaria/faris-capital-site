@@ -11,6 +11,31 @@ const THEMES = {
 
 const INVESTMENT_THESES = [
   {
+    id: "ive-walked-the-floor-at-leap-before-this-year-im-watching-from-here-and-im-paying-close-attention",
+    theme: "venture",
+    title: "I've Walked the Floor at LEAP Before. This Year I'm Watching From Here, and I'm Paying Close Attention",
+    date: "August 21, 2026",
+    teaser: "I've attended LEAP before. A scheduling conflict is keeping me from this year's edition, but the story underneath it, five editions, $42 billion in cumulative investment, a conference that got rescheduled rather than skipped, is worth watching regardless of whether I'm in the room.",
+    content: `
+      <p>I've walked the floor at LEAP before. This year I'm not going, a scheduling conflict here in the US got in the way, and I'll admit it stings a little to watch this one from the outside.</p>
+      <p>But I'm paying close attention, because the story underneath LEAP 2026 is worth watching whether or not I'm in the room for it.</p>
+      <p>This year's theme is "Into New Worlds." Five editions and $42 billion in cumulative investment in, that's not a marketing line anymore. It's a fair description of what the region is actually doing.</p>
+      <p>LEAP started in Riyadh in 2022 as a regional tech showcase. It's grown into one of the largest technology gatherings anywhere, and this year's edition was originally set for April before getting pushed to late August because of regional instability earlier in the year. It's happening anyway, on a new calendar instead of a cancelled one. Years of momentum were worth protecting through a delay rather than losing to one.</p>
+      <p>The numbers back that up. Five editions since 2022, more than $42 billion in cumulative technology investment. This year: 600+ startups, 1,000+ speakers, 1,800+ global tech brands, 1,900+ investors, north of 201,000 people expected through the doors.</p>
+      <p>Here's what I actually remember from the floor, and it's not the keynotes.</p>
+      <p>The value of an event like this was never the headline deals signed on stage. It's the hallway conversation you weren't expecting, a founder building something genuinely new next to an operator or investor standing in the right place at the right moment. Neither of you would have found each other any other way.</p>
+      <p>An event pulling in 200,000+ people and 1,900+ investors compresses an unusual number of those moments into five days. Healthcare founders meeting operators who actually understand what GCC market entry requires. Deep tech teams meeting sovereign and institutional capital looking for the next frontier bet, not the last cycle's winners. Regional builders meeting each other, which matters as much as meeting outside capital, because real ecosystem density starts between its own participants.</p>
+      <p>That density is the actual product. Everything else, the keynote list, the banners, is scenery in service of it.</p>
+      <p>Watch for who shows up twice, not for what gets announced once.</p>
+      <p>The people worth paying attention to over the next year aren't necessarily the ones on stage next week. They're the ones who treat LEAP as the start of a relationship, not the whole of one, who come back with the follow-up meeting already booked, who turn a hallway conversation into something real the unglamorous way, over months, not a signing photo.</p>
+      <p>I won't be there this time, but I'll be watching closely, and I'm planning to be back in the region later this year regardless, both Riyadh and the UAE.</p>
+      <p>If you're building in AI, Robotics, or Deep Tech in the Gulf, let's talk, now or in person when I'm back.</p>
+      <p>If you're heading to LEAP next week, what conversation are you hoping happens in the hallway, that are not on the agenda?</p>
+      <p>Reach me at arif@faris-capital.com</p>
+    `,
+    linkedinUrl: "https://www.linkedin.com/pulse/ive-walked-floor-leap-before-year-im-watching-from-here-arif-padaria-iv8cc/"
+  },
+  {
     id: "one-line-in-sahil-bhaiwalas-data-thesis-points-at-the-next-100b-question",
     theme: "physical-ai",
     title: "One Line in Sahil Bhaiwala's Data Thesis Points at the Next $100B Question",
