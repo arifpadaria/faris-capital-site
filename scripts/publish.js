@@ -2,7 +2,7 @@
 
 /**
  * Enhanced Publishing Tool for Faris Capital Perspectives
- * Supports: LinkedIn posts + Obsidian Markdown files
+ * Accepts reviewed plain text copied from LinkedIn or other sources
  * Batch mode: Add multiple perspectives before deploying
  * Usage: node scripts/publish.js
  */
@@ -10,20 +10,9 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const vm = require('vm');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
+const { formatContent, validateDatabase } = require('./publisher-safety');
 const { writeMediumFile } = require('./medium-export');
-
-// Load FIREBASE_TOKEN from .env if not already in environment
-const envPath = path.join(__dirname, '../.env');
-if (fs.existsSync(envPath)) {
-  fs.readFileSync(envPath, 'utf8').split('\n').forEach(line => {
-    const [key, ...val] = line.split('=');
-    if (key && val.length && !process.env[key.trim()]) {
-      process.env[key.trim()] = val.join('=').trim();
-    }
-  });
-}
 
 // ANSI colors for terminal UI
 const colors = {
@@ -93,7 +82,6 @@ function info(msg) {
 }
 
 async function selectSource() {
-  source = 'linkedin';
   await linkedinFlow();
 }
 
@@ -128,7 +116,7 @@ async function linkedinFlow() {
   }
 
   const detectedDate = extractDateFromText(contentLines.join('\n'));
-  publishDate = detectedDate || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  publishDate = detectedDate || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/New_York' });
 
   await selectTheme();
 }
@@ -197,15 +185,10 @@ async function reviewAndConfirm() {
     console.log(`  ${linkedinUrl}\n`);
   }
 
-  if (source === 'obsidian') {
-    console.log(`${colors.bright}Source File:${colors.reset}`);
-    console.log(`  ${obsidianFile}\n`);
-  }
-
   console.log(`${colors.bright}Article ID (auto-generated from title):${colors.reset}`);
   console.log(`  ${toSlug(title)}\n`);
 
-  const confirm = await prompt('Does this look correct? Publish? (y/n)');
+  const confirm = await prompt('Does this look correct? Save locally? (y/n)');
 
   if (confirm.toLowerCase() === 'y' || confirm.toLowerCase() === 'yes') {
     const id = savePerspective();
@@ -234,7 +217,7 @@ async function continueOrDeploy() {
 
   console.log(`\n${colors.bright}Options:${colors.reset}`);
   console.log(`  ${colors.bright}1${colors.reset} Add another perspective (batch mode)`);
-  console.log(`  ${colors.bright}2${colors.reset} Deploy all changes now (push + Firebase)`);
+  console.log(`  ${colors.bright}2${colors.reset} Finish and show review steps`);
   console.log(`  ${colors.bright}3${colors.reset} Save locally only (deploy manually later)\n`);
 
   const choice = await prompt('Choose (1, 2, or 3)');
@@ -247,7 +230,7 @@ async function continueOrDeploy() {
     theme = '';
     await selectSource();
   } else if (choice === '2') {
-    await performDeploy();
+    await skipDeploy();
     rl.close();
   } else if (choice === '3') {
     await skipDeploy();
@@ -285,16 +268,7 @@ function toSlug(str) {
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
-    .trim();
-}
-
-function formatContent(text) {
-  return text
-    .split(/\n\s*\n/)
-    .map(para => para.trim())
-    .filter(para => para.length > 0)
-    .map(para => `<p>${para.replace(/\n/g, '<br>')}</p>`)
-    .join('\n      ');
+    .replace(/^-|-$/g, '');
 }
 
 function savePerspective() {
@@ -303,53 +277,34 @@ function savePerspective() {
   const rawContent = sanitizeText(contentLines.join('\n'));
   const formattedContent = formatContent(rawContent);
 
-  const newEntry = `  {
-    id: ${JSON.stringify(id)},
-    theme: ${JSON.stringify(theme)},
-    title: ${JSON.stringify(title)},
-    date: ${JSON.stringify(publishDate)},
-    teaser: ${JSON.stringify(teaserText)},
-    content: \`
-      ${formattedContent}
-    \`,
-    linkedinUrl: ${JSON.stringify(linkedinUrl || null)}
-  },\n`;
-
-  const dataFilePath = path.join(__dirname, '../js/investment-theses-data.js');
-
-  if (!fs.existsSync(dataFilePath)) {
-    error(`Database file not found at ${dataFilePath}`);
-    process.exit(1);
+  const repoDir = path.join(__dirname, '..');
+  const dataFilePath = path.join(repoDir, 'content/perspectives.json');
+  const originalDatabase = fs.readFileSync(dataFilePath, 'utf8');
+  const database = JSON.parse(originalDatabase);
+  database.posts.unshift({ id, theme, title, date: publishDate, teaser: teaserText,
+    content: formattedContent, linkedinUrl: linkedinUrl || null });
+  validateDatabase(database);
+  const indexHtml = fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8');
+  const version = Number(indexHtml.match(/\?v=(\d+)/)?.[1] || 1) + 1;
+  const output = {};
+  const expected = { 'content/perspectives.json': originalDatabase };
+  for (const name of fs.readdirSync(repoDir).filter(f => f.endsWith('.html'))) {
+    expected[name] = fs.readFileSync(path.join(repoDir, name), 'utf8');
+    output[name] = expected[name].replace(/\?v=\d+/g, `?v=${version}`);
   }
-
-  let fileContent = fs.readFileSync(dataFilePath, 'utf8');
-  const marker = 'const INVESTMENT_THESES = [';
-  const insertIndex = fileContent.indexOf(marker);
-
-  if (insertIndex === -1) {
-    error('Could not find INVESTMENT_THESES array in database file.');
-    process.exit(1);
-  }
-
-  const position = insertIndex + marker.length + 1;
-  const updatedContent = fileContent.slice(0, position) + newEntry + fileContent.slice(position);
-
-  fs.writeFileSync(dataFilePath, updatedContent, 'utf8');
-
-  // Regenerate the static thesis pages (theses/<id>.html) so the new post
-  // gets a shareable page with real meta tags.
-  execSync(`node "${path.join(__dirname, 'generate-thesis-pages.js')}"`, { stdio: 'pipe' });
+  expected['js/components.js'] = fs.readFileSync(path.join(repoDir, 'js/components.js'), 'utf8');
+  output['js/components.js'] = expected['js/components.js'].replace(/\?v=\d+/g, `?v=${version}`);
+  Object.assign(output, require('./generate-thesis-pages').buildSite(database, output['index.html'], output['investment-theses.html']));
+  output['content/perspectives.json'] = JSON.stringify(database, null, 2) + '\n';
+  const backup = require('./site-writer').writeOutputs(repoDir, output, fs, expected);
+  info(`Recovery snapshot: ${path.relative(repoDir, backup)}`);
 
   // Stage a Medium-ready Markdown file at medium-export/<id>.md. Medium has
   // no public API for creating posts, so this is a local file you paste
   // from into Medium's editor by hand.
-  const repoDir = path.join(__dirname, '..');
-  const ctx = {};
-  vm.createContext(ctx);
-  vm.runInContext(updatedContent + '\n;__themes = THEMES;', ctx);
   const mediumPath = writeMediumFile(
     { id, theme, title, date: publishDate, teaser: teaserText, content: formattedContent, linkedinUrl },
-    ctx.__themes,
+    database.themes,
     repoDir
   );
   info(`Medium draft ready: ${path.relative(repoDir, mediumPath)}`);
@@ -359,58 +314,16 @@ function savePerspective() {
 
 async function performDeploy() {
   const repoDir = path.join(__dirname, '..');
-
   try {
-    console.log(`\n${colors.dim}Deploying ${addedPerspectives.length} thesis(es)...${colors.reset}\n`);
-
-    // Bump cache version. Find the highest ?v=N currently in use across
-    // HTML + components.js, then replace ALL ?v=N (regardless of number,
-    // so no file can drift out of sync) with highest+1.
-    let currentVersion = 1;
-    try {
-      const htmlContent = fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8');
-      const versionMatch = htmlContent.match(/\?v=(\d+)/);
-      if (versionMatch) {
-        currentVersion = parseInt(versionMatch[1]);
-      }
-    } catch (e) {
-      // Use default
-    }
-
-    const newVersion = currentVersion + 1;
-    console.log(`Bumping cache version: ?v=${currentVersion} → ?v=${newVersion}`);
-    execSync(`sed -i '' -E 's/\\?v=[0-9]+/?v=${newVersion}/g' *.html theses/*.html js/components.js`, { cwd: repoDir, stdio: 'pipe' });
-
-    // Git operations
-    console.log('Staging changes...');
-    execSync('git add .', { cwd: repoDir, stdio: 'pipe' });
-
-    const commitMessage = addedPerspectives.length === 1
-      ? `Add perspective: ${addedPerspectives[0].title.replace(/"/g, '\\"')}`
-      : `Add ${addedPerspectives.length} perspectives`;
-
-    console.log('Committing...');
-    execSync(`git commit -m "${commitMessage}"`, { cwd: repoDir, stdio: 'pipe' });
-
-    console.log('Pushing to GitHub...');
-    execSync('git push origin main', { cwd: repoDir, stdio: 'inherit', env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
-
-    // Firebase deploy
-    console.log('Deploying to Firebase...');
-    const firebaseToken = process.env.FIREBASE_TOKEN;
-    const firebaseCmd = firebaseToken
-      ? `firebase deploy --only hosting --token "${firebaseToken}"`
-      : 'firebase deploy --only hosting';
-    execSync(firebaseCmd, { cwd: repoDir, stdio: 'inherit' });
-
-    success('Deployment complete! Your perspectives are now live.');
-    info(`Cache version bumped to ?v=${newVersion}. Hard refresh your browser to see updates.`);
-  } catch (error) {
-    error(`Deployment failed: ${error.message}`);
-    info('Your perspectives were saved locally. You can push manually later with:');
-    info('  cd ' + repoDir);
-    info('  git push origin main');
-    info('  firebase deploy');
+    const dirty = execFileSync('git', ['status', '--porcelain'], { cwd: repoDir, encoding: 'utf8' });
+    if (dirty.trim()) throw new Error('Review and commit the intended changes first. The publisher never stages or commits files.');
+    const branch = execFileSync('git', ['branch', '--show-current'], { cwd: repoDir, encoding: 'utf8' }).trim();
+    if (branch !== 'main') throw new Error('Push reviewed commits from main only.');
+    execFileSync('git', ['push', 'origin', 'main'], { cwd: repoDir, stdio: 'inherit', env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
+    success('Reviewed commits pushed. GitHub Actions will validate and deploy; check its result before treating the site as live.');
+  } catch (err) {
+    process.exitCode = 1;
+    error(`Push failed: ${err.message}`);
   }
 }
 
@@ -419,13 +332,13 @@ async function skipDeploy() {
   header();
   section('Changes Saved Locally');
 
-  console.log(`\n${colors.green}✓ ${addedPerspectives.length} thesis(es) added to investment-theses-data.js${colors.reset}\n`);
+  console.log(`\n${colors.green}✓ ${addedPerspectives.length} thesis(es) saved to content/perspectives.json${colors.reset}\n`);
 
   console.log(`${colors.bright}When you\'re ready to deploy, run:${colors.reset}`);
   console.log(`\n  ${colors.dim}node scripts/publish.js --deploy${colors.reset}\n`);
   console.log(`${colors.dim}Or manually:${colors.reset}`);
   console.log(`  git push origin main`);
-  console.log(`  firebase deploy\n`);
+  console.log(`  # Check the GitHub Actions deployment result\n`);
 }
 
 // Handle CLI arguments

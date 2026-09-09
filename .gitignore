@@ -75,3 +75,12 @@ medium-export/
 # Local VS Code editor config — machine/account-specific, not project config
 .vscode/
 *.code-workspace
+
+# Local publisher recovery snapshots
+.publisher-backups/
+*.publisher-tmp
+
+# Allowlisted hosting output and build staging
+dist/
+.public-build-*/
+.publisher.lock
