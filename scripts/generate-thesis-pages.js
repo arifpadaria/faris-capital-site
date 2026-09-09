@@ -13,24 +13,16 @@
 
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
+const { validateDatabase } = require('./publisher-safety');
 
-const repoDir = path.join(__dirname, '..');
-const outDir = path.join(repoDir, 'theses');
+function buildSite(database, indexHtml, perspectivesHtml) {
+validateDatabase(database);
+const theses = database.posts;
+const THEMES = database.themes;
 const SITE = 'https://faris-capital.com';
-
-// Load the theses array from the data file
-const dataRaw = fs.readFileSync(path.join(repoDir, 'js/investment-theses-data.js'), 'utf8');
-const ctx = {};
-vm.createContext(ctx);
-vm.runInContext(dataRaw + '\n;__theses = INVESTMENT_THESES; __themes = THEMES;', ctx);
-const theses = ctx.__theses;
-const THEMES = ctx.__themes;
-
-// Match the cache-busting version currently used by the site
-const indexHtml = fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8');
 const vMatch = indexHtml.match(/\?v=(\d+)/);
 const V = vMatch ? vMatch[1] : '1';
+const output = {};
 
 function escapeAttr(str) {
   return String(str || '')
@@ -53,6 +45,33 @@ function metaDescription(teaser) {
   return first.length > 250 ? first.slice(0, 247).replace(/\s+\S*$/, '') + '…' : first;
 }
 
+function perspectiveCard(t, themeLabel) {
+  const teaser = String(t.teaser).replace(/\r\n?/g, '\n').replace(/[ \t]+$/gm, '');
+  return `                    <div class="content-block radius-card" data-theme="${escapeAttr(t.theme)}" style="border: 1px solid var(--border-color); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">${escapeAttr(t.date)}</div>
+                                <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-color); font-weight: 600; white-space: normal;">${escapeAttr(themeLabel || '')}</div>
+                            </div>
+                            <h3 style="font-size: 1.25rem; line-height: 1.4; margin-bottom: 1rem; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600;">${escapeAttr(t.title)}</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">${escapeAttr(teaser)}</p>
+                        </div>
+                        <a href="theses/${encodeURIComponent(t.id)}.html" class="accent-link" style="font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--accent-color); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
+                            Read Perspective <span style="transition: transform 0.2s;">→</span>
+                        </a>
+                    </div>`;
+}
+
+function latestCard(t) {
+  const teaser = String(t.teaser).split('\n')[0].trim();
+  return `                    <div class="thesis-card">
+                        <div class="thesis-date">${escapeAttr(t.date)}</div>
+                        <h3>${escapeAttr(t.title)}</h3>
+                        <p>${escapeAttr(teaser)}</p>
+                        <a href="theses/${encodeURIComponent(t.id)}.html" class="accent-link">Read Perspective <span>→</span></a>
+                    </div>`;
+}
+
 function isoDate(dateStr) {
   const d = new Date(dateStr);
   return isNaN(d) ? null : d.toISOString().slice(0, 10);
@@ -68,7 +87,7 @@ function pageHtml(t) {
     .split(/\n+/)
     .map(l => l.trim())
     .filter(Boolean)
-    .map(l => `<p style="margin-bottom: 0.75rem;">${l}</p>`)
+    .map(l => `<p style="margin-bottom: 0.75rem;">${escapeAttr(l)}</p>`)
     .join('\n                ');
 
   const linkedinBlock = t.linkedinUrl ? `
@@ -114,7 +133,7 @@ function pageHtml(t) {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": ${jsonLdString(t.title)},
-      "description": ${jsonLdString(desc)},
+      "description": ${jsonLdString(metaDescription(t.teaser))},
       "url": ${jsonLdString(url)},
       "image": "${SITE}/images/og-image.png"${published ? `,\n      "datePublished": "${published}"` : ''},
       "author": {
@@ -150,7 +169,7 @@ function pageHtml(t) {
 
             <article style="max-width: 760px; margin: 0 auto; padding: 1rem 0 4rem 0;">
                 <div style="display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 600;">${escapeAttr(t.date)}</div>${t.theme && THEMES[t.theme] ? `
+                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #806322; font-weight: 600;">${escapeAttr(t.date)}</div>${t.theme && THEMES[t.theme] ? `
                     <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); font-weight: 600;">${escapeAttr(THEMES[t.theme].label)}</div>` : ''}
                 </div>
 
@@ -178,23 +197,28 @@ ${linkedinBlock}
 `;
 }
 
-fs.mkdirSync(outDir, { recursive: true });
-
-// Remove pages for theses that no longer exist in the data file
-const validFiles = new Set(theses.map(t => `${t.id}.html`));
-for (const f of fs.readdirSync(outDir)) {
-  if (f.endsWith('.html') && !validFiles.has(f)) {
-    fs.unlinkSync(path.join(outDir, f));
-    console.log(`Removed stale ${f}`);
-  }
+for (const t of theses) output[`theses/${t.id}.html`] = pageHtml(t);
+const cards = [...theses].sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).map(({ content, ...card }) => card);
+const allPerspectiveCards = cards.map(t => perspectiveCard(t, THEMES[t.theme] && THEMES[t.theme].label)).join('\n');
+const latestThinkingCards = cards.slice(0, 3).map(latestCard).join('\n');
+// The interactive listings are server-rendered too, so links and article
+// discovery work when JavaScript is unavailable. Callers supplying templates
+// get those generated files back; small test fixtures can omit them.
+if (indexHtml.includes('<!-- LATEST_THINKING_CARDS_START -->')) {
+  output['index.html'] = indexHtml.replace(
+    /<!-- LATEST_THINKING_CARDS_START -->[\s\S]*?<!-- LATEST_THINKING_CARDS_END -->/,
+    `<!-- LATEST_THINKING_CARDS_START -->\n${latestThinkingCards}\n                <!-- LATEST_THINKING_CARDS_END -->`
+  );
 }
-
-for (const t of theses) {
-  if (!t.id) continue;
-  fs.writeFileSync(path.join(outDir, `${t.id}.html`), pageHtml(t), 'utf8');
-  console.log(`Wrote theses/${t.id}.html`);
+if (perspectivesHtml && perspectivesHtml.includes('<!-- PERSPECTIVE_CARDS_START -->')) {
+  output['investment-theses.html'] = perspectivesHtml.replace(
+    /<!-- PERSPECTIVE_CARDS_START -->[\s\S]*?<!-- PERSPECTIVE_CARDS_END -->/,
+    `<!-- PERSPECTIVE_CARDS_START -->\n${allPerspectiveCards}\n                <!-- PERSPECTIVE_CARDS_END -->`
+  );
 }
-console.log(`Done: ${theses.length} thesis pages (cache v=${V}).`);
+output['js/investment-theses-data.js'] = '// Generated from content/perspectives.json. Do not edit.\n' +
+  'const THEMES = ' + JSON.stringify(THEMES).replace(/</g, '\\u003c') + ';\n' +
+  'const INVESTMENT_THESES = ' + JSON.stringify(cards).replace(/</g, '\\u003c') + ';\n';
 
 // Regenerate sitemap.xml: static pages + one <url> per thesis, so new posts
 // are automatically included without hand-editing this file.
@@ -222,5 +246,20 @@ ${urlEntries.join('\n')}
 </urlset>
 `;
 
-fs.writeFileSync(path.join(repoDir, 'sitemap.xml'), sitemap, 'utf8');
-console.log(`Wrote sitemap.xml (${staticPages.length + theses.length} URLs).`);
+output['sitemap.xml'] = sitemap;
+return output;
+}
+
+module.exports = { buildSite };
+
+if (require.main === module) {
+  const repoDir = path.join(__dirname, '..');
+  const database = JSON.parse(fs.readFileSync(path.join(repoDir, 'content/perspectives.json'), 'utf8'));
+  const output = buildSite(
+    database,
+    fs.readFileSync(path.join(repoDir, 'index.html'), 'utf8'),
+    fs.readFileSync(path.join(repoDir, 'investment-theses.html'), 'utf8')
+  );
+  require('./site-writer').writeOutputs(repoDir, output);
+  console.log(`Generated ${database.posts.length} articles, card data and sitemap.`);
+}

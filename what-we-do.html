@@ -22,7 +22,7 @@
     <meta name="twitter:title" content="What We Do — Faris Capital">
     <meta name="twitter:description" content="Advisory for growth-stage ventures, institutional capital, and enterprises — Faris Capital.">
     <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
-    <link rel="stylesheet" href="css/style.css?v=38">
+    <link rel="stylesheet" href="css/style.css?v=40">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -165,52 +165,9 @@
 
     <footer></footer>
 
-    <script src="js/components.js?v=38"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = Array.from(document.querySelectorAll('.audience-tab'));
-            const panels = document.querySelectorAll('.audience-panel');
-
-            function activate(name, { focus = false } = {}) {
-                tabs.forEach(t => {
-                    const isActive = t.dataset.tab === name;
-                    t.classList.toggle('active', isActive);
-                    t.setAttribute('aria-selected', isActive);
-                    t.tabIndex = isActive ? 0 : -1;
-                    if (isActive && focus) t.focus();
-                });
-                panels.forEach(p => p.classList.toggle('active', p.id === `panel-${name}`));
-            }
-
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => activate(tab.dataset.tab));
-
-                // Arrow-key navigation per the WAI-ARIA tabs pattern
-                tab.addEventListener('keydown', (e) => {
-                    let targetIndex = null;
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                        targetIndex = (index + 1) % tabs.length;
-                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                        targetIndex = (index - 1 + tabs.length) % tabs.length;
-                    } else if (e.key === 'Home') {
-                        targetIndex = 0;
-                    } else if (e.key === 'End') {
-                        targetIndex = tabs.length - 1;
-                    }
-                    if (targetIndex !== null) {
-                        e.preventDefault();
-                        activate(tabs[targetIndex].dataset.tab, { focus: true });
-                    }
-                });
-            });
-
-            const hash = window.location.hash.replace('#', '');
-            if (['ventures', 'capital', 'enterprises'].includes(hash)) {
-                activate(hash);
-            }
-        });
-    </script>
-    <script src="js/main.js?v=38"></script>
+    <script src="js/components.js?v=40"></script>
+    <script src="/js/services.js?v=40"></script>
+    <script src="js/main.js?v=40"></script>
 </body>
 
 </html>

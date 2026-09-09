@@ -1,3 +1,9 @@
+// Escape plain data at HTML text and quoted-attribute boundaries.
+function escapeText(value) {
+    return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 
 /*
  * Reusable Components for Faris Capital
@@ -7,12 +13,13 @@
 // depth (e.g. /theses/ pages and the 404 page, which can render at any path).
 
 const Header = `
+<a class="skip-link" href="#main-content">Skip to content</a>
 <div class="header-container container">
     <a href="/index.html" class="logo">
-  <img src="/images/faris-capital-wordmark-v2-med.svg?v=38" alt="Faris Capital" class="logo-desktop">
-  <img src="/images/faris-capital-wordmark-stacked.svg?v=38" alt="Faris Capital" class="logo-mobile">
+  <img src="/images/faris-capital-wordmark-v2-med.svg?v=40" alt="Faris Capital" class="logo-desktop">
+  <img src="/images/faris-capital-wordmark-stacked.svg?v=40" alt="Faris Capital" class="logo-mobile">
 </a>
-    <nav class="nav-desktop">
+    <nav class="nav-desktop" aria-label="Primary">
         <a href="/index.html" class="nav-link">Home</a>
         <a href="/what-we-do.html" class="nav-link">What We Do</a>
         <a href="/investment-theses.html" class="nav-link">Perspectives</a>
@@ -20,26 +27,26 @@ const Header = `
         <a href="/contact.html" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;">Contact</a>
     </nav>
 
-    <button class="mobile-menu-btn" aria-label="Toggle Menu">
+    <button type="button" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-navigation">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </button>
 </div>
 
 <!-- Mobile Nav -->
-<div class="mobile-nav">
+<nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile" hidden>
     <a href="/index.html" class="nav-link">Home</a>
     <a href="/what-we-do.html" class="nav-link">What We Do</a>
     <a href="/investment-theses.html" class="nav-link">Perspectives</a>
     <a href="/about.html" class="nav-link">About</a>
     <a href="/contact.html" class="btn btn-primary" style="width: 100%;">Contact</a>
-</div>
+</nav>
 `;
 
 const Footer = `
 <div class="container">
     <div class="footer-grid">
         <div>
-            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=38" alt="Faris Capital">
+            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=40" alt="Faris Capital">
             <p class="footer-tagline">Advisory for growth-stage ventures, institutional capital, and enterprises across global markets.</p>
         </div>
         <div>

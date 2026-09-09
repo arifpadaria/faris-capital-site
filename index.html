@@ -22,7 +22,7 @@
     <meta name="twitter:title" content="Faris Capital — Growth-Stage Venture Advisory">
     <meta name="twitter:description" content="We advise growth-stage technology ventures, institutional capital, and enterprises across global markets.">
     <meta name="twitter:image" content="https://faris-capital.com/images/og-image.png">
-    <link rel="stylesheet" href="css/style.css?v=38">
+    <link rel="stylesheet" href="css/style.css?v=40">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -89,9 +89,30 @@
         <section class="section container" style="padding: 48px 0;">
             <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;">
                 <h2>Latest Thinking</h2>
-                <a href="investment-theses.html" class="accent-link" style="font-size: 0.95rem; font-weight: 600; margin-bottom: 2rem;">View all theses →</a>
+                <a href="investment-theses.html" class="accent-link" style="font-size: 0.95rem; font-weight: 600; margin-bottom: 2rem;">View all perspectives →</a>
             </div>
-            <div id="latest-thinking-grid" class="grid grid-3" style="margin-top: -1rem;"></div>
+            <div id="latest-thinking-grid" class="grid grid-3" style="margin-top: -1rem;">
+                <!-- LATEST_THINKING_CARDS_START -->
+                    <div class="thesis-card">
+                        <div class="thesis-date">August 21, 2026</div>
+                        <h3>I've Walked the Floor at LEAP Before. This Year I'm Watching From Here, and I'm Paying Close Attention</h3>
+                        <p>I've attended LEAP before. A scheduling conflict is keeping me from this year's edition, but the story underneath it, five editions, $42 billion in cumulative investment, a conference that got rescheduled rather than skipped, is worth watching regardless of whether I'm in the room.</p>
+                        <a href="theses/ive-walked-the-floor-at-leap-before-this-year-im-watching-from-here-and-im-paying-close-attention.html" class="accent-link">Read Perspective <span>→</span></a>
+                    </div>
+                    <div class="thesis-card">
+                        <div class="thesis-date">August 16, 2026</div>
+                        <h3>One Line in Sahil Bhaiwala's Data Thesis Points at the Next $100B Question</h3>
+                        <p>Handshake AI's Sahil Bhaiwala made the sharpest case I've read this year for the data-authoring economy, and scoped it carefully enough to set physical intelligence aside for a future post. That's exactly the layer I've spent this year tracking.</p>
+                        <a href="theses/one-line-in-sahil-bhaiwalas-data-thesis-points-at-the-next-100b-question.html" class="accent-link">Read Perspective <span>→</span></a>
+                    </div>
+                    <div class="thesis-card">
+                        <div class="thesis-date">July 25, 2026</div>
+                        <h3>The Silence Was the Signal</h3>
+                        <p>Jensen Huang posted on X for the first time ever this week, sharing a letter signed by 25 companies arguing for open AI models.</p>
+                        <a href="theses/the-silence-was-the-signal.html" class="accent-link">Read Perspective <span>→</span></a>
+                    </div>
+                <!-- LATEST_THINKING_CARDS_END -->
+            </div>
         </section>
 
         <!-- By the Numbers -->
@@ -101,11 +122,11 @@
                 <p style="text-align: center; margin: 0.5rem auto 0; font-size: 1.25rem; font-weight: 500; color: var(--text-secondary);">Grounded in operating experience.</p>
                 <div class="grid grid-3" style="margin-top: 1.75rem; text-align: center;">
                     <div>
-                        <div class="stat-value"><span class="count-up" data-prefix="$" data-target="500" data-suffix="M+">0</span></div>
+                        <div class="stat-value"><span class="count-up" data-prefix="$" data-target="500" data-suffix="M+">$500M+</span></div>
                         <p class="stat-label">Directed in venture investments</p>
                     </div>
                     <div>
-                        <div class="stat-value"><span class="count-up" data-target="200" data-suffix="+">0</span></div>
+                        <div class="stat-value"><span class="count-up" data-target="200" data-suffix="+">200+</span></div>
                         <p class="stat-label">Private equity and venture transactions</p>
                     </div>
                     <div>
@@ -121,53 +142,10 @@
     <!-- Footer Placeholder -->
     <footer></footer>
 
-    <script src="js/components.js?v=38"></script>
-    <script src="js/investment-theses-data.js?v=38"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Latest Thinking: the three newest theses (array is newest-first)
-            const grid = document.getElementById('latest-thinking-grid');
-            if (grid && typeof INVESTMENT_THESES !== 'undefined') {
-                grid.innerHTML = INVESTMENT_THESES.slice(0, 3).map(p => `
-                    <div class="thesis-card">
-                        <div class="thesis-date">${p.date}</div>
-                        <h3>${p.title}</h3>
-                        <p>${p.teaser.split('\n')[0]}</p>
-                        <a href="theses/${p.id}.html" class="accent-link">Read Thesis <span>→</span></a>
-                    </div>
-                `).join('');
-            }
-
-            // Count-up for "By the Numbers" stats, triggered once on scroll into view
-            const counters = document.querySelectorAll('.count-up');
-            if (counters.length) {
-                const runCounter = (el) => {
-                    const target = parseInt(el.dataset.target, 10);
-                    const prefix = el.dataset.prefix || '';
-                    const suffix = el.dataset.suffix || '';
-                    const duration = 1200;
-                    const start = performance.now();
-                    function tick(now) {
-                        const progress = Math.min((now - start) / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        el.textContent = prefix + Math.round(target * eased) + suffix;
-                        if (progress < 1) requestAnimationFrame(tick);
-                    }
-                    requestAnimationFrame(tick);
-                };
-                const countObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            runCounter(entry.target);
-                            countObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                counters.forEach(el => countObserver.observe(el));
-            }
-        });
-    </script>
-    <script src="js/main.js?v=38"></script>
+    <script src="js/components.js?v=40"></script>
+    <script src="js/investment-theses-data.js?v=40"></script>
+    <script src="/js/home.js?v=40"></script>
+    <script src="js/main.js?v=40"></script>
 </body>
 
 </html>

@@ -334,7 +334,7 @@ img {
     z-index: 1000;
     display: flex;
     align-items: center;
-    transition: all var(--transition-fast);
+    transition: box-shadow var(--transition-fast);
 }
 
 /* Ensure header content lines up exactly with page containers on desktop
@@ -1145,3 +1145,33 @@ img {
 
 
 /* Debug outlines removed — logo should now be trimmed and align with container. */
+/* Responsive and accessibility corrections, September 2026. */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip-link { position: fixed; top: -8rem; left: 1rem; padding: .75rem 1rem; background: white; color: #0F2A5F; z-index: 1100; }
+.skip-link:focus { top: .5rem; }
+a:focus-visible, button:focus-visible { outline: 3px solid #806322; outline-offset: 4px; }
+.mobile-nav[hidden] { display: none; }
+.mobile-nav { position: absolute; top: 100%; height: auto; max-height: calc(100dvh - var(--header-height)); transform: none; justify-content: flex-start; border-bottom: 1px solid var(--border-color); box-shadow: 0 12px 20px rgba(0,0,0,.08); }
+.mobile-nav .nav-link { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.bio-role { color: #806322; }
+main { scroll-margin-top: calc(var(--header-height) + 1rem); }
+@media (max-width: 1099px) {
+    .site-header .header-container.container { padding-inline: clamp(1rem, 4vw, 2rem); gap: 1rem; }
+    .logo { min-width: 0; flex-shrink: 1; }
+    .logo img.logo-mobile, .logo img.logo-desktop { max-width: 100%; object-fit: contain; }
+    .mobile-menu-btn { flex: 0 0 44px; min-height: 44px; }
+}
+@media (max-width: 767px) {
+    .container { padding-inline: 1.25rem; }
+    .hero, .hero-home { padding: calc(var(--header-height) + 2rem) 1.25rem 2.5rem; }
+    .hero-home > .container { padding-inline: 0; }
+    .hero-home h1 { font-size: clamp(2.35rem, 9vw, 3.5rem); }
+    .pill { white-space: normal; text-align: center; max-width: 100%; padding-inline: 1rem; }
+    .pill-grid { grid-template-columns: minmax(0, 1fr); }
+    .radius-card { padding: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .fade-up { opacity: 1; transform: none; }
+}

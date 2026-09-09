@@ -18,14 +18,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const mobileNav = document.querySelector('.mobile-nav');
 
+    const main = document.querySelector('main');
+    if (main) { main.id = 'main-content'; main.tabIndex = -1; }
     if (menuBtn && mobileNav) {
-        menuBtn.addEventListener('click', () => {
-            mobileNav.classList.toggle('open');
-            // Toggle icon (optional simple switch)
-            if (mobileNav.classList.contains('open')) {
-                menuBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-            } else {
-                menuBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+        const openIcon = menuBtn.innerHTML;
+        const closeIcon = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6L18 18M6 18L18 6"/></svg>';
+        const setMenu = (open, restoreFocus = false) => {
+            mobileNav.hidden = !open;
+            mobileNav.classList.toggle('open', open);
+            menuBtn.setAttribute('aria-expanded', String(open));
+            menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            menuBtn.innerHTML = open ? closeIcon : openIcon;
+            if (restoreFocus) menuBtn.focus();
+        };
+        menuBtn.addEventListener('click', () => setMenu(mobileNav.hidden));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !mobileNav.hidden) {
+                event.preventDefault(); setMenu(false, true);
+            }
+        });
+        document.addEventListener('click', event => {
+            if (!mobileNav.hidden && !event.composedPath().includes(headerElement)) setMenu(false);
+        });
+        headerElement.addEventListener('focusout', event => {
+            if (event.relatedTarget && !headerElement.contains(event.relatedTarget)) setMenu(false);
+        });
+        mobileNav.addEventListener('click', event => {
+            if (event.target.closest('a')) setMenu(false);
+        });
+        const desktop = window.matchMedia('(min-width: 1100px)');
+        desktop.addEventListener('change', () => {
+            if (desktop.matches) {
+                const hadFocus = mobileNav.contains(document.activeElement) || document.activeElement === menuBtn;
+                setMenu(false);
+                if (hadFocus) document.querySelector('.nav-desktop a')?.focus();
             }
         });
     }
@@ -39,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Compare filenames only, since nav hrefs are root-absolute
         if (linkPath === currentPath) {
             link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
         }
     });
 
@@ -56,47 +83,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Animation Observer (Oomph!)
-    // Select all sections and main blocks to animate
-    const animatedElements = document.querySelectorAll('section, .content-block, .radius-card, h1, h2, p, .hero-subhead');
-
-    // Add fade-up class initially to things we want to animate (if not already there)
-    // Actually, let's just observe them and add the class 'fade-up' in JS to avoid messing HTML too much
-    // Or better: Let's assume everything we want to animate has class 'fade-up' in HTML? 
-    // No, let's do it programmatically for this refactor to save touching 10 files.
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, observerOptions);
-
-    // Apply fade-up to common elements for instant jazz
-    const elementsToAnimate = document.querySelectorAll('main > section > .container > *');
-
-    elementsToAnimate.forEach((el, index) => {
-        el.classList.add('fade-up');
-        // Add random delay for stagger effect if siblings
-        if (index % 2 === 0) el.classList.add('delay-100');
-        if (index % 3 === 0) el.classList.add('delay-200');
-        observer.observe(el);
-    });
-
-    // Also animate Hero elements specifically (direct children, or children
-    // of a nested .container for full-bleed heroes like .hero-home)
-    const heroElements = document.querySelectorAll('.hero > *:not(.container), .hero > .container > *');
-    heroElements.forEach((el, index) => {
-        el.classList.add('fade-up');
-        el.style.transitionDelay = `${index * 100}ms`; // Manual stagger
-        observer.observe(el);
-    });
-
+    // Essential content stays visible without scroll-triggered animation.
 });
