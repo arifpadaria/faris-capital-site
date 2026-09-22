@@ -4,6 +4,7 @@ on:
     branches: [main]
 permissions:
   contents: read
+  id-token: write
 concurrency:
   group: faris-production
   cancel-in-progress: false
@@ -23,9 +24,12 @@ jobs:
           git diff --exit-code -- js/investment-theses-data.js theses sitemap.xml
       - name: Build public files only
         run: node scripts/build-public.js
+      - name: Authenticate to Google Cloud (Workload Identity Federation, no key)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/972742112794/locations/global/workloadIdentityPools/github-actions/providers/github-repo
+          service_account: github-actions-deploy@faris-capital-web-6f0dc.iam.gserviceaccount.com
       - name: Install pinned Firebase CLI
         run: npm install -g firebase-tools@15.29.0
       - name: Deploy Firebase Hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: firebase deploy --only hosting --project faris-capital-web-6f0dc
