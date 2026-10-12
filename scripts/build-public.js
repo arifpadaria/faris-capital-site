@@ -7,7 +7,7 @@ function publicFiles(root) {
   const database = validateDatabase(JSON.parse(fs.readFileSync(path.join(root, 'content/perspectives.json'), 'utf8')));
   return [
     'index.html', 'about.html', 'contact.html', 'what-we-do.html', 'investment-theses.html',
-    'article.html', '404.html', 'business-card-single.html', 'robots.txt', 'sitemap.xml',
+    'article.html', '404.html', 'privacy.html', 'business-card-single.html', 'robots.txt', 'sitemap.xml',
     'css/style.css', ...['components', 'main', 'investment-theses-data', 'home', 'perspectives', 'services', 'legacy-article'].map(n => `js/${n}.js`),
     ...['apple-touch-icon.png', 'arif-headshot.jpg', 'arif-headshot.webp', 'faris-capital-wordmark-stacked.svg',
       'faris-capital-wordmark-v2-med.svg', 'faris-capital-wordmark-v2-reversed.svg',
