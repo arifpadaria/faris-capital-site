@@ -31,5 +31,6 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.WIF_PROVIDER }}
           service_account: github-deploy@faris-capital-web-6f0dc.iam.gserviceaccount.com
+          token_format: access_token
       - name: Deploy Firebase Hosting
-        run: firebase deploy --only hosting --project faris-capital-web-6f0dc
+        run: firebase deploy --only hosting --project faris-capital-web-6f0dc --debug
