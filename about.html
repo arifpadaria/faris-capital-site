@@ -29,19 +29,35 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Arif Padaria",
-      "url": "https://faris-capital.com/about.html",
-      "jobTitle": "Founder",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Faris Capital",
-        "url": "https://faris-capital.com/"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/fariscapital/",
-        "https://jaxon.ai/arif-padaria/",
-        "https://edgeqbit.com/index.php/about/"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://faris-capital.com/about.html#arif-padaria",
+          "name": "Arif Padaria",
+          "url": "https://faris-capital.com/about.html",
+          "jobTitle": "Founder",
+          "image": "https://faris-capital.com/images/arif-headshot.jpg",
+          "email": "arif@faris-capital.com",
+          "workLocation": { "@type": "Place", "name": "Boston, MA" },
+          "worksFor": { "@type": "Organization", "name": "Faris Capital", "url": "https://faris-capital.com/" },
+          "sameAs": [
+            "https://www.linkedin.com/in/padaria/",
+            "https://www.linkedin.com/company/fariscapital/",
+            "https://jaxon.ai/arif-padaria/",
+            "https://edgeqbit.com/index.php/about/"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://faris-capital.com/about.html#stephanie-portier",
+          "name": "Stephanie Portier",
+          "jobTitle": "Partner",
+          "image": "https://faris-capital.com/images/stephanie-headshot.jpg",
+          "email": "steph@faris-capital.com",
+          "workLocation": { "@type": "Place", "name": "Dubai, UAE" },
+          "worksFor": { "@type": "Organization", "name": "Faris Capital", "url": "https://faris-capital.com/" },
+          "sameAs": ["https://www.linkedin.com/in/st%C3%A9phanie-portier-a9a36b44/"]
+        }
       ]
     }
     </script>

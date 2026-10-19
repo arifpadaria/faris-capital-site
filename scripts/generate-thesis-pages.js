@@ -138,8 +138,12 @@ function pageHtml(t) {
       "image": "${SITE}/images/og-image.png"${published ? `,\n      "datePublished": "${published}"` : ''},
       "author": {
         "@type": "Person",
-        "name": "Arif Padaria"
+        "@id": "${SITE}/about.html#arif-padaria",
+        "name": "Arif Padaria",
+        "url": "${SITE}/about.html",
+        "sameAs": ["https://www.linkedin.com/in/padaria/"]
       },
+      "mainEntityOfPage": ${jsonLdString(url)},
       "publisher": {
         "@type": "Organization",
         "name": "Faris Capital",
@@ -233,6 +237,7 @@ const staticPages = [
   { loc: '/investment-theses.html', priority: '0.8' },
   { loc: '/about.html', priority: '0.6' },
   { loc: '/contact.html', priority: '0.6' },
+  { loc: '/privacy.html', priority: '0.3' },
 ];
 
 const urlEntries = [
