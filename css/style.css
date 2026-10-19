@@ -1175,3 +1175,15 @@ main { scroll-margin-top: calc(var(--header-height) + 1rem); }
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .fade-up { opacity: 1; transform: none; }
 }
+
+/* Homepage proof: experience strip + credential cards */
+.proof-strip { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 1.25rem 0; background: var(--white); }
+.proof-strip .label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); text-align: center; margin-bottom: 0.75rem; }
+.proof-strip .names { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 2rem; font-family: var(--font-heading); font-size: 1.05rem; color: var(--accent-color); }
+.cred-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.75rem; }
+.cred { border-top: 2px solid var(--accent-gold); padding-top: 0.9rem; }
+.cred .big { font-family: var(--font-heading); font-size: 1.9rem; color: var(--accent-color); line-height: 1.1; }
+.cred .who { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin: 0.35rem 0 0.5rem; }
+.cred p { font-size: 0.92rem; color: var(--text-secondary); margin: 0; }
+@media (max-width: 900px) { .cred-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .cred-grid { grid-template-columns: 1fr; } }
