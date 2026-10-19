@@ -75,6 +75,7 @@ const Footer = `
     </div>
     <div class="footer-bottom">
         <span>&copy; 2026 Faris Capital LLC. All rights reserved.</span>
+        <a href="/privacy.html">Privacy Policy</a>
     </div>
 </div>
 `;
