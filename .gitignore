@@ -84,3 +84,6 @@ medium-export/
 dist/
 .public-build-*/
 .publisher.lock
+
+# macOS
+.DS_Store
