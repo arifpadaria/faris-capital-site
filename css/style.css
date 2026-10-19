@@ -1186,4 +1186,9 @@ main { scroll-margin-top: calc(var(--header-height) + 1rem); }
 .cred .who { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin: 0.35rem 0 0.5rem; }
 .cred p { font-size: 0.92rem; color: var(--text-secondary); margin: 0; }
 @media (max-width: 900px) { .cred-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .cred-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+    .cred-grid { gap: 1.25rem 1rem; }
+    .cred .big { font-size: 1.45rem; }
+    .cred p { font-size: 0.85rem; }
+    .proof-strip .names { gap: 0.4rem 1.25rem; font-size: 0.95rem; }
+}
