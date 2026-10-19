@@ -1190,5 +1190,10 @@ main { scroll-margin-top: calc(var(--header-height) + 1rem); }
     .cred-grid { gap: 1.25rem 1rem; }
     .cred .big { font-size: 1.45rem; }
     .cred p { font-size: 0.85rem; }
-    .proof-strip .names { gap: 0.4rem 1.25rem; font-size: 0.95rem; }
+}
+
+@media (max-width: 640px) {
+    .proof-strip { padding: 1.5rem 0; }
+    .proof-strip .names { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1rem; text-align: center; font-size: 1rem; }
+    .proof-strip .names span:last-child { grid-column: 1 / -1; }
 }
