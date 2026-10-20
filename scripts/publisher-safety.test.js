@@ -166,3 +166,13 @@ test('public build includes only reviewed assets, excluding content, secrets and
   assert.ok(files.every(name => fs.existsSync(path.join(root, 'dist', name))));
   assert.deepEqual(buildPublic(root), files);
 });
+test('article cover images must live under /images/covers/', () => {
+  const ok = fixture();
+  ok.posts[0].image = '/images/covers/example-cover.jpg';
+  assert.ok(validateDatabase(ok));
+  for (const bad of ['https://example.com/x.jpg', '/images/../secret.jpg', '/images/covers/x.jpg"onload="x']) {
+    const db = fixture();
+    db.posts[0].image = bad;
+    assert.throws(() => validateDatabase(db), /Invalid article image path/);
+  }
+});

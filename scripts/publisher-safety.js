@@ -37,6 +37,7 @@ function validateDatabase(data) {
     // The existing library contains only paragraphs and line breaks. Preserve
     // those exactly; reject every other raw HTML construct and all attributes.
     if (post.content.replace(/<\/?p>|<br\s*\/?>/g, '').includes('<')) throw new Error('Unsupported article HTML');
+    if (post.image && !/^\/images\/covers\/[a-z0-9-]+\.(jpg|png)$/.test(post.image)) throw new Error('Invalid article image path');
     if (post.linkedinUrl) {
       const url = new URL(post.linkedinUrl);
       if (url.protocol !== 'https:' || !['linkedin.com', 'www.linkedin.com'].includes(url.hostname) || url.username || url.password || url.port) {

@@ -79,6 +79,7 @@ function isoDate(dateStr) {
 
 function pageHtml(t) {
   const url = `${SITE}/theses/${t.id}.html`;
+  const imagePath = t.image || '/images/og-image.png';
   const title = escapeAttr(`${t.title} — Faris Capital`);
   const desc = escapeAttr(metaDescription(t.teaser));
   const published = isoDate(t.date);
@@ -116,14 +117,14 @@ function pageHtml(t) {
     <meta property="og:title" content="${escapeAttr(t.title)}">
     <meta property="og:description" content="${desc}">
     <meta property="og:url" content="${url}">
-    <meta property="og:image" content="${SITE}/images/og-image.png">
+    <meta property="og:image" content="${SITE}${imagePath}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">${published ? `\n    <meta property="article:published_time" content="${published}">` : ''}
     <meta property="article:author" content="Arif Padaria">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeAttr(t.title)}">
     <meta name="twitter:description" content="${desc}">
-    <meta name="twitter:image" content="${SITE}/images/og-image.png">
+    <meta name="twitter:image" content="${SITE}${imagePath}">
     <link rel="stylesheet" href="/css/style.css?v=${V}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,7 +136,7 @@ function pageHtml(t) {
       "headline": ${jsonLdString(t.title)},
       "description": ${jsonLdString(metaDescription(t.teaser))},
       "url": ${jsonLdString(url)},
-      "image": "${SITE}/images/og-image.png"${published ? `,\n      "datePublished": "${published}"` : ''},
+      "image": "${SITE}${imagePath}"${published ? `,\n      "datePublished": "${published}"` : ''},
       "author": {
         "@type": "Person",
         "@id": "${SITE}/about.html#arif-padaria",
