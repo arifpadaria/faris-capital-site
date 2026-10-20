@@ -16,8 +16,8 @@ const Header = `
 <a class="skip-link" href="#main-content">Skip to content</a>
 <div class="header-container container">
     <a href="/index.html" class="logo">
-  <img src="/images/faris-capital-wordmark-v2-med.svg?v=42" alt="Faris Capital" class="logo-desktop">
-  <img src="/images/faris-capital-wordmark-stacked.svg?v=42" alt="Faris Capital" class="logo-mobile">
+  <img src="/images/faris-capital-wordmark-v2-med.svg?v=43" alt="Faris Capital" class="logo-desktop">
+  <img src="/images/faris-capital-wordmark-stacked.svg?v=43" alt="Faris Capital" class="logo-mobile">
 </a>
     <nav class="nav-desktop" aria-label="Primary">
         <a href="/index.html" class="nav-link">Home</a>
@@ -46,7 +46,7 @@ const Footer = `
 <div class="container">
     <div class="footer-grid">
         <div>
-            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=42" alt="Faris Capital">
+            <img src="/images/faris-capital-wordmark-v2-reversed.svg?v=43" alt="Faris Capital">
             <p class="footer-tagline">Advisory for growth-stage ventures, institutional capital, and enterprises across global markets.</p>
         </div>
         <div>
