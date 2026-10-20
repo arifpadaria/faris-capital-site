@@ -40,3 +40,19 @@ This requires a clean working tree on `main`. It pushes reviewed commits to GitH
 Before replacing output, the publisher saves originals and a manifest under `.publisher-backups/<run>/`. Detected write failures restore the originals automatically. Individual file replacements are atomic; the full set is not a filesystem transaction. After a machine/process interruption, review the latest manifest: entries marked true have original copies in that snapshot, entries marked false were new outputs. Restore that set before clearing a leftover `.publisher.lock` or `.publisher-tmp` file and retrying. Never clear a lock while another publisher is running. Source edits detected during preparation cause publication to stop instead of overwriting newer content.
 
 Keep snapshots until the corresponding change is verified. They are excluded from Git and hosting. The public build refuses to replace an existing `dist` directory without its ownership marker.
+
+## Cover images (added 2026-10-19)
+
+Each perspective can carry an `image` (a path under `/images/covers/`, 1200x630). The page generator uses it for `og:image`, `twitter:image` and the article schema, and falls back to `/images/og-image.png` when there is none. To make a navy and gold title card for every piece that lacks one:
+
+```bash
+python3 scripts/make-covers.py          # new pieces only
+python3 scripts/make-covers.py --force  # rebuild generated cards
+node scripts/generate-thesis-pages.js && node scripts/build-public.js
+```
+
+A hand-made cover (for example the Post 10 timing graphic) is never overwritten. Needs Google Chrome and Pillow.
+
+## Article pipeline (added 2026-10-19)
+
+The vault drives publishing for approved articles: see `99 - System/Publishing_Pipeline.md` in the AP_Brain vault. `publish_stage_site.py` there calls this repo's scripts, pushes over HTTPS with `gh auth git-credential`, and needs a clean tree on `main`.
