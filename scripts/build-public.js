@@ -11,7 +11,7 @@ function publicFiles(root) {
     'css/style.css', ...['components', 'main', 'investment-theses-data', 'home', 'perspectives', 'services', 'legacy-article'].map(n => `js/${n}.js`),
     ...['apple-touch-icon.png', 'arif-headshot.jpg', 'arif-headshot.webp', 'faris-capital-wordmark-stacked.svg',
       'faris-capital-wordmark-v2-med.svg', 'faris-capital-wordmark-v2-reversed.svg',
-      'favicon-192.png', 'favicon-32.png', 'og-image.png', 'stephanie-headshot.jpg'].map(n => `images/${n}`),
+      'favicon-192.png', 'favicon-32.png', 'og-image.png', 'siraj-headshot.jpg', 'siraj-headshot.webp', 'stephanie-headshot.jpg'].map(n => `images/${n}`),
     ...database.posts.filter(p => p.image).map(p => p.image.replace(/^\//, '')),
     ...database.posts.map(p => `theses/${p.id}.html`)
   ];
