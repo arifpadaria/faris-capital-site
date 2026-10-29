@@ -654,6 +654,13 @@ img {
    (a second competing transform on the same element just fights the first). */
 
 /* Bio Cards (About — Who We Are) */
+/* Column layout so the contact line pins to the card bottom and lines up
+   across cards even when the bios differ in length. */
+.bio-card {
+    display: flex;
+    flex-direction: column;
+}
+
 .bio-photo {
     width: 84px;
     height: 84px;
@@ -679,7 +686,8 @@ img {
 }
 
 .bio-contact {
-    margin-top: 1.25rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
     font-size: 0.9rem;
 }
 
