@@ -15,6 +15,16 @@
   },
   "posts": [
     {
+      "id": "what-the-physical-ai-summit-said-about-robotics-and-where-massachusetts-fits",
+      "theme": "physical-ai",
+      "title": "What the Physical AI Summit Said About Robotics, and Where Massachusetts Fits",
+      "date": "October 31, 2026",
+      "teaser": "At the Imagination in Action Physical AI summit in Boston, almost nobody argued about whether robots can do the work. They argued about how often they succeed, and what it will take to keep the next round and the factory in Massachusetts.",
+      "content": "<p>This past Friday I was at the Imagination in Action Physical AI summit in Boston, from the 8:30 opening to the 4pm funding panel.</p>\n      <p>Congrats to John Werner and team for putting on an absolutely stellar program!! Kudos and Thank you!!</p>\n      <p>I have written about Physical AI since May, and I wanted to see whether my thinking held up against the people building it. Most of it did.</p>\n      <p>What surprised me was how little anyone argued about whether robots can do the work. Russ Tedrake of Walden Robotics said tasks that looked years away, like opening doors and tying shoelaces, now work after a few minutes of demonstration. His robots run full factory shifts. The argument was about reliability.</p>\n      <p>One panel put a general model at about half on a simple task, and 70 to 80 percent once it is fine-tuned on your own data. Nobody claimed 100 percent.</p>\n      <p>Three more things stuck with me.</p>\n      <p>(1) The best robot data sits inside factories, often in spreadsheets, and it does not leave.</p>\n      <p>(2) Narrow beats broad for now. Bruce Welty of Locus Robotics said a robot that does 99 things when you need one means paying for 98 you do not use.</p>\n      <p>(3) An investor on the funding panel said they would take one signed customer contract over fifteen letters of intent.</p>\n      <p>The one I keep thinking about came from Colin Angle (Founder of iRobot). He said nine in ten Roomba owners named their robot and moved chairs to help it. He used to believe the perfect Roomba was one you never touch. He now calls that dead wrong.</p>\n      <p>The other thing I noticed was WHERE all of this was happening. Symbotic, Boston Dynamics and Amazon Fulfillment Technologies &amp; Robotics build robots in Massachusetts, and iRobot started here.</p>\n      <p>CSAIL MIT, MassRobotics and The Engine put the day together.</p>\n      <p>Daniela Rus said it is easier for Massachusetts Institute of Technology students to raise large rounds in California than at home, and the panels named follow-on capital and manufacturing capacity as the gaps.</p>\n      <p>If you build or back robotics in Massachusetts, what would keep the next round and the factory here? Thoughts?</p>",
+      "linkedinUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7522396228505239552/",
+      "image": "/images/covers/what-the-physical-ai-summit-said-about-robotics-and-where-massachusetts-fits.jpg"
+    },
+    {
       "id": "the-ai-read-the-whole-document-and-skipped-the-exhibits",
       "theme": "governance",
       "title": "The AI Read the Whole Document and Skipped the Exhibits",
